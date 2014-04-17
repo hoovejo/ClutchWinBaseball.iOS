@@ -1,0 +1,491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D31FCB4918FFEDFB004DDBCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4818FFEDFB004DDBCF /* Foundation.framework */; };
+		D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */; };
+		D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */; };
+		D31FCB5318FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB5118FFEDFB004DDBCF /* InfoPlist.strings */; };
+		D31FCB5518FFEDFB004DDBCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB5418FFEDFB004DDBCF /* main.m */; };
+		D31FCB5918FFEDFB004DDBCF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB5818FFEDFB004DDBCF /* AppDelegate.m */; };
+		D31FCB5C18FFEDFB004DDBCF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB5A18FFEDFB004DDBCF /* Main_iPhone.storyboard */; };
+		D31FCB5F18FFEDFB004DDBCF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB5D18FFEDFB004DDBCF /* Main_iPad.storyboard */; };
+		D31FCB6218FFEDFB004DDBCF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB6118FFEDFB004DDBCF /* FirstViewController.m */; };
+		D31FCB6518FFEDFB004DDBCF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB6418FFEDFB004DDBCF /* SecondViewController.m */; };
+		D31FCB6718FFEDFB004DDBCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB6618FFEDFB004DDBCF /* Images.xcassets */; };
+		D31FCB6E18FFEDFB004DDBCF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB6D18FFEDFB004DDBCF /* XCTest.framework */; };
+		D31FCB6F18FFEDFB004DDBCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4818FFEDFB004DDBCF /* Foundation.framework */; };
+		D31FCB7018FFEDFB004DDBCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */; };
+		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
+		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D31FCB7118FFEDFB004DDBCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D31FCB3D18FFEDFB004DDBCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D31FCB4418FFEDFB004DDBCF;
+			remoteInfo = ClutchWinBaseball;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D31FCB4518FFEDFB004DDBCF /* ClutchWinBaseball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClutchWinBaseball.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31FCB4818FFEDFB004DDBCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D31FCB5018FFEDFB004DDBCF /* ClutchWinBaseball-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClutchWinBaseball-Info.plist"; sourceTree = "<group>"; };
+		D31FCB5218FFEDFB004DDBCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D31FCB5418FFEDFB004DDBCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D31FCB5618FFEDFB004DDBCF /* ClutchWinBaseball-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ClutchWinBaseball-Prefix.pch"; sourceTree = "<group>"; };
+		D31FCB5718FFEDFB004DDBCF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D31FCB5818FFEDFB004DDBCF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D31FCB5B18FFEDFB004DDBCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		D31FCB5E18FFEDFB004DDBCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		D31FCB6018FFEDFB004DDBCF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		D31FCB6118FFEDFB004DDBCF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		D31FCB6318FFEDFB004DDBCF /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		D31FCB6418FFEDFB004DDBCF /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		D31FCB6618FFEDFB004DDBCF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D31FCB6C18FFEDFB004DDBCF /* ClutchWinBaseballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClutchWinBaseballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31FCB6D18FFEDFB004DDBCF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D31FCB7518FFEDFB004DDBCF /* ClutchWinBaseballTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClutchWinBaseballTests-Info.plist"; sourceTree = "<group>"; };
+		D31FCB7718FFEDFB004DDBCF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClutchWinBaseballTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D31FCB4218FFEDFB004DDBCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */,
+				D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */,
+				D31FCB4918FFEDFB004DDBCF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D31FCB6918FFEDFB004DDBCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB6E18FFEDFB004DDBCF /* XCTest.framework in Frameworks */,
+				D31FCB7018FFEDFB004DDBCF /* UIKit.framework in Frameworks */,
+				D31FCB6F18FFEDFB004DDBCF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D31FCB3C18FFEDFB004DDBCF = {
+			isa = PBXGroup;
+			children = (
+				D31FCB4E18FFEDFB004DDBCF /* ClutchWinBaseball */,
+				D31FCB7318FFEDFB004DDBCF /* ClutchWinBaseballTests */,
+				D31FCB4718FFEDFB004DDBCF /* Frameworks */,
+				D31FCB4618FFEDFB004DDBCF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D31FCB4618FFEDFB004DDBCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB4518FFEDFB004DDBCF /* ClutchWinBaseball.app */,
+				D31FCB6C18FFEDFB004DDBCF /* ClutchWinBaseballTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D31FCB4718FFEDFB004DDBCF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB4818FFEDFB004DDBCF /* Foundation.framework */,
+				D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */,
+				D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */,
+				D31FCB6D18FFEDFB004DDBCF /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D31FCB4E18FFEDFB004DDBCF /* ClutchWinBaseball */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB5718FFEDFB004DDBCF /* AppDelegate.h */,
+				D31FCB5818FFEDFB004DDBCF /* AppDelegate.m */,
+				D31FCB5A18FFEDFB004DDBCF /* Main_iPhone.storyboard */,
+				D31FCB5D18FFEDFB004DDBCF /* Main_iPad.storyboard */,
+				D31FCB6018FFEDFB004DDBCF /* FirstViewController.h */,
+				D31FCB6118FFEDFB004DDBCF /* FirstViewController.m */,
+				D31FCB6318FFEDFB004DDBCF /* SecondViewController.h */,
+				D31FCB6418FFEDFB004DDBCF /* SecondViewController.m */,
+				D31FCB6618FFEDFB004DDBCF /* Images.xcassets */,
+				D31FCB4F18FFEDFB004DDBCF /* Supporting Files */,
+			);
+			path = ClutchWinBaseball;
+			sourceTree = "<group>";
+		};
+		D31FCB4F18FFEDFB004DDBCF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB5018FFEDFB004DDBCF /* ClutchWinBaseball-Info.plist */,
+				D31FCB5118FFEDFB004DDBCF /* InfoPlist.strings */,
+				D31FCB5418FFEDFB004DDBCF /* main.m */,
+				D31FCB5618FFEDFB004DDBCF /* ClutchWinBaseball-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D31FCB7318FFEDFB004DDBCF /* ClutchWinBaseballTests */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */,
+				D31FCB7418FFEDFB004DDBCF /* Supporting Files */,
+			);
+			path = ClutchWinBaseballTests;
+			sourceTree = "<group>";
+		};
+		D31FCB7418FFEDFB004DDBCF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D31FCB7518FFEDFB004DDBCF /* ClutchWinBaseballTests-Info.plist */,
+				D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D31FCB4418FFEDFB004DDBCF /* ClutchWinBaseball */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D31FCB7D18FFEDFB004DDBCF /* Build configuration list for PBXNativeTarget "ClutchWinBaseball" */;
+			buildPhases = (
+				D31FCB4118FFEDFB004DDBCF /* Sources */,
+				D31FCB4218FFEDFB004DDBCF /* Frameworks */,
+				D31FCB4318FFEDFB004DDBCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClutchWinBaseball;
+			productName = ClutchWinBaseball;
+			productReference = D31FCB4518FFEDFB004DDBCF /* ClutchWinBaseball.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D31FCB6B18FFEDFB004DDBCF /* ClutchWinBaseballTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D31FCB8018FFEDFB004DDBCF /* Build configuration list for PBXNativeTarget "ClutchWinBaseballTests" */;
+			buildPhases = (
+				D31FCB6818FFEDFB004DDBCF /* Sources */,
+				D31FCB6918FFEDFB004DDBCF /* Frameworks */,
+				D31FCB6A18FFEDFB004DDBCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D31FCB7218FFEDFB004DDBCF /* PBXTargetDependency */,
+			);
+			name = ClutchWinBaseballTests;
+			productName = ClutchWinBaseballTests;
+			productReference = D31FCB6C18FFEDFB004DDBCF /* ClutchWinBaseballTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D31FCB3D18FFEDFB004DDBCF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = com.clutchwin.baseball;
+				TargetAttributes = {
+					D31FCB6B18FFEDFB004DDBCF = {
+						TestTargetID = D31FCB4418FFEDFB004DDBCF;
+					};
+				};
+			};
+			buildConfigurationList = D31FCB4018FFEDFB004DDBCF /* Build configuration list for PBXProject "ClutchWinBaseball" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D31FCB3C18FFEDFB004DDBCF;
+			productRefGroup = D31FCB4618FFEDFB004DDBCF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D31FCB4418FFEDFB004DDBCF /* ClutchWinBaseball */,
+				D31FCB6B18FFEDFB004DDBCF /* ClutchWinBaseballTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D31FCB4318FFEDFB004DDBCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB5F18FFEDFB004DDBCF /* Main_iPad.storyboard in Resources */,
+				D31FCB6718FFEDFB004DDBCF /* Images.xcassets in Resources */,
+				D31FCB5C18FFEDFB004DDBCF /* Main_iPhone.storyboard in Resources */,
+				D31FCB5318FFEDFB004DDBCF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D31FCB6A18FFEDFB004DDBCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D31FCB4118FFEDFB004DDBCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB6518FFEDFB004DDBCF /* SecondViewController.m in Sources */,
+				D31FCB5918FFEDFB004DDBCF /* AppDelegate.m in Sources */,
+				D31FCB6218FFEDFB004DDBCF /* FirstViewController.m in Sources */,
+				D31FCB5518FFEDFB004DDBCF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D31FCB6818FFEDFB004DDBCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D31FCB7218FFEDFB004DDBCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D31FCB4418FFEDFB004DDBCF /* ClutchWinBaseball */;
+			targetProxy = D31FCB7118FFEDFB004DDBCF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D31FCB5118FFEDFB004DDBCF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D31FCB5218FFEDFB004DDBCF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D31FCB5A18FFEDFB004DDBCF /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D31FCB5B18FFEDFB004DDBCF /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		D31FCB5D18FFEDFB004DDBCF /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D31FCB5E18FFEDFB004DDBCF /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D31FCB7718FFEDFB004DDBCF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D31FCB7B18FFEDFB004DDBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D31FCB7C18FFEDFB004DDBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D31FCB7E18FFEDFB004DDBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
+				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D31FCB7F18FFEDFB004DDBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
+				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D31FCB8118FFEDFB004DDBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ClutchWinBaseball.app/ClutchWinBaseball";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ClutchWinBaseballTests/ClutchWinBaseballTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D31FCB8218FFEDFB004DDBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ClutchWinBaseball.app/ClutchWinBaseball";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
+				INFOPLIST_FILE = "ClutchWinBaseballTests/ClutchWinBaseballTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D31FCB4018FFEDFB004DDBCF /* Build configuration list for PBXProject "ClutchWinBaseball" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D31FCB7B18FFEDFB004DDBCF /* Debug */,
+				D31FCB7C18FFEDFB004DDBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D31FCB7D18FFEDFB004DDBCF /* Build configuration list for PBXNativeTarget "ClutchWinBaseball" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D31FCB7E18FFEDFB004DDBCF /* Debug */,
+				D31FCB7F18FFEDFB004DDBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D31FCB8018FFEDFB004DDBCF /* Build configuration list for PBXNativeTarget "ClutchWinBaseballTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D31FCB8118FFEDFB004DDBCF /* Debug */,
+				D31FCB8218FFEDFB004DDBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D31FCB3D18FFEDFB004DDBCF /* Project object */;
+}
