@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PlayerPlayerSearch</key>
+	<string>/search/player_vs_player/</string>
+	<key>Franchise</key>
+	<string>/franchises.json</string>
+	<key>BaseUrlString</key>
+	<string>http://versus.skeenshare.com</string>
+	<key>LoggingEnabled</key>
+	<false/>
+	<key>FranchiseSearch</key>
+	<string>/search/franchise_vs_franchise/</string>
+	<key>JsonSuffix</key>
+	<string>.json</string>
+	<key>OpponentsForBatter</key>
+	<string>/search/opponents_for_batter/</string>
+	<key>Years</key>
+	<string>/years.json</string>
+	<key>Teams</key>
+	<string>/teams/</string>
+	<key>PlayerPlayerYearSearch</key>
+	<string>/search/player_vs_player_by_year/</string>
+	<key>RosterSearch</key>
+	<string>/roster_for_team_and_year/</string>
+	<key>FranchiseYearSearch</key>
+	<string>/search/franchise_vs_franchise_by_year/</string>
+</dict>
+</plist>

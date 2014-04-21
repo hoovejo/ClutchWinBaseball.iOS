@@ -7,12 +7,15 @@
 //
 
 #import "AppDelegate.h"
+#import "ServiceEndpointHub.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [ServiceEndpointHub configureRestKit];
+    
     return YES;
 }
 							
