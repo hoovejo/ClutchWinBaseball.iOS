@@ -5,13 +5,13 @@
 	<key>PlayerPlayerSearch</key>
 	<string>/search/player_vs_player/</string>
 	<key>Franchise</key>
-	<string>/franchises.json</string>
+	<string>/api/v1/franchises.json?&amp;access_token=joe</string>
 	<key>BaseUrlString</key>
-	<string>http://versus.skeenshare.com</string>
+	<string>http://clutchwin.com</string>
 	<key>LoggingEnabled</key>
 	<false/>
 	<key>FranchiseSearch</key>
-	<string>/search/franchise_vs_franchise/</string>
+	<string>/api/v1/games/for_team/summary.json?&amp;access_token=joe&amp;fieldset=basic&amp;group=season,team_abbr,opp_abbr</string>
 	<key>JsonSuffix</key>
 	<string>.json</string>
 	<key>OpponentsForBatter</key>

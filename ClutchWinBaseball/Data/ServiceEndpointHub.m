@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
+#import <CoreData/CoreData.h>
 #import <RestKit/RestKit.h>
 #import "ServiceEndpointHub.h"
 #import "CWBConfiguration.h"
@@ -27,6 +28,19 @@
 
 @implementation ServiceEndpointHub
 
+static NSManagedObjectModel *staticManagedObjectModel;
+static NSManagedObjectContext *staticManagedObjectContext;
+
++ (NSManagedObjectModel *)getManagedObjectModel
+{
+    return staticManagedObjectModel;
+}
+
++ (NSManagedObjectContext *)getManagedObjectContext
+{
+    return staticManagedObjectContext;
+}
+
 + (void)configureRestKit
 {
     // initialize AFNetworking HTTPClient
@@ -36,75 +50,96 @@
     
     // initialize RestKit
     RKObjectManager *objectManager = [[RKObjectManager alloc] initWithHTTPClient:client];
+
+    // Enable Activity Indicator Spinner
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    // Initialize managed object store
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    objectManager.managedObjectStore = managedObjectStore;
     
     // setup object mappings
-    [objectManager addResponseDescriptor:[self buildFranchises ]];
-    [objectManager addResponseDescriptor:[self buildTeamsResults ]];
-    [objectManager addResponseDescriptor:[self buildTeamsDrillDown ]];
+    [objectManager addResponseDescriptor:[self buildFranchises:managedObjectStore ]];
+    [objectManager addResponseDescriptor:[self buildTeamsResults:managedObjectStore ]];
+    //[objectManager addResponseDescriptor:[self buildTeamsDrillDown ]];
 
-    [objectManager addResponseDescriptor:[self buildYears ]];
-    [objectManager addResponseDescriptor:[self buildTeamSearch ]];
-    [objectManager addResponseDescriptor:[self buildBatterSearch ]];
-    [objectManager addResponseDescriptor:[self buildPitcherSearch ]];
-    [objectManager addResponseDescriptor:[self buildPlayersResults ]];
-    [objectManager addResponseDescriptor:[self buildPlayersDrillDown ]];
+    //[objectManager addResponseDescriptor:[self buildYears ]];
+    //[objectManager addResponseDescriptor:[self buildTeamSearch ]];
+    //[objectManager addResponseDescriptor:[self buildBatterSearch ]];
+    //[objectManager addResponseDescriptor:[self buildPitcherSearch ]];
+    //[objectManager addResponseDescriptor:[self buildPlayersResults ]];
+    //[objectManager addResponseDescriptor:[self buildPlayersDrillDown ]];
 
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
+    
+    [managedObjectStore createPersistentStoreCoordinator];
+    
+    NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"ClutchWinModel.sqlite"];
+    
+    NSError *error;
+    
+    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:storePath fromSeedDatabaseAtPath:nil withConfiguration:nil options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error];
+    
+    NSAssert(persistentStore, @"Failed to add persistent store with error: %@", error);
+    
+    [managedObjectStore createManagedObjectContexts];
+    
+    NSManagedObjectContext *managedObjectContext = managedObjectStore.persistentStoreManagedObjectContext;
+    
+    // Configure a managed object cache to ensure we do not create duplicate objects
+    managedObjectStore.managedObjectCache = [[RKInMemoryManagedObjectCache alloc] initWithManagedObjectContext:managedObjectContext];
+    
+    staticManagedObjectModel = managedObjectModel;
+    staticManagedObjectContext = managedObjectContext;
 }
 
 #pragma mark - Response Descriptor builders
-+ (RKResponseDescriptor *) buildFranchises {
++ (RKResponseDescriptor *) buildFranchises:(RKManagedObjectStore *)managedObjectStore {
     
     // setup object mappings
-    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[FranchiseModel class]];
-    [resultMapping addAttributeMappingsFromDictionary:@{@"id": @"franchiseId",
-                                                           @"retro_id": @"retroId",
-                                                           @"league_id": @"leagueId",
-                                                           @"division_id": @"divisionId",
+    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Franchise" inManagedObjectStore:managedObjectStore];
+    [resultMapping addAttributeMappingsFromDictionary:@{@"franchise_abbr": @"retroId",
+                                                           @"league": @"leagueId",
+                                                           @"division": @"divisionId",
                                                            @"location": @"location",
-                                                           @"name": @"name",
-                                                           @"alternate_name": @"alternateName",
-                                                           @"first_game_dt": @"firstGameDt",
-                                                           @"last_game_dt": @"lastGameDt",
-                                                           @"city": @"city",
-                                                           @"state": @"state"}];
+                                                           @"name": @"name"}];
+    resultMapping.identificationAttributes = @[ @"retroId" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:resultMapping
                                                  method:RKRequestMethodGET
-                                            pathPattern:@"/franchises.json"
+                                            pathPattern:@"/api/v1/franchises.json"
                                                 keyPath:nil
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildTeamsResults {
++ (RKResponseDescriptor *) buildTeamsResults:(RKManagedObjectStore *)managedObjectStore {
     
     // setup object mappings
-    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[TeamsResultModel class]];
-    [resultMapping addAttributeMappingsFromDictionary:@{@"year": @"year",
-                                                        @"games": @"games",
-                                                        @"team": @"team",
-                                                        @"opponent": @"opponent",
-                                                        @"wins": @"wins",
-                                                        @"losses": @"losses",
-                                                        @"runs_for": @"runsFor",
-                                                        @"runs_against": @"runsAgainst"}];
+    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"TeamsResult" inManagedObjectStore:managedObjectStore];
+    [resultMapping addAttributeMappingsFromDictionary:@{@"season": @"year",
+                                                        @"team_abbr": @"team",
+                                                        @"opp_abbr": @"opponent",
+                                                        @"win": @"wins",
+                                                        @"loss": @"losses",
+                                                        @"score": @"runsFor",
+                                                        @"opp_score": @"runsAgainst"}];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
     [RKResponseDescriptor responseDescriptorWithMapping:resultMapping
                                                  method:RKRequestMethodGET
-                                            pathPattern:@"/search/franchise_vs_franchise/:franchiseId/:opponentId.json"
-                                                keyPath:@"rows"
+                                            pathPattern:nil
+                                                keyPath:nil
                                             statusCodes:[NSIndexSet indexSetWithIndex:200]];
     return responseDescriptor;
 }
 
 + (RKResponseDescriptor *) buildTeamsDrillDown {
     
-    // setup object mappings
     RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[TeamsDrillDownModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"Game Date": @"gameDate",
                                                            @"team": @"team",

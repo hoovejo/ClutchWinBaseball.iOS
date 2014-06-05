@@ -10,6 +10,8 @@
 
 @interface ServiceEndpointHub : NSObject
 
++ (NSManagedObjectModel *)getManagedObjectModel;
++ (NSManagedObjectContext *)getManagedObjectContext;
 + (void)configureRestKit;
 
 @end

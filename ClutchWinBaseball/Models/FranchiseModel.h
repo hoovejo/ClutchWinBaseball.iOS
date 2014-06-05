@@ -6,21 +6,16 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface FranchiseModel : NSObject
+@interface FranchiseModel : NSManagedObject
 
-@property (nonatomic, strong) NSString *franchiseId;
 @property (nonatomic, strong) NSString *retroId;
 @property (nonatomic, strong) NSString *leagueId;
 @property (nonatomic, strong) NSString *divisionId;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *alternateName;
-@property (nonatomic, strong) NSString *firstGameDt;
-@property (nonatomic, strong) NSString *lastGameDt;
-@property (nonatomic, strong) NSString *city;
-@property (nonatomic, strong) NSString *state;
 
 - (NSString *)displayName;
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Franchise" representedClassName="FranchiseModel" syncable="YES">
+        <attribute name="divisionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="leagueId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retroId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TeamsResult" representedClassName="TeamsResultModel" syncable="YES">
+        <attribute name="games" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="losses" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opponent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runsAgainst" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runsFor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="team" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wins" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Franchise" positionX="-5040" positionY="-4194" width="128" height="118"/>
+        <element name="TeamsResult" positionX="-5013" positionY="-4131" width="128" height="165"/>
+    </elements>
+</model>

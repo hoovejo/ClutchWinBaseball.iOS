@@ -10,4 +10,14 @@
 
 @implementation TeamsResultModel
 
+// We use @dynamic for the properties in Core Data
+@dynamic year;
+@dynamic games;
+@dynamic team;
+@dynamic opponent;
+@dynamic wins;
+@dynamic losses;
+@dynamic runsFor;
+@dynamic runsAgainst;
+
 @end

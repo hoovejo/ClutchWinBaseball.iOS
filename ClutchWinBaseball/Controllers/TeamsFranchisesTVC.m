@@ -7,10 +7,12 @@
 //
 
 #import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
 #import "TeamsFranchisesTVC.h"
 #import "FranchiseModel.h"
 #import "CWBConfiguration.h"
+#import "ServiceEndpointHub.h"
 
 @interface TeamsFranchisesTVC ()
 
@@ -23,8 +25,24 @@
     [super viewDidLoad];
 
     if( [self.teamsContextViewModel.franchises count] == 0 ) {
-        [self loadFranchises];
+        //[self loadFranchises];
     }
+    
+    NSManagedObjectModel *objectModel = [ServiceEndpointHub getManagedObjectModel];
+    NSFetchRequest *requestTemplate = [[NSFetchRequest alloc] init];
+    NSEntityDescription *publicationEntity = [[objectModel entitiesByName] objectForKey:@"Franchise"];
+    [requestTemplate setEntity:publicationEntity];
+    [objectModel setFetchRequestTemplate:requestTemplate forName:@"FranchiseTemplate"];
+
+    NSFetchRequest *fetchRequest = [objectModel fetchRequestFromTemplateWithName:@"FranchiseTemplate" substitutionVariables:nil];
+    NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+    
+    NSError *error = nil;
+    
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    self.teamsContextViewModel.franchises = results;
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

@@ -23,6 +23,8 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
+		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
+		D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */; };
 		D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E881905476100F00AB3 /* PlayersHostViewController.m */; };
 		D3B30EAF1905476100F00AB3 /* TeamsHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E981905476100F00AB3 /* TeamsHostViewController.m */; };
 		D3B30EC019055E2800F00AB3 /* FranchiseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30EBF19055E2800F00AB3 /* FranchiseModel.m */; };
@@ -87,6 +89,8 @@
 		D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClutchWinBaseballTests.m; sourceTree = "<group>"; };
 		D31FCB8318FFEE59004DDBCF /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = ClutchWinBaseball/ViewPagerController.h; sourceTree = "<group>"; };
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
+		D3A8FB69193EB28500CD69BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClutchWinModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B30E871905476100F00AB3 /* PlayersHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersHostViewController.h; sourceTree = "<group>"; };
 		D3B30E881905476100F00AB3 /* PlayersHostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersHostViewController.m; sourceTree = "<group>"; };
 		D3B30E971905476100F00AB3 /* TeamsHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamsHostViewController.h; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
 				D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */,
 				D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */,
 				D31FCB4918FFEDFB004DDBCF /* Foundation.framework in Frameworks */,
@@ -177,6 +182,7 @@
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
+				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
 				D31FCB4E18FFEDFB004DDBCF /* ClutchWinBaseball */,
 				D31FCB7318FFEDFB004DDBCF /* ClutchWinBaseballTests */,
@@ -198,6 +204,7 @@
 		D31FCB4718FFEDFB004DDBCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3A8FB69193EB28500CD69BC /* CoreData.framework */,
 				D31FCB4818FFEDFB004DDBCF /* Foundation.framework */,
 				D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */,
 				D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */,
@@ -266,6 +273,14 @@
 				D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */,
 			);
 			name = ICViewPager;
+			sourceTree = "<group>";
+		};
+		D3A8FB6B193EB3B700CD69BC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		D3B30EC119055E5000F00AB3 /* Models */ = {
@@ -503,6 +518,7 @@
 				D3B30F16190565DE00F00AB3 /* PlayersResultModel.m in Sources */,
 				D3B30EC619055EB900F00AB3 /* CWBConfiguration.m in Sources */,
 				D3B30EFE190563F900F00AB3 /* PlayersDrillDownTVC.m in Sources */,
+				D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */,
 				D3B30F011905645D00F00AB3 /* PlayersContextViewModel.m in Sources */,
 				D3B30F101905659A00F00AB3 /* BatterModel.m in Sources */,
 				D3B30ED119055F5B00F00AB3 /* TeamsDrillDownTVC.m in Sources */,
@@ -759,6 +775,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */,
+			);
+			currentVersion = D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */;
+			path = ClutchWinModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D31FCB3D18FFEDFB004DDBCF /* Project object */;
 }

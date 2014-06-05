@@ -10,6 +10,13 @@
 
 @implementation FranchiseModel
 
+// We use @dynamic for the properties in Core Data
+@dynamic retroId;
+@dynamic leagueId;
+@dynamic divisionId;
+@dynamic location;
+@dynamic name;
+
 - (NSString *)displayName {
     
     return [NSString stringWithFormat:@"%1$@ %2$@", self.location, self.name];

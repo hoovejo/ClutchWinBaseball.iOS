@@ -46,11 +46,10 @@
 - (void)loadResults
 {
     //@"/search/franchise_vs_franchise/ATL/BAL.json"
-    NSString *teamsResultsEndpoint = [NSString stringWithFormat:@"%1$@%2$@/%3$@%4$@",
+    NSString *teamsResultsEndpoint = [NSString stringWithFormat:@"%1$@&franchise_abbr=%2$@&opp_franchise_abbr=%3$@",
                                       [CWBConfiguration franchiseSearchUrl],
                                       self.teamsContextViewModel.franchiseId,
-                                      self.teamsContextViewModel.opponentId,
-                                      [CWBConfiguration jsonSuffix]];
+                                      self.teamsContextViewModel.opponentId];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
@@ -115,7 +114,7 @@
     TeamsResultModel *result = self.results[indexPath.row];
     
     cell.yearLabel.text = result.year;
-    cell.gamesLabel.text = result.games;
+    cell.gamesLabel.text = [NSString stringWithFormat: @"%d", [result.wins intValue]+[result.losses intValue]];
     cell.teamLabel.text = result.team;
     cell.opponentLabel.text = result.opponent;
     cell.winsLabel.text = result.wins;
