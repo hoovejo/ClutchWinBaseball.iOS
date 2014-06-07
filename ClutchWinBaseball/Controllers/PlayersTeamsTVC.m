@@ -135,7 +135,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     TeamModel *team = self.teams[indexPath.row];
     cell.textLabel.text = [team displayName];
@@ -155,6 +157,8 @@
     self.playersContextViewModel.teamId = team.teamIdValue;
     
     [self.delegate playersTeamSelected:self];
+    
+    [self performSegueWithIdentifier:@"TeamsUnwind" sender:self];
 }
 
 

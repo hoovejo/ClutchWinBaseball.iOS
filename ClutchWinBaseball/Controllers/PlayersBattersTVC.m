@@ -13,24 +13,123 @@
 #import "BatterModel.h"
 #import "CWBConfiguration.h"
 
-@interface PlayersBattersTVC ()
+#import "PlayersYearsTVC.h"
+#import "PlayersTeamsTVC.h"
+
+#import "CustomSegue.h"
+#import "CustomUnwindSegue.h"
+
+
+@interface PlayersBattersTVC () <PlayersYearsTVCDelegate, PlayersTeamsTVCDelegate>
 
 @property (nonatomic, strong) NSMutableArray *batters;
+
+@property (weak, nonatomic) IBOutlet UIButton *segueButton;
 
 @end
 
 @implementation PlayersBattersTVC
 
+- (void)playersYearSelected:(PlayersYearsTVC *)controller
+{
+    [self.goToSeasonsButton setTitle:[self getSeasonText] forState:UIControlStateNormal];
+    [self refresh];
+}
+
+- (void)playersTeamSelected:(PlayersTeamsTVC *)controller
+{
+    [self.goToTeamsButton setTitle:[self getTeamText] forState:UIControlStateNormal];
+    [self refresh];
+}
+
+- (NSString *) getSeasonText{
+    static NSString *SeasonDefault = @"seasons >";
+    static NSString *Arrow = @" >";
+    
+    NSString *seasonText = self.playersContextViewModel.yearId;
+    if([seasonText length] == 0){
+        seasonText = SeasonDefault;
+    }
+    return [seasonText stringByAppendingString:Arrow];
+}
+
+- (NSString *) getTeamText{
+    static NSString *TeamDefault = @"teams >";
+    static NSString *Arrow = @" >";
+    
+    NSString *teamText = self.playersContextViewModel.teamId;
+    if([teamText length] == 0){
+        teamText = TeamDefault;
+    }
+    return [teamText stringByAppendingString:Arrow];
+}
+
 - (void)viewDidLoad
 {
+    [self.goToSeasonsButton setTitle:[self getSeasonText] forState:UIControlStateNormal];
+    [self.goToTeamsButton setTitle:[self getTeamText] forState:UIControlStateNormal];
+    
     [self refresh];
     [super viewDidLoad];
+}
+
+- (IBAction)goToSeasons:(id)sender {
+    [self performSegueWithIdentifier: @"GoToSeasons" sender: self];
+}
+
+- (IBAction)goToTeams:(id)sender {
+    [self performSegueWithIdentifier: @"GoToTeams" sender: self];
+}
+
+// Prepare for the segue going forward
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue isKindOfClass:[CustomSegue class]]) {
+        // Set the start point for the animation to center of the button for the animation
+        ((CustomSegue *)segue).originatingPoint = self.segueButton.center;
+    }
+    
+    if ([segue.identifier isEqualToString:@"GoToSeasons"]) {
+        PlayersYearsTVC *yearsController = (PlayersYearsTVC *)[segue destinationViewController];
+        [yearsController setPlayersContextViewModel:self.playersContextViewModel];
+        [yearsController setDelegate:self];
+    }
+    
+    if ([segue.identifier isEqualToString:@"GoToTeams"]) {
+        PlayersTeamsTVC *teamsController = (PlayersTeamsTVC *)[segue destinationViewController];
+        [teamsController setPlayersContextViewModel:self.playersContextViewModel];
+        [teamsController setDelegate:self];
+    }
+}
+
+// This is the IBAction method referenced in the Storyboard Exit for the Unwind segue.
+// It needs to be here to create a link for the unwind segue.
+// But we'll do nothing with it.
+- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+}
+
+// We need to over-ride this method from UIViewController to provide a custom segue for unwinding
+- (UIStoryboardSegue *)segueForUnwindingToViewController:(UIViewController *)toViewController fromViewController:(UIViewController *)fromViewController identifier:(NSString *)identifier {
+    // Instantiate a new CustomUnwindSegue
+    CustomUnwindSegue *segue = [[CustomUnwindSegue alloc] initWithIdentifier:identifier source:fromViewController destination:toViewController];
+    // Set the target point for the animation to the center of the button in this VC
+    segue.targetPoint = self.segueButton.center;
+    return segue;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) setNotifyText{
+
+    if([self.batters count] == 0){
+        [self.notifyLabel setText:@"select a season then a team"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
 }
 
 #pragma mark - loading controller
@@ -70,6 +169,8 @@
             }
         }
     }
+    
+    [self setNotifyText];
 }
 
 - (void)loadResults
@@ -95,6 +196,7 @@
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastTeamId:self.playersContextViewModel.teamId ];
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
@@ -136,7 +238,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     BatterModel *batter = self.batters[indexPath.row];
     cell.textLabel.text = [batter displayName];

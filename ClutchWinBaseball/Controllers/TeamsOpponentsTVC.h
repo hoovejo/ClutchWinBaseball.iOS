@@ -17,6 +17,8 @@
 
 @interface TeamsOpponentsTVC : UITableViewController
 
+
+@property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 @property (nonatomic, strong) NSArray *franchises;
 @property (weak, nonatomic) id <TeamsOpponentsTVCDelegate> delegate;
 @property (nonatomic, strong) TeamsContextViewModel *teamsContextViewModel;

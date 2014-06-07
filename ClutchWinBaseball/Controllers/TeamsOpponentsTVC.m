@@ -29,9 +29,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setNotifyText{
+    
+    if([self.opponents count] == 0){
+        [self.notifyLabel setText:@"select a team first"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
+
 - (void)refresh
 {
-    if ([self.opponents count] == 0 || ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
+
+    if ( [self needsToLoadData] && ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
                                          isEqualToString:self.teamsContextViewModel.franchiseId]) {
         
         [self.teamsContextViewModel setLastOpponentFilterFranchiseId:self.teamsContextViewModel.franchiseId ];
@@ -39,6 +49,17 @@
         // Update the view.
         [self filterOpponentList];
     }
+    
+    [self setNotifyText];
+}
+
+- (BOOL) needsToLoadData {
+    
+    //check for empty and nil
+    if ([self.teamsContextViewModel.lastOpponentFilterFranchiseId length] == 0) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)filterOpponentList
@@ -73,7 +94,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     FranchiseModel *franchise = self.opponents[indexPath.row];
     cell.textLabel.text = [franchise displayName];

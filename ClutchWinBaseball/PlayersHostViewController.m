@@ -9,8 +9,6 @@
 #import "PlayersHostViewController.h"
 #import "ServiceEndpointHub.h"
 //controllers
-#import "PlayersYearsTVC.h"
-#import "PlayersTeamsTVC.h"
 #import "PlayersBattersTVC.h"
 #import "PlayersPitchersTVC.h"
 #import "PlayersResultsTVC.h"
@@ -18,12 +16,10 @@
 //context model
 #import "TeamsContextViewModel.h"
 
-@interface PlayersHostViewController () <ViewPagerDataSource, ViewPagerDelegate, PlayersYearsTVCDelegate, PlayersTeamsTVCDelegate, PlayersBattersTVCDelegate, PlayersPitchersTVCDelegate, PlayersResultsTVCDelegate>
+@interface PlayersHostViewController () <ViewPagerDataSource, ViewPagerDelegate, PlayersBattersTVCDelegate, PlayersPitchersTVCDelegate, PlayersResultsTVCDelegate>
 
 @property (nonatomic) NSUInteger numberOfTabs;
 //controllers
-@property (nonatomic, strong) PlayersYearsTVC *playersYearsTVC;
-@property (nonatomic, strong) PlayersTeamsTVC *playersTeamsTVC;
 @property (nonatomic, strong) PlayersBattersTVC *playersBattersTVC;
 @property (nonatomic, strong) PlayersPitchersTVC *playersPitchersTVC;
 @property (nonatomic, strong) PlayersResultsTVC *playersResultsTVC;
@@ -53,7 +49,7 @@
     self.delegate = self;
     [self performSelector:@selector(loadContent) withObject:nil];
     
-    self.title = @"Players vs Players";
+    self.title = @"Batter vs Pitcher";
     
     // Keeps tab bar below navigation bar on iOS 7.0+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -85,25 +81,6 @@
 }
 
 #pragma mark - Delegates for view controller(s)
-- (void)playersYearSelected:(PlayersYearsTVC *)controller
-{
-    if (self.playersTeamsTVC != nil) {
-        //call for a manual eval and possible load
-        [self.playersTeamsTVC refresh];
-    }
-    
-    [self selectTabAtIndex:1];
-}
-
-- (void)playersTeamSelected:(PlayersTeamsTVC *)controller
-{
-    if (self.playersBattersTVC != nil) {
-        //call for a manual eval and possible load
-        [self.playersBattersTVC refresh];
-    }
-    
-    [self selectTabAtIndex:2];
-}
 
 - (void)playersBatterSelected:(PlayersBattersTVC *)controller
 {
@@ -112,7 +89,7 @@
         [self.playersPitchersTVC refresh];
     }
     
-    [self selectTabAtIndex:3];
+    [self selectTabAtIndex:1];
 }
 
 - (void)playersPitcherSelected:(PlayersPitchersTVC *)controller
@@ -122,7 +99,7 @@
         [self.playersResultsTVC refresh];
     }
     
-    [self selectTabAtIndex:4];
+    [self selectTabAtIndex:2];
 }
 
 - (void)playersResultSelected:(PlayersResultsTVC *)controller
@@ -132,12 +109,12 @@
         [self.playersDrillDownTVC refresh];
     }
     
-    [self selectTabAtIndex:5];
+    [self selectTabAtIndex:3];
 }
 
 #pragma mark - Helpers
 - (void)loadContent {
-    self.numberOfTabs = 6;
+    self.numberOfTabs = 4;
 }
 
 #pragma mark - Interface Orientation Changes
@@ -160,19 +137,15 @@
     
     switch (index) {
         case 0:
-            label.text = @"Years"; break;
-        case 1:
-            label.text = @"Teams"; break;
-        case 2:
             label.text = @"Batters"; break;
-        case 3:
+        case 1:
             label.text = @"Pitchers"; break;
-        case 4:
+        case 2:
             label.text = @"Results"; break;
-        case 5:
+        case 3:
             label.text = @"Details"; break;
         default:
-            label.text = @"Years";
+            label.text = @"Batters";
     }
     //[NSString stringWithFormat:@"Tab #%i", index];
     label.textAlignment = NSTextAlignmentCenter;
@@ -186,24 +159,6 @@
     
     switch (index) {
         case 0: {
-            if (self.playersYearsTVC == nil) {
-                //instantiating the view will fire viewDidLoad and cause a load
-                self.playersYearsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersYearsTVC"];
-                [self.playersYearsTVC setDelegate:self];
-                [self.playersYearsTVC setPlayersContextViewModel:self.playersContextViewModel];
-            }
-            return self.playersYearsTVC;
-        }
-        case 1: {
-            if (self.playersTeamsTVC == nil) {
-                //instantiating the view will fire viewDidLoad and cause a load
-                self.playersTeamsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersTeamsTVC"];
-                [self.playersTeamsTVC setDelegate:self];
-                [self.playersTeamsTVC setPlayersContextViewModel:self.playersContextViewModel];
-            }
-            return self.playersTeamsTVC;
-        }
-        case 2: {
             if (self.playersBattersTVC == nil) {
                 //instantiating the view will fire viewDidLoad and cause a load
                 self.playersBattersTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersBattersTVC"];
@@ -212,7 +167,7 @@
             }
             return self.playersBattersTVC;
         }
-        case 3: {
+        case 1: {
             if (self.playersPitchersTVC == nil) {
                 //instantiating the view will fire viewDidLoad and cause a load
                 self.playersPitchersTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersPitchersTVC"];
@@ -221,7 +176,7 @@
             }
             return self.playersPitchersTVC;
         }
-        case 4: {
+        case 2: {
             if (self.playersResultsTVC == nil) {
                 //instantiating the view will fire viewDidLoad and cause a load
                 self.playersResultsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersResultsTVC"];
@@ -230,7 +185,7 @@
             }
             return self.playersResultsTVC;
         }
-        case 5: {
+        case 3: {
             if (self.playersDrillDownTVC == nil) {
                 //instantiating the view will fire viewDidLoad and cause a load
                 self.playersDrillDownTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersDrillDownTVC"];
@@ -239,13 +194,13 @@
             return self.playersDrillDownTVC;
         }
         default: {
-            if (self.playersYearsTVC == nil) {
+            if (self.playersBattersTVC == nil) {
                 //instantiating the view will fire viewDidLoad and cause a load
-                self.playersYearsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersYearsTVC"];
-                [self.playersYearsTVC setDelegate:self];
-                [self.playersYearsTVC setPlayersContextViewModel:self.playersContextViewModel];
+                self.playersBattersTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playersBattersTVC"];
+                [self.playersBattersTVC setDelegate:self];
+                [self.playersBattersTVC setPlayersContextViewModel:self.playersContextViewModel];
             }
-            return self.playersYearsTVC;
+            return self.playersBattersTVC;
         }
     }
 }

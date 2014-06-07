@@ -11,6 +11,8 @@
 
 @interface TeamsDrillDownTVC : UITableViewController
 
+
+@property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 @property (nonatomic, strong) TeamsContextViewModel *teamsContextViewModel;
 
 - (void) refresh;

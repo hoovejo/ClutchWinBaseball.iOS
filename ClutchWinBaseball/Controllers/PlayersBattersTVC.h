@@ -17,6 +17,13 @@
 
 @interface PlayersBattersTVC : UITableViewController
 
+- (IBAction)goToSeasons:(id)sender;
+- (IBAction)goToTeams:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *goToSeasonsButton;
+@property (weak, nonatomic) IBOutlet UIButton *goToTeamsButton;
+@property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
+
 @property (weak, nonatomic) id <PlayersBattersTVCDelegate> delegate;
 @property (nonatomic, strong) PlayersContextViewModel *playersContextViewModel;
 

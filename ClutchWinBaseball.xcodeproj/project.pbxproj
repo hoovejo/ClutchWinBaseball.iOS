@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0770225408F54E4CB66D01CE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 439A34C1289340EBBBCC1C80 /* libPods.a */; };
+		D31D637619437707004C79A3 /* CustomUnwindSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D31D637519437707004C79A3 /* CustomUnwindSegue.m */; };
+		D31D6379194377DE004C79A3 /* CustomSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = D31D6378194377DE004C79A3 /* CustomSegue.m */; };
 		D31FCB4918FFEDFB004DDBCF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4818FFEDFB004DDBCF /* Foundation.framework */; };
 		D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */; };
 		D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31FCB4C18FFEDFB004DDBCF /* UIKit.framework */; };
@@ -69,6 +71,10 @@
 
 /* Begin PBXFileReference section */
 		439A34C1289340EBBBCC1C80 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31D637419437707004C79A3 /* CustomUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUnwindSegue.h; sourceTree = "<group>"; };
+		D31D637519437707004C79A3 /* CustomUnwindSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUnwindSegue.m; sourceTree = "<group>"; };
+		D31D6377194377DE004C79A3 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
+		D31D6378194377DE004C79A3 /* CustomSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSegue.m; sourceTree = "<group>"; };
 		D31FCB4518FFEDFB004DDBCF /* ClutchWinBaseball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClutchWinBaseball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31FCB4818FFEDFB004DDBCF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -179,9 +185,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D31D636F19437615004C79A3 /* CustomSeque */ = {
+			isa = PBXGroup;
+			children = (
+				D31D637419437707004C79A3 /* CustomUnwindSegue.h */,
+				D31D637519437707004C79A3 /* CustomUnwindSegue.m */,
+				D31D6377194377DE004C79A3 /* CustomSegue.h */,
+				D31D6378194377DE004C79A3 /* CustomSegue.m */,
+			);
+			name = CustomSeque;
+			sourceTree = "<group>";
+		};
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
+				D31D636F19437615004C79A3 /* CustomSeque */,
 				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
 				D31FCB4E18FFEDFB004DDBCF /* ClutchWinBaseball */,
@@ -522,6 +540,7 @@
 				D3B30F011905645D00F00AB3 /* PlayersContextViewModel.m in Sources */,
 				D3B30F101905659A00F00AB3 /* BatterModel.m in Sources */,
 				D3B30ED119055F5B00F00AB3 /* TeamsDrillDownTVC.m in Sources */,
+				D31D6379194377DE004C79A3 /* CustomSegue.m in Sources */,
 				D31FCB5918FFEDFB004DDBCF /* AppDelegate.m in Sources */,
 				D3B30ED319055F5B00F00AB3 /* TeamsOpponentsTVC.m in Sources */,
 				D3B30ED8190560BC00F00AB3 /* ServiceEndpointHub.m in Sources */,
@@ -534,6 +553,7 @@
 				D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */,
 				D3B30F13190565C000F00AB3 /* PitcherModel.m in Sources */,
 				D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */,
+				D31D637619437707004C79A3 /* CustomUnwindSegue.m in Sources */,
 				D3B30EDE1905611B00F00AB3 /* TeamsResultModel.m in Sources */,
 				D3B30EF8190563C400F00AB3 /* PlayersPitchersTVC.m in Sources */,
 				D3B30EEC1905626700F00AB3 /* TeamsDrillDownTableViewCell.m in Sources */,

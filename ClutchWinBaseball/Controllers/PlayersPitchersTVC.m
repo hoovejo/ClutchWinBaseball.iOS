@@ -33,6 +33,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setNotifyText{
+    
+    if([self.pitchers count] == 0){
+        [self.notifyLabel setText:@"select a batter first"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
+
 #pragma mark - loading controller
 - (void) refresh {
     if ([self needsToLoadData]) {
@@ -69,6 +78,8 @@
             }
         }
     }
+    
+    [self setNotifyText];
 }
 
 - (void)loadResults
@@ -94,6 +105,7 @@
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastBatterId:self.playersContextViewModel.batterId];
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
@@ -135,7 +147,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     PitcherModel *pitcher = self.pitchers[indexPath.row];
     cell.textLabel.text = [pitcher displayName];

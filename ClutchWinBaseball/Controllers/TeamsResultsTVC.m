@@ -34,6 +34,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setNotifyText{
+    
+    if([self.results count] == 0){
+        [self.notifyLabel setText:@"select an opponent first"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
+
 #pragma mark - loading controller
 - (void) refresh {
 
@@ -71,6 +80,8 @@
             }
         }
     }
+    
+    [self setNotifyText];
 }
 
 - (void)loadResults
@@ -96,6 +107,7 @@
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.teamsContextViewModel recordLastSearchIds];
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
@@ -140,7 +152,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TeamsResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TeamsResultsTableViewCell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"TeamsResultsTableViewCell";
+    
+    TeamsResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     TeamsResultModel *result = self.results[indexPath.row];
     

@@ -36,8 +36,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setNotifyText{
+    
+    if([self.results count] == 0){
+        [self.notifyLabel setText:@"select a result first"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
+
 #pragma mark - loading controller
 - (void) refresh {
+    
     if ([self needsToLoadData]) {
         
         [self readyTheArray];
@@ -72,6 +82,8 @@
             }
         }
     }
+    
+    [self setNotifyText];
 }
 
 - (void)loadResults
@@ -108,6 +120,7 @@
                                                              : self.playersContextViewModel.pitcherId
                                                              : self.playersContextViewModel.resultYearId];
         [spinner stopAnimating];
+        [self setNotifyText];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         if ([CWBConfiguration isLoggingEnabled]){
             NSLog(@"Load player details failed with exception': %@", error);
@@ -159,7 +172,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PlayersDrillDownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayersDrillDownTableViewCell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"PlayersDrillDownTableViewCell";
+    
+    PlayersDrillDownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     PlayersDrillDownModel *result = self.results[indexPath.row];
     

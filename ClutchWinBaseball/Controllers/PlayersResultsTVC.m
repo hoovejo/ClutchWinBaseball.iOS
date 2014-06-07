@@ -35,8 +35,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) setNotifyText{
+    
+    if([self.results count] == 0){
+        [self.notifyLabel setText:@"select a pitcher first"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
+
 #pragma mark - loading controller
 - (void) refresh {
+    
     if ([self needsToLoadData]) {
         
         [self readyTheArray];
@@ -71,6 +81,8 @@
             }
         }
     }
+
+    [self setNotifyText];
 }
 
 - (void)loadResults
@@ -105,6 +117,7 @@
         [self.playersContextViewModel recordLastSearchIds:self.playersContextViewModel.batterId :self.playersContextViewModel.pitcherId ];
         
         [spinner stopAnimating];
+        [self setNotifyText];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         if ([CWBConfiguration isLoggingEnabled]){
             NSLog(@"Load player results failed with exception': %@", error);
@@ -152,7 +165,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PlayersResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayersResultsTableViewCell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"PlayersResultsTableViewCell";
+    
+    PlayersResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     PlayersResultModel *result = self.results[indexPath.row];
     

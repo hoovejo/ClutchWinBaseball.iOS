@@ -23,8 +23,10 @@
 - (void)viewDidLoad
 {
     if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
+        
         [self loadFranchises];
-    } else if( [self.franchises count] == 0 ) {
+        
+    } else if ( [self.franchises count] == 0 ) {
 
         NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
         NSEntityDescription *entityDescription = [NSEntityDescription
@@ -79,8 +81,8 @@
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load franchises failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
                                               }];
-        
 }
 
 #pragma mark - Table view data source
@@ -97,7 +99,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     FranchiseModel *franchise = self.franchises[indexPath.row];
     cell.textLabel.text = [franchise displayName];

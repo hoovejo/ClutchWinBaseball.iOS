@@ -22,7 +22,9 @@
 - (void)viewDidLoad
 {
     if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO){
+        
         [self loadYears];
+        
     } else if( [self.years count] == 0 ) {
         // if PlayersYearsTVC is recreated load from core data
         NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
@@ -96,7 +98,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     YearModel *year = self.years[indexPath.row];
     cell.textLabel.text = year.yearValue;
@@ -116,6 +120,8 @@
     self.playersContextViewModel.yearId = year.yearValue;
     
     [self.delegate playersYearSelected:self];
+    
+    [self performSegueWithIdentifier:@"SeasonsUnwind" sender:self];
 }
 
 
