@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
 
 #import "PlayersBattersTVC.h"
 #import "BatterModel.h"
@@ -22,9 +23,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self refresh];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,21 +35,51 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+    
     if ([self needsToLoadData]) {
         
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if PlayersBattersTVC is recreated load from core data
+        if( [self.batters count] == 0 ) {
+
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"Batter" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error && [results count] != 0){
+                [self readyTheArray];
+                
+                for(BatterModel *result in results) {
+                    if( result.batterIdValue != nil){
+                        [self.batters addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+                
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/search/roster_for_team_and_year/ATL/2013.json"
-    NSString *batterSearchEndpoint = [NSString stringWithFormat:@"%1$@%2$@/%3$@%4$@",
+    // http://clutchwin.com/api/v1/players.json?
+    // &access_token=abc&team_abbr=BAL&season=2013
+    NSString *batterSearchEndpoint = [NSString stringWithFormat:@"%1$@&team_abbr=%2$@&season=%3$@",
                                       [CWBConfiguration batterSearchUrl],
                                       self.playersContextViewModel.teamId,
-                                      self.playersContextViewModel.yearId,
-                                      [CWBConfiguration jsonSuffix]];
+                                      self.playersContextViewModel.yearId];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
@@ -63,13 +93,14 @@
                                                   self.batters = [mappingResult.array mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-                                                  [self.playersContextViewModel recordLastTeamId];
+                                                  [self.playersContextViewModel recordLastTeamId:self.playersContextViewModel.teamId ];
                                                   [spinner stopAnimating];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load batters failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
                                               }];
 }
 
@@ -122,7 +153,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BatterModel *batter = self.batters[indexPath.row];
-    self.playersContextViewModel.batterId = batter.retroPlayerId;
+    self.playersContextViewModel.batterId = batter.batterIdValue;
     
     [self.delegate playersBatterSelected:self];
 }

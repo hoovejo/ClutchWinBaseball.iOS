@@ -17,6 +17,8 @@
 
 @interface TeamsFranchisesTVC : UITableViewController
 
+//one time load array, doesn't change per session
+@property (nonatomic, strong) NSArray *franchises;
 @property (weak, nonatomic) id <TeamsFranchisesTVCDelegate> delegate;
 @property (nonatomic, strong) TeamsContextViewModel *teamsContextViewModel;
 

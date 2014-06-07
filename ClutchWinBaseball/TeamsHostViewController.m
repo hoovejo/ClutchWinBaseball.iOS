@@ -7,6 +7,7 @@
 //
 
 #import "TeamsHostViewController.h"
+#import "ServiceEndpointHub.h"
 //controllers
 #import "TeamsFranchisesTVC.h"
 #import "TeamsOpponentsTVC.h"
@@ -34,10 +35,16 @@
 - (void)viewDidLoad {
     
     if (self.teamsContextViewModel == nil) {
-        self.teamsContextViewModel = [[TeamsContextViewModel alloc] init];
+        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+        NSError *error = nil;
+        NSFetchRequest * request = [[NSFetchRequest alloc] init];
+        [request setEntity:[NSEntityDescription entityForName:@"TeamsContextViewModel" inManagedObjectContext:managedObjectContext]];
+        self.teamsContextViewModel = [[managedObjectContext executeFetchRequest:request error:&error] lastObject];
+        
+        if(error){
+            self.teamsContextViewModel = [[TeamsContextViewModel alloc] init];
+        }
     }
-    
-    [super viewDidLoad];
     
     self.dataSource = self;
     self.delegate = self;
@@ -50,6 +57,8 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    [super viewDidLoad];
 }
 - (void)viewDidAppear:(BOOL)animated {
     
@@ -167,6 +176,7 @@
                 //instantiating the view will fire viewDidLoad and cause a load
                 self.teamsOpponentsTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"opponentsTVC"];
                 [self.teamsOpponentsTVC setDelegate:self];
+                [self.teamsOpponentsTVC setFranchises: self.teamsFranchisesTVC.franchises ];
                 [self.teamsOpponentsTVC setTeamsContextViewModel:self.teamsContextViewModel];
             } 
             return self.teamsOpponentsTVC;

@@ -1,11 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Batter" representedClassName="BatterModel" syncable="YES">
+        <attribute name="batterIdValue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Franchise" representedClassName="FranchiseModel" syncable="YES">
         <attribute name="divisionId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="leagueId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="retroId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Pitcher" representedClassName="PitcherModel" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retroId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PlayersContextViewModel" representedClassName="PlayersContextViewModel" syncable="YES">
+        <attribute name="batterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasLoadedSeasonsOncePerSession" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastBatterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastDrillDownBatterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastDrillDownPitcherId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastDrillDownYearId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSearchBatterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSearchPitcherId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastTeamId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastYearId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pitcherId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultYearId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yearId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PlayersDrillDown" representedClassName="PlayersDrillDownModel" syncable="YES">
+        <attribute name="atBat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gameDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homeRun" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runBattedIn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondBase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="strikeOut" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thirdBase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walks" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PlayersResult" representedClassName="PlayersResultModel" syncable="YES">
+        <attribute name="atBat" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="games" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hit" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="homeRun" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runBattedIn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="secondBase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="strikeOut" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thirdBase" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walks" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Season" representedClassName="YearModel" syncable="YES">
+        <attribute name="yearValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Team" representedClassName="TeamModel" syncable="YES">
+        <attribute name="leagueId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamIdValue" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TeamsContextViewModel" representedClassName="TeamsContextViewModel" syncable="YES">
+        <attribute name="franchiseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasLoadedFranchisesOncePerSession" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastDrillDownFranchiseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastDrillDownOpponentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastDrillDownYearId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastOpponentFilterFranchiseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSearchFranchiseId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSearchOpponentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opponentId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yearId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TeamsDrillDown" representedClassName="TeamsDrillDownModel" syncable="YES">
+        <attribute name="gameDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loss" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="opponent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runsAgainst" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="runsFor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="team" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="win" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="TeamsResult" representedClassName="TeamsResultModel" syncable="YES">
         <attribute name="games" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +98,15 @@
     </entity>
     <elements>
         <element name="Franchise" positionX="-5040" positionY="-4194" width="128" height="118"/>
+        <element name="TeamsContextViewModel" positionX="-4986" positionY="-4068" width="128" height="195"/>
+        <element name="TeamsDrillDown" positionX="-4968" positionY="-4014" width="128" height="148"/>
         <element name="TeamsResult" positionX="-5013" positionY="-4131" width="128" height="165"/>
+        <element name="Season" positionX="-4950" positionY="-3996" width="128" height="58"/>
+        <element name="Team" positionX="-4995" positionY="-4050" width="128" height="103"/>
+        <element name="Batter" positionX="-4986" positionY="-4041" width="128" height="88"/>
+        <element name="Pitcher" positionX="-4977" positionY="-4032" width="128" height="88"/>
+        <element name="PlayersResult" positionX="-4968" positionY="-4023" width="128" height="193"/>
+        <element name="PlayersDrillDown" positionX="-4959" positionY="-4014" width="128" height="180"/>
+        <element name="PlayersContextViewModel" positionX="-4950" positionY="-3996" width="128" height="255"/>
     </elements>
 </model>

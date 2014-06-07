@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface PlayersContextViewModel : NSObject
+@interface PlayersContextViewModel : NSManagedObject
 
-//one time load array, doesn't change per session
-@property (strong, nonatomic) NSArray *years;
+@property BOOL hasLoadedSeasonsOncePerSession;
+
 //retain current selections
 @property (nonatomic, strong) NSString *yearId;
 @property (nonatomic, strong) NSString *teamId;
 @property (nonatomic, strong) NSString *batterId;
 @property (nonatomic, strong) NSString *pitcherId;
 @property (nonatomic, strong) NSString *resultYearId;
-@property (nonatomic, strong) NSString *gameType;
 //retain last param for team search
 @property (nonatomic, strong) NSString *lastYearId;
 //retain last param for batter search
@@ -32,12 +32,12 @@
 @property (nonatomic, strong) NSString *lastDrillDownBatterId;
 @property (nonatomic, strong) NSString *lastDrillDownPitcherId;
 @property (nonatomic, strong) NSString *lastDrillDownYearId;
-@property (nonatomic, strong) NSString *lastDrillDownGameType;
 
-- (void) recordLastYearId;
-- (void) recordLastTeamId;
-- (void) recordLastBatterId;
-- (void) recordLastSearchIds;
-- (void) recordLastDrillDownIds;
+- (void) setLoadedOnce;
+- (void) recordLastYearId:(NSString *)newYearId;
+- (void) recordLastTeamId:(NSString *)newTeamId;
+- (void) recordLastBatterId:(NSString *)newBatterId;
+- (void) recordLastSearchIds:(NSString *)newBatterId : (NSString *)newPitcherId;
+- (void) recordLastDrillDownIds:(NSString *)newBatterId : (NSString *)newPitcherId : (NSString *)newYearId;
 
 @end

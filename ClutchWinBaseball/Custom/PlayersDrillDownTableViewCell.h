@@ -18,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *homeRunLabel;
 @property (nonatomic, weak) IBOutlet UILabel *runBattedInLabel;
 @property (nonatomic, weak) IBOutlet UILabel *strikeOutLabel;
-@property (nonatomic, weak) IBOutlet UILabel *baseBallLabel;
 @property (nonatomic, weak) IBOutlet UILabel *averageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *walkLabel;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PlayersHostViewController.h"
-
+#import "ServiceEndpointHub.h"
 //controllers
 #import "PlayersYearsTVC.h"
 #import "PlayersTeamsTVC.h"
@@ -36,12 +36,18 @@
 @implementation PlayersHostViewController
 
 - (void)viewDidLoad {
-    
+
     if (self.playersContextViewModel == nil) {
-        self.playersContextViewModel = [[PlayersContextViewModel alloc] init];
+        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+        NSError *error = nil;
+        NSFetchRequest * request = [[NSFetchRequest alloc] init];
+        [request setEntity:[NSEntityDescription entityForName:@"PlayersContextViewModel" inManagedObjectContext:managedObjectContext]];
+        self.playersContextViewModel = [[managedObjectContext executeFetchRequest:request error:&error] lastObject];
+        
+        if(error){
+            self.playersContextViewModel = [[PlayersContextViewModel alloc] init];
+        }
     }
-    
-    [super viewDidLoad];
     
     self.dataSource = self;
     self.delegate = self;
@@ -53,6 +59,8 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+
+    [super viewDidLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

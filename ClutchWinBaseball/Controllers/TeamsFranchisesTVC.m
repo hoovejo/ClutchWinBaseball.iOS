@@ -22,27 +22,30 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
+        [self loadFranchises];
+    } else if( [self.franchises count] == 0 ) {
 
-    if( [self.teamsContextViewModel.franchises count] == 0 ) {
-        //[self loadFranchises];
+        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+        NSEntityDescription *entityDescription = [NSEntityDescription
+                                                  entityForName:@"Franchise" inManagedObjectContext:managedObjectContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDescription];
+        
+        NSError *error = nil;
+        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+        
+        if(!error){
+            self.franchises = results;
+            [self.tableView reloadData];
+        } else {
+            [self loadFranchises];
+        }
+        
+        [self.teamsContextViewModel setLoadedOnce];
     }
-    
-    NSManagedObjectModel *objectModel = [ServiceEndpointHub getManagedObjectModel];
-    NSFetchRequest *requestTemplate = [[NSFetchRequest alloc] init];
-    NSEntityDescription *publicationEntity = [[objectModel entitiesByName] objectForKey:@"Franchise"];
-    [requestTemplate setEntity:publicationEntity];
-    [objectModel setFetchRequestTemplate:requestTemplate forName:@"FranchiseTemplate"];
 
-    NSFetchRequest *fetchRequest = [objectModel fetchRequestFromTemplateWithName:@"FranchiseTemplate" substitutionVariables:nil];
-    NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-    
-    NSError *error = nil;
-    
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    self.teamsContextViewModel.franchises = results;
-    [self.tableView reloadData];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +58,8 @@
 
 - (void)loadFranchises
 {
-    //@"/franchises.json"
+    // http://clutchwin.com/api/v1/franchises.json?
+    // &access_token=abc
     NSString *franchisesEndpoint = [CWBConfiguration franchiseUrl];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -67,7 +71,7 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:franchisesEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.teamsContextViewModel.franchises = mappingResult.array;
+                                                  self.franchises = mappingResult.array;
                                                   [self.tableView reloadData];
                                                   [spinner stopAnimating];
                                               }
@@ -88,14 +92,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.teamsContextViewModel.franchises.count;
+    return self.franchises.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    FranchiseModel *franchise = self.teamsContextViewModel.franchises[indexPath.row];
+    FranchiseModel *franchise = self.franchises[indexPath.row];
     cell.textLabel.text = [franchise displayName];
     
     return cell;
@@ -109,8 +113,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FranchiseModel *franchise = self.teamsContextViewModel.franchises[indexPath.row];
-    self.teamsContextViewModel.franchiseId = franchise.retroId;
+    FranchiseModel *franchise = self.franchises[indexPath.row];
+    [self.teamsContextViewModel recordFranchiseId:franchise.retroId];
     
     [self.delegate teamsFranchiseSelected:self];
 }

@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface YearModel : NSObject
+@interface YearModel : NSManagedObject
 
 @property (nonatomic, strong) NSString *yearValue;
 

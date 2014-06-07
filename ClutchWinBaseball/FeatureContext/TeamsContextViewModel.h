@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface TeamsContextViewModel : NSObject
+@interface TeamsContextViewModel : NSManagedObject
 
-//one time load array, doesn't change per session
-@property (nonatomic, strong) NSArray *franchises;
+@property BOOL hasLoadedFranchisesOncePerSession;
 //retain current selections
 @property (nonatomic, strong) NSString *franchiseId;
 @property (nonatomic, strong) NSString *opponentId;
@@ -26,6 +26,9 @@
 @property (nonatomic, strong) NSString *lastDrillDownOpponentId;
 @property (nonatomic, strong) NSString *lastDrillDownYearId;
 
+- (void) setLoadedOnce;
+- (void) recordFranchiseId:(NSString *)newFranchiseId;
+- (void) recordOpponentId:(NSString *)newOpponentId;
 - (void) recordLastSearchIds;
 - (void) recordLastDrillDownIds;
 

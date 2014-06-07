@@ -19,9 +19,8 @@
 
 - (void)viewDidLoad
 {
+    [self refresh];
     [super viewDidLoad];
-    
-    [self refresh];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,7 +31,9 @@
 
 - (void)refresh
 {
-    if (![self.teamsContextViewModel.lastOpponentFilterFranchiseId isEqualToString:self.teamsContextViewModel.franchiseId]) {
+    if ([self.opponents count] == 0 || ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
+                                         isEqualToString:self.teamsContextViewModel.franchiseId]) {
+        
         [self.teamsContextViewModel setLastOpponentFilterFranchiseId:self.teamsContextViewModel.franchiseId ];
         
         // Update the view.
@@ -48,7 +49,7 @@
         [self.opponents removeAllObjects];
     }
     
-    for(FranchiseModel *franchise in self.teamsContextViewModel.franchises) {
+    for(FranchiseModel *franchise in self.franchises) {
         if( ![franchise.retroId isEqualToString:self.teamsContextViewModel.franchiseId]){
             [self.opponents addObject:franchise];
         }
@@ -89,7 +90,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     FranchiseModel *franchise = self.opponents[indexPath.row];
-    self.teamsContextViewModel.opponentId = franchise.retroId;
+    [self.teamsContextViewModel recordOpponentId:franchise.retroId];
     
     [self.delegate teamsOpponentSelected:self];
 }

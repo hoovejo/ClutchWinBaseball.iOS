@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
 
 #import "PlayersYearsTVC.h"
 #import "YearModel.h"
@@ -20,11 +21,30 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    if( [self.playersContextViewModel.years count] == 0 ) {
+    if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO){
         [self loadYears];
+    } else if( [self.years count] == 0 ) {
+        // if PlayersYearsTVC is recreated load from core data
+        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+        NSEntityDescription *entityDescription = [NSEntityDescription
+                                                  entityForName:@"Season" inManagedObjectContext:managedObjectContext];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDescription];
+        
+        NSError *error = nil;
+        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+        
+        if(!error && [results count] != 0){
+            self.years = results;
+            [self.tableView reloadData];
+        } else {
+            [self loadYears];
+        }
+        
+        [self.playersContextViewModel setLoadedOnce];
     }
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,7 +57,8 @@
 
 - (void)loadYears
 {
-    //@"/years.json"
+    // http://clutchwin.com/api/v1/seasons.json?
+    // &access_token=abc
     NSString *yearsEndpoint = [CWBConfiguration yearUrl];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -49,7 +70,7 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:yearsEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.playersContextViewModel.years = mappingResult.array;
+                                                  self.years = mappingResult.array;
                                                   [self.tableView reloadData];
                                                   [spinner stopAnimating];
                                               }
@@ -57,8 +78,8 @@
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load years failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
                                               }];
-    
 }
 
 #pragma mark - Table view data source
@@ -70,14 +91,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.playersContextViewModel.years.count;
+    return self.years.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    YearModel *year = self.playersContextViewModel.years[indexPath.row];
+    YearModel *year = self.years[indexPath.row];
     cell.textLabel.text = year.yearValue;
     
     return cell;
@@ -91,7 +112,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    YearModel *year = self.playersContextViewModel.years[indexPath.row];
+    YearModel *year = self.years[indexPath.row];
     self.playersContextViewModel.yearId = year.yearValue;
     
     [self.delegate playersYearSelected:self];

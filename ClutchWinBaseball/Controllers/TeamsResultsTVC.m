@@ -12,6 +12,7 @@
 #import "TeamsResultModel.h"
 #import "TeamsResultsTableViewCell.h"
 #import "CWBConfiguration.h"
+#import "ServiceEndpointHub.h"
 
 @interface TeamsResultsTVC ()
 
@@ -23,9 +24,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self refresh];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,16 +36,47 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+
     if ([self needsToLoadData]) {
-    
+        
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if object is recreated load from core data
+        if( [self.results count] == 0 ) {
+
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"TeamsResult" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error){
+                [self readyTheArray];
+                
+                for(TeamsResultModel *result in results) {
+                    if( result.year != nil){
+                        [self.results addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/search/franchise_vs_franchise/ATL/BAL.json"
+    // http://clutchwin.com/api/v1/games/for_team/summary.json?
+    // &access_token=abc&franchise_abbr=TOR&opp_franchise_abbr=BAL&group=season,team_abbr,opp_abbr&fieldset=basic
     NSString *teamsResultsEndpoint = [NSString stringWithFormat:@"%1$@&franchise_abbr=%2$@&opp_franchise_abbr=%3$@",
                                       [CWBConfiguration franchiseSearchUrl],
                                       self.teamsContextViewModel.franchiseId,

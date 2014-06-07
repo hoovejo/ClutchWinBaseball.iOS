@@ -7,6 +7,8 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
+
 #import "TeamsDrillDownTVC.h"
 #import "TeamsDrillDownModel.h"
 #import "TeamsDrillDownTableViewCell.h"
@@ -22,10 +24,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self refresh];
-    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,22 +36,52 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+    
     if ([self needsToLoadData]) {
         
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if TeamsDrillDownTVC is recreated load from core data
+        if( [self.results count] == 0 ) {
+            
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"TeamsDrillDown" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error && [results count] != 0){
+                [self readyTheArray];
+                
+                for(TeamsDrillDownModel *result in results) {
+                    if( result.gameDate != nil){
+                        [self.results addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+                
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/search/franchise_vs_franchise_by_year/ATL/BOS/2012.json"
-    NSString *teamsDrillDownEndpoint = [NSString stringWithFormat:@"%1$@%2$@/%3$@/%4$@%5$@",
+    // http://clutchwin.com/api/v1/games/for_team.json?
+    // &access_token=abc&franchise_abbr=TOR&opp_franchise_abbr=BAL&season=2013&fieldset=basic
+    NSString *teamsDrillDownEndpoint = [NSString stringWithFormat:@"%1$@&franchise_abbr=%2$@&opp_franchise_abbr=%3$@&season=%4$@",
                                       [CWBConfiguration franchiseSearchByYearUrl],
                                       self.teamsContextViewModel.franchiseId,
                                       self.teamsContextViewModel.opponentId,
-                                      self.teamsContextViewModel.yearId,
-                                      [CWBConfiguration jsonSuffix]];
+                                      self.teamsContextViewModel.yearId];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);

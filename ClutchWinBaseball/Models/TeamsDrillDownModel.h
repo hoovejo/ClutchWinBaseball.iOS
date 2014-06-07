@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface TeamsDrillDownModel : NSObject
+@interface TeamsDrillDownModel : NSManagedObject
 
 @property (nonatomic, strong) NSString *gameDate;
 @property (nonatomic, strong) NSString *team;

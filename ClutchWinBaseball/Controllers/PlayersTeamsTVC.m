@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
 
 #import "PlayersTeamsTVC.h"
 #import "TeamModel.h"
@@ -22,9 +23,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self refresh];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,20 +35,50 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+    
     if ([self needsToLoadData]) {
         
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if PlayersTeamsTVC is recreated load from core data
+        if( [self.teams count] == 0 ) {
+
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"Team" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error && [results count] != 0){
+                [self readyTheArray];
+                
+                for(TeamModel *result in results) {
+                    if( result.teamIdValue != nil){
+                        [self.teams addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+                
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/teams/2012.json"
-    NSString *teamSearchEndpoint = [NSString stringWithFormat:@"%1$@%2$@%3$@",
+    // http://clutchwin.com/api/v1/teams.json?
+    // &access_token=abc&season=2013
+    NSString *teamSearchEndpoint = [NSString stringWithFormat:@"%1$@&season=%2$@",
                                       [CWBConfiguration teamSearchUrl],
-                                      self.playersContextViewModel.yearId,
-                                      [CWBConfiguration jsonSuffix]];
+                                      self.playersContextViewModel.yearId];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
@@ -62,12 +92,13 @@
                                                   self.teams = [mappingResult.array mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-                                                  [self.playersContextViewModel recordLastYearId];
+                                                  [self.playersContextViewModel recordLastYearId:self.playersContextViewModel.yearId];
                                                   [spinner stopAnimating];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load teams failed with exception': %@", error);
+                                                      [spinner stopAnimating];
                                                   }
                                               }];
 }
@@ -121,7 +152,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TeamModel *team = self.teams[indexPath.row];
-    self.playersContextViewModel.teamId = team.teamId;
+    self.playersContextViewModel.teamId = team.teamIdValue;
     
     [self.delegate playersTeamSelected:self];
 }

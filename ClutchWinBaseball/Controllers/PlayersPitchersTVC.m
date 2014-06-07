@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
 
 #import "PlayersPitchersTVC.h"
 #import "PitcherModel.h"
@@ -22,9 +23,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     [self refresh];
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,17 +39,46 @@
         
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if PlayersPitchersTVC is recreated load from core data
+        if( [self.pitchers count] == 0 ) {
+
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"Pitcher" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error && [results count] != 0){
+                [self readyTheArray];
+                
+                for(PitcherModel *result in results) {
+                    if( result.retroId != nil){
+                        [self.pitchers addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+                
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/search/opponents_for_batter/aybae001/2013.json"
-    NSString *pitcherSearchEndpoint = [NSString stringWithFormat:@"%1$@%2$@/%3$@%4$@",
+    // http://clutchwin.com/api/v1/opponents/pitchers.json?
+    // &access_token=abc&bat_id=aybae001&season=2013&fieldset=basic
+    NSString *pitcherSearchEndpoint = [NSString stringWithFormat:@"%1$@&bat_id=%2$@&season=%3$@",
                                       [CWBConfiguration pitcherSearchUrl],
                                       self.playersContextViewModel.batterId,
-                                      self.playersContextViewModel.yearId,
-                                      [CWBConfiguration jsonSuffix]];
+                                      self.playersContextViewModel.yearId];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
@@ -63,13 +92,14 @@
                                                   self.pitchers = [mappingResult.array mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-                                                  [self.playersContextViewModel recordLastBatterId];
+                                                  [self.playersContextViewModel recordLastBatterId:self.playersContextViewModel.batterId];
                                                   [spinner stopAnimating];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load pitchers failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
                                               }];
 }
 

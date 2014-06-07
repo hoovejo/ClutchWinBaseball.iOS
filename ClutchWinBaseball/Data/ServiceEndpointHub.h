@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+#import <RestKit/RestKit.h>
 
 @interface ServiceEndpointHub : NSObject
 
-+ (NSManagedObjectModel *)getManagedObjectModel;
-+ (NSManagedObjectContext *)getManagedObjectContext;
++ (NSManagedObjectModel *) getManagedObjectModel;
++ (NSManagedObjectContext *) getManagedObjectContext;
++ (RKManagedObjectStore *) getManagedObjectStore;
++ (RKResponseDescriptor *) buildPlayersResults:(RKManagedObjectStore *)managedObjectStore;
++ (RKResponseDescriptor *) buildPlayersDrillDown:(RKManagedObjectStore *)managedObjectStore;
 + (void)configureRestKit;
 
 @end

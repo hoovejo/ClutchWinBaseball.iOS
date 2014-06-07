@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface TeamModel : NSObject
+@interface TeamModel : NSManagedObject
 
 @property (nonatomic, strong) NSString *teamIdValue;
-@property (nonatomic, strong) NSString *yearId;
-@property (nonatomic, strong) NSString *teamId;
-@property (nonatomic, strong) NSString *teamType;
 @property (nonatomic, strong) NSString *leagueId;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *name;

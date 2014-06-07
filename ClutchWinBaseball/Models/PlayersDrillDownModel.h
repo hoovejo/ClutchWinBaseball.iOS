@@ -6,19 +6,20 @@
 //  Copyright (c) 2014 com.clutchwin.baseball. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <RestKit/RestKit.h>
+#import <RestKit/CoreData.h>
 
-@interface PlayersDrillDownModel : NSObject
+@interface PlayersDrillDownModel : NSManagedObject
 
 @property (nonatomic, strong) NSString *gameDate;
 @property (nonatomic, strong) NSString *atBat;
 @property (nonatomic, strong) NSString *hit;
+@property (nonatomic, strong) NSString *walks;
+@property (nonatomic, strong) NSString *strikeOut;
 @property (nonatomic, strong) NSString *secondBase;
 @property (nonatomic, strong) NSString *thirdBase;
 @property (nonatomic, strong) NSString *homeRun;
 @property (nonatomic, strong) NSString *runBattedIn;
-@property (nonatomic, strong) NSString *strikeOut;
-@property (nonatomic, strong) NSString *baseBall;
 @property (nonatomic, strong) NSString *average;
 
 @end

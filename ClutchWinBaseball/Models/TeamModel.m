@@ -10,6 +10,12 @@
 
 @implementation TeamModel
 
+// We use @dynamic for the properties in Core Data
+@dynamic teamIdValue;
+@dynamic leagueId;
+@dynamic location;
+@dynamic name;
+
 - (NSString *)displayName {
     
     return [NSString stringWithFormat:@"%1$@ %2$@", self.location, self.name];

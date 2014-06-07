@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>PlayerPlayerSearch</key>
-	<string>/search/player_vs_player/</string>
+	<string>/api/v1/events/summary.json?&amp;group=season&amp;access_token=joe</string>
 	<key>Franchise</key>
 	<string>/api/v1/franchises.json?&amp;access_token=joe</string>
 	<key>BaseUrlString</key>
@@ -12,19 +12,17 @@
 	<false/>
 	<key>FranchiseSearch</key>
 	<string>/api/v1/games/for_team/summary.json?&amp;access_token=joe&amp;fieldset=basic&amp;group=season,team_abbr,opp_abbr</string>
-	<key>JsonSuffix</key>
-	<string>.json</string>
 	<key>OpponentsForBatter</key>
-	<string>/search/opponents_for_batter/</string>
+	<string>/api/v1/opponents/pitchers.json?&amp;access_token=joe&amp;fieldset=basic</string>
 	<key>Years</key>
-	<string>/years.json</string>
+	<string>/api/v1/seasons.json?&amp;access_token=joe</string>
 	<key>Teams</key>
-	<string>/teams/</string>
+	<string>/api/v1/teams.json?&amp;access_token=joe</string>
 	<key>PlayerPlayerYearSearch</key>
-	<string>/search/player_vs_player_by_year/</string>
+	<string>/api/v1/events/summary.json?&amp;group=game_date&amp;access_token=joe</string>
 	<key>RosterSearch</key>
-	<string>/roster_for_team_and_year/</string>
+	<string>/api/v1/players.json?&amp;access_token=joe</string>
 	<key>FranchiseYearSearch</key>
-	<string>/search/franchise_vs_franchise_by_year/</string>
+	<string>/api/v1/games/for_team.json?&amp;access_token=joe&amp;fieldset=basic</string>
 </dict>
 </plist>

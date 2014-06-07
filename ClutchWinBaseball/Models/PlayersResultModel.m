@@ -10,4 +10,17 @@
 
 @implementation PlayersResultModel
 
+// We use @dynamic for the properties in Core Data
+@dynamic year;
+@dynamic games;
+@dynamic atBat;
+@dynamic hit;
+@dynamic walks;
+@dynamic strikeOut;
+@dynamic secondBase;
+@dynamic thirdBase;
+@dynamic homeRun;
+@dynamic runBattedIn;
+@dynamic average;
+
 @end

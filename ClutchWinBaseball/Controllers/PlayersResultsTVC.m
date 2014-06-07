@@ -7,6 +7,7 @@
 //
 
 #import <RestKit/RestKit.h>
+#import "ServiceEndpointHub.h"
 
 #import "PlayersResultsTVC.h"
 #import "PlayersResultModel.h"
@@ -40,45 +41,79 @@
         
         [self readyTheArray];
         [self loadResults];
+        
+    } else {
+        // if PlayersResultsTVC is recreated load from core data
+        if( [self.results count] == 0 ) {
+
+            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
+            NSEntityDescription *entityDescription = [NSEntityDescription
+                                                      entityForName:@"Pitcher" inManagedObjectContext:managedObjectContext];
+            NSFetchRequest *request = [[NSFetchRequest alloc] init];
+            [request setEntity:entityDescription];
+            
+            NSError *error = nil;
+            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+            
+            if(!error){
+                [self readyTheArray];
+                
+                for(PlayersResultModel *result in results) {
+                    if( result.year != nil){
+                        [self.results addObject:result];
+                    }
+                }
+                [self.tableView reloadData];
+            } else {
+                
+                [self readyTheArray];
+                [self loadResults];
+            }
+        }
     }
 }
 
 - (void)loadResults
 {
-    //@"/search/player_vs_player/aybae001/parkj001.json"
-    NSString *playerResultsEndpoint = [NSString stringWithFormat:@"%1$@%2$@/%3$@%4$@",
-                                      [CWBConfiguration playerResultsUrl],
-                                      self.playersContextViewModel.batterId,
-                                      self.playersContextViewModel.pitcherId,
-                                      [CWBConfiguration jsonSuffix]];
+    RKManagedObjectStore *managedObjectStore = [ServiceEndpointHub getManagedObjectStore];
+    RKResponseDescriptor *responseDescriptor = [ServiceEndpointHub buildPlayersResults:managedObjectStore];
     
+    //@"/search/player_vs_player/aybae001/parkj001.json"
+    NSString *playerResultsEndpoint = [NSString stringWithFormat:@"%1$@%2$@&bat_id=%3$@&pit_id=%4$@",
+                                       [CWBConfiguration baseUrlString],
+                                       [CWBConfiguration playerResultsUrl],
+                                       self.playersContextViewModel.batterId,
+                                       self.playersContextViewModel.pitcherId];
+
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(160, 240);
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
-    [[RKObjectManager sharedManager] getObjectsAtPath:playerResultsEndpoint
-                                           parameters:nil
-                                              success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {                                                  
-                                                  //TODO: sort these results
-                                                  self.results = [mappingResult.array mutableCopy];
-                                                  [self.tableView reloadData];
-                                                  [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-                                                  [self.playersContextViewModel recordLastSearchIds];
-
-                                                  [spinner stopAnimating];
-                                              }
-                                              failure:^(RKObjectRequestOperation *operation, NSError *error) {
-                                                  if ([CWBConfiguration isLoggingEnabled]){
-                                                      NSLog(@"Load player results failed with exception': %@", error);
-                                                  }
-                                              }];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:playerResultsEndpoint]];
+    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     
-   
-
+    operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
+    operation.managedObjectCache = managedObjectStore.managedObjectCache;
     
-
+    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        //TODO: sort these results
+        self.results = [mappingResult.array mutableCopy];
+        [self.tableView reloadData];
+        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        [self.playersContextViewModel recordLastSearchIds:self.playersContextViewModel.batterId :self.playersContextViewModel.pitcherId ];
+        
+        [spinner stopAnimating];
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        if ([CWBConfiguration isLoggingEnabled]){
+            NSLog(@"Load player results failed with exception': %@", error);
+        }
+        [spinner stopAnimating];
+    }];
+    
+    NSOperationQueue *operationQueue = [NSOperationQueue new];
+    [operationQueue addOperation:operation];
 }
 
 #pragma mark - Helper methods
@@ -122,17 +157,23 @@
     PlayersResultModel *result = self.results[indexPath.row];
     
     cell.yearLabel.text = result.year;
-    cell.typeLabel.text = result.type;
     cell.gamesLabel.text = result.games;
     cell.atBatLabel.text = result.atBat;
     cell.hitLabel.text = result.hit;
+    cell.walkLabel.text = result.walks;
+    cell.strikeOutLabel.text = result.strikeOut;
     cell.secondBaseLabel.text = result.secondBase;
     cell.thirdBaseLabel.text = result.thirdBase;
     cell.homeRunLabel.text = result.homeRun;
     cell.runBattedInLabel.text = result.runBattedIn;
-    cell.strikeOutLabel.text = result.strikeOut;
-    cell.baseBallLabel.text = result.baseBall;
-    cell.averageLabel.text = result.average;
+    
+    int hitValue = [result.hit intValue];
+    if(hitValue <= 0){
+        cell.averageLabel.text = @"0.000";
+    } else {
+        double val = (float)hitValue / (float)[result.atBat intValue];
+        cell.averageLabel.text = [NSString localizedStringWithFormat:@"%.3f", (val)];;
+    }
 
     return cell;
 }
@@ -149,7 +190,6 @@
 {
     PlayersResultModel *result = self.results[indexPath.row];
     self.playersContextViewModel.resultYearId = result.year;
-    self.playersContextViewModel.gameType = result.type;
     
     [self.delegate playersResultSelected:self];
 }
