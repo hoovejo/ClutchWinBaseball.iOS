@@ -12,7 +12,6 @@
 @interface PlayersDrillDownTVC : UITableViewController
 
 
-
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 @property (nonatomic, strong) PlayersContextViewModel *playersContextViewModel;
 

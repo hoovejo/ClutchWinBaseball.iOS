@@ -35,6 +35,8 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+  
+    [self setNotifyText:NO];
     
     if ([self needsToLoadData]) {
         
@@ -51,6 +53,10 @@
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entityDescription];
             
+            NSSortDescriptor * sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"location" ascending:YES];
+            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+            
             NSError *error = nil;
             NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
             
@@ -65,10 +71,21 @@
                 [self.tableView reloadData];
             } else {
                 
-                [self readyTheArray];
-                [self loadResults];
+                if ([self serviceCallAllowed]) {
+                    [self readyTheArray];
+                    [self loadResults];
+                }
             }
         }
+    }
+}
+
+- (void) setNotifyText: (BOOL) error {
+    
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else {
+        [self.notifyLabel setText:@""];
     }
 }
 
@@ -89,27 +106,46 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:teamSearchEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.teams = [mappingResult.array mutableCopy];
+                                                  
+                                                  NSArray *sorted = [mappingResult.array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                                      NSString *first = [(TeamModel*)a location];
+                                                      NSString *second = [(TeamModel*)b location];
+                                                      return [first compare:second];
+                                                  }];
+                                                  
+                                                  self.teams = [sorted mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastYearId:self.playersContextViewModel.yearId];
+                                                  
                                                   [spinner stopAnimating];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load teams failed with exception': %@", error);
-                                                      [spinner stopAnimating];
                                                   }
+                                                  [spinner stopAnimating];
+                                                  [self setNotifyText:YES];
                                               }];
 }
 
 #pragma mark - Helper methods
-- (BOOL) needsToLoadData {
+- (BOOL) serviceCallAllowed {
     
-    if (![self.playersContextViewModel.yearId isEqualToString:self.playersContextViewModel.lastYearId]) {
-        return YES;
+    //check for empty and nil
+    if ([self.playersContextViewModel.yearId length] == 0) {
+        return NO;
     }
-   
+    return YES;
+}
+
+- (BOOL) needsToLoadData {
+
+    if ([self serviceCallAllowed]) {
+        if (![self.playersContextViewModel.yearId isEqualToString:self.playersContextViewModel.lastYearId]) {
+            return YES;
+        }
+    }
     return NO;
 }
 

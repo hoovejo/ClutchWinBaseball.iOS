@@ -21,5 +21,6 @@
 @property (nonatomic, strong) NSArray *franchises;
 @property (weak, nonatomic) id <TeamsFranchisesTVCDelegate> delegate;
 @property (nonatomic, strong) TeamsContextViewModel *teamsContextViewModel;
+@property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 
 @end

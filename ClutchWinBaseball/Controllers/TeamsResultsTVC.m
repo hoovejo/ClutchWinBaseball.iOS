@@ -16,6 +16,7 @@
 
 @interface TeamsResultsTVC ()
 
+@property BOOL isLoading;
 @property (nonatomic, strong) NSMutableArray *results;
 
 @end
@@ -34,20 +35,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setNotifyText{
-    
-    if([self.results count] == 0){
-        [self.notifyLabel setText:@"select an opponent first"];
-    } else {
-        [self.notifyLabel setText:@""];
-    }
-}
-
 #pragma mark - loading controller
 - (void) refresh {
 
     if ([self needsToLoadData]) {
         
+        self.isLoading = YES;
         [self readyTheArray];
         [self loadResults];
         
@@ -61,10 +54,14 @@
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entityDescription];
             
+            NSSortDescriptor * sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"year" ascending:NO];
+            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+            
             NSError *error = nil;
             NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
             
-            if(!error){
+            if(!error && [results count] != 0){
                 [self readyTheArray];
                 
                 for(TeamsResultModel *result in results) {
@@ -74,14 +71,35 @@
                 }
                 [self.tableView reloadData];
             } else {
-
-                [self readyTheArray];
-                [self loadResults];
+                
+                if ([self serviceCallAllowed]) {
+                    [self readyTheArray];
+                    [self loadResults];
+                }
             }
         }
+        
+        [self setNotifyText:NO:NO];
     }
+}
+
+- (void) setNotifyText: (BOOL) service : (BOOL) error {
     
-    [self setNotifyText];
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else if (service) {
+        if([self.results count] == 0){
+            [self.notifyLabel setText:@"no results found"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    } else {
+        if([self.results count] == 0){
+            [self.notifyLabel setText:@"select an opponent first"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    }
 }
 
 - (void)loadResults
@@ -102,29 +120,52 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:teamsResultsEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.results = [mappingResult.array mutableCopy];
+                                                  
+                                                  NSArray *sorted = [mappingResult.array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                                      NSString *first = [(TeamsResultModel*)a year];
+                                                      NSString *second = [(TeamsResultModel*)b year];
+                                                      return [second compare:first];
+                                                  }];
+                                                  
+                                                  self.results = [sorted mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.teamsContextViewModel recordLastSearchIds];
+                                                  
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText];
+                                                  [self setNotifyText:YES:NO];
+                                                  self.isLoading = NO;
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load franchise results failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
+                                                  [self setNotifyText:YES:YES];
+                                                  self.isLoading = NO;
                                               }];
 }
 
 #pragma mark - Helper methods
-- (BOOL) needsToLoadData {
+- (BOOL) serviceCallAllowed {
     
-    if (![self.teamsContextViewModel.franchiseId isEqualToString:self.teamsContextViewModel.lastSearchFranchiseId]) {
-        return YES;
+    //check for empty and nil
+    if ([self.teamsContextViewModel.franchiseId length] == 0 || [self.teamsContextViewModel.opponentId length] == 0) {
+        return NO;
     }
+    return YES;
+}
+
+- (BOOL) needsToLoadData {
+
+    if ([self serviceCallAllowed]) {
+        if (![self.teamsContextViewModel.franchiseId isEqualToString:self.teamsContextViewModel.lastSearchFranchiseId]) {
+            return YES;
+        }
     
-    if (![self.teamsContextViewModel.opponentId isEqualToString:self.teamsContextViewModel.lastSearchOpponentId]) {
-        return YES;
+        if (![self.teamsContextViewModel.opponentId isEqualToString:self.teamsContextViewModel.lastSearchOpponentId]) {
+            return YES;
+        }
     }
     
     return NO;
@@ -180,10 +221,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TeamsResultModel *result = self.results[indexPath.row];
-    self.teamsContextViewModel.yearId = result.year;
+    if (!self.isLoading) {
+        TeamsResultModel *result = self.results[indexPath.row];
+        self.teamsContextViewModel.yearId = result.year;
     
-    [self.delegate teamsResultSelected:self];
+        [self.delegate teamsResultSelected:self];
+    }
 }
 
 

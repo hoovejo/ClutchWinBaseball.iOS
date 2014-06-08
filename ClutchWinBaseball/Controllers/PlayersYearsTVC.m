@@ -21,9 +21,12 @@
 
 - (void)viewDidLoad
 {
+    [self setNotifyText:NO];
+    
     if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO){
         
         [self loadYears];
+        [self.playersContextViewModel setLoadedOnce];
         
     } else if( [self.years count] == 0 ) {
         // if PlayersYearsTVC is recreated load from core data
@@ -32,6 +35,10 @@
                                                   entityForName:@"Season" inManagedObjectContext:managedObjectContext];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDescription];
+        
+        NSSortDescriptor * sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"yearValue" ascending:NO];
+        [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
         
         NSError *error = nil;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
@@ -42,8 +49,6 @@
         } else {
             [self loadYears];
         }
-        
-        [self.playersContextViewModel setLoadedOnce];
     }
     
     [super viewDidLoad];
@@ -56,6 +61,15 @@
 }
 
 #pragma mark - loading controller
+
+- (void) setNotifyText: (BOOL) error {
+    
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
 
 - (void)loadYears
 {
@@ -81,6 +95,7 @@
                                                       NSLog(@"Load years failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText:YES];
                                               }];
 }
 

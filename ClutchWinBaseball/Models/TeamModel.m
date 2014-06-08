@@ -18,7 +18,7 @@
 
 - (NSString *)displayName {
     
-    return [NSString stringWithFormat:@"%1$@ %2$@", self.location, self.name];
+    return [NSString stringWithFormat:@"%1$@ %2$@  %3$@", self.location, self.name, self.leagueId];
 }
 
 @end

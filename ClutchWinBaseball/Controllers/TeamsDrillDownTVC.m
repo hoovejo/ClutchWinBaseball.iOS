@@ -34,15 +34,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setNotifyText{
-    
-    if([self.results count] == 0){
-        [self.notifyLabel setText:@"select an opponent first"];
-    } else {
-        [self.notifyLabel setText:@""];
-    }
-}
-
 #pragma mark - loading controller
 - (void) refresh {
     
@@ -61,6 +52,10 @@
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entityDescription];
             
+            NSSortDescriptor * sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"gameDate" ascending:NO];
+            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+            
             NSError *error = nil;
             NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
             
@@ -75,13 +70,34 @@
                 [self.tableView reloadData];
             } else {
                 
-                [self readyTheArray];
-                [self loadResults];
+                if ([self serviceCallAllowed]) {
+                    [self readyTheArray];
+                    [self loadResults];
+                }
             }
         }
+        
+        [self setNotifyText:NO:NO];
     }
+}
+
+- (void) setNotifyText: (BOOL) service : (BOOL) error {
     
-    [self setNotifyText];
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else if (service) {
+        if([self.results count] == 0){
+            [self.notifyLabel setText:@"no results found"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    } else {
+        if([self.results count] == 0){
+            [self.notifyLabel setText:@"select a result first"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    }
 }
 
 - (void)loadResults
@@ -103,33 +119,54 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:teamsDrillDownEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.results = [mappingResult.array mutableCopy];
+                                                  
+                                                  NSArray *sorted = [mappingResult.array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                                      NSString *first = [(TeamsDrillDownModel*)a gameDate];
+                                                      NSString *second = [(TeamsDrillDownModel*)b gameDate];
+                                                      return [second compare:first];
+                                                  }];
+                                                  
+                                                  self.results = [sorted mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.teamsContextViewModel recordLastDrillDownIds];
+                                                  
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText];
+                                                  [self setNotifyText:YES:NO];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load franchise details failed with exception': %@", error);
                                                   }
+                                                  [spinner stopAnimating];
+                                                  [self setNotifyText:YES:YES];
                                               }];
 }
 
 #pragma mark - Helper methods
-- (BOOL) needsToLoadData {
+- (BOOL) serviceCallAllowed {
     
-    if (![self.teamsContextViewModel.franchiseId isEqualToString:self.teamsContextViewModel.lastDrillDownFranchiseId]) {
-        return YES;
+    //check for empty and nil
+    if ([self.teamsContextViewModel.franchiseId length] == 0 || [self.teamsContextViewModel.opponentId length] == 0 || [self.teamsContextViewModel.yearId length] == 0) {
+        return NO;
     }
-    
-    if (![self.teamsContextViewModel.opponentId isEqualToString:self.teamsContextViewModel.lastDrillDownOpponentId]) {
-        return YES;
-    }
+    return YES;
+}
 
-    if (![self.teamsContextViewModel.yearId isEqualToString:self.teamsContextViewModel.lastDrillDownYearId]) {
-        return YES;
+- (BOOL) needsToLoadData {
+
+    if ([self serviceCallAllowed]) {
+        if (![self.teamsContextViewModel.franchiseId isEqualToString:self.teamsContextViewModel.lastDrillDownFranchiseId]) {
+            return YES;
+        }
+        
+        if (![self.teamsContextViewModel.opponentId isEqualToString:self.teamsContextViewModel.lastDrillDownOpponentId]) {
+            return YES;
+        }
+        
+        if (![self.teamsContextViewModel.yearId isEqualToString:self.teamsContextViewModel.lastDrillDownYearId]) {
+            return YES;
+        }
     }
     
     return NO;

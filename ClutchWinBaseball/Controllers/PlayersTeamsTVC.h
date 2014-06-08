@@ -16,6 +16,7 @@
 @end
 
 @interface PlayersTeamsTVC : UITableViewController
+@property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 
 @property (weak, nonatomic) id <PlayersTeamsTVCDelegate> delegate;
 @property (nonatomic, strong) PlayersContextViewModel *playersContextViewModel;

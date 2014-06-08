@@ -22,8 +22,8 @@
 
 @interface PlayersBattersTVC () <PlayersYearsTVCDelegate, PlayersTeamsTVCDelegate>
 
+@property BOOL isLoading;
 @property (nonatomic, strong) NSMutableArray *batters;
-
 @property (weak, nonatomic) IBOutlet UIButton *segueButton;
 
 @end
@@ -123,20 +123,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setNotifyText{
-
-    if([self.batters count] == 0){
-        [self.notifyLabel setText:@"select a season then a team"];
-    } else {
-        [self.notifyLabel setText:@""];
-    }
-}
-
 #pragma mark - loading controller
 - (void) refresh {
     
     if ([self needsToLoadData]) {
         
+        self.isLoading = YES;
         [self readyTheArray];
         [self loadResults];
         
@@ -149,6 +141,10 @@
                                                       entityForName:@"Batter" inManagedObjectContext:managedObjectContext];
             NSFetchRequest *request = [[NSFetchRequest alloc] init];
             [request setEntity:entityDescription];
+            
+            NSSortDescriptor * sortDescriptor;
+            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
             
             NSError *error = nil;
             NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
@@ -164,13 +160,34 @@
                 [self.tableView reloadData];
             } else {
                 
-                [self readyTheArray];
-                [self loadResults];
+                if ([self serviceCallAllowed]) {
+                    [self readyTheArray];
+                    [self loadResults];
+                }
             }
         }
+
+        [self setNotifyText:NO:NO];
     }
+}
+
+- (void) setNotifyText: (BOOL) service : (BOOL) error {
     
-    [self setNotifyText];
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else if (service) {
+        if([self.batters count] == 0){
+            [self.notifyLabel setText:@"no results found"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    } else {
+        if([self.batters count] == 0){
+            [self.notifyLabel setText:@"select a season then a team"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
+    }
 }
 
 - (void)loadResults
@@ -191,28 +208,49 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:batterSearchEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.batters = [mappingResult.array mutableCopy];
+                                                  
+                                                  NSArray *sorted = [mappingResult.array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                                      NSString *first = [(BatterModel*)a firstName];
+                                                      NSString *second = [(BatterModel*)b firstName];
+                                                      return [first compare:second];
+                                                  }];
+                                                  
+                                                  self.batters = [sorted mutableCopy];
                                                   [self.tableView reloadData];
                                                   [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastTeamId:self.playersContextViewModel.teamId ];
+                                                  
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText];
+                                                  [self setNotifyText:YES:NO];
+                                                  self.isLoading = NO;
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load batters failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText:YES:YES];
+                                                  self.isLoading = NO;
                                               }];
 }
 
 #pragma mark - Helper methods
-- (BOOL) needsToLoadData {
-    
-    if (![self.playersContextViewModel.teamId isEqualToString:self.playersContextViewModel.lastTeamId]) {
-        return YES;
+- (BOOL) serviceCallAllowed {
+
+    //check for empty and nil
+    if ([self.playersContextViewModel.yearId length] == 0 || [self.playersContextViewModel.teamId length] == 0) {
+        return NO;
     }
-    
+    return YES;
+}
+
+- (BOOL) needsToLoadData {
+
+    if ([self serviceCallAllowed]) {
+        if (![self.playersContextViewModel.teamId isEqualToString:self.playersContextViewModel.lastTeamId]) {
+            return YES;
+        }
+    }
     return NO;
 }
 
@@ -256,10 +294,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BatterModel *batter = self.batters[indexPath.row];
-    self.playersContextViewModel.batterId = batter.batterIdValue;
+    if (!self.isLoading) {
+        BatterModel *batter = self.batters[indexPath.row];
+        self.playersContextViewModel.batterId = batter.batterIdValue;
     
-    [self.delegate playersBatterSelected:self];
+        [self.delegate playersBatterSelected:self];
+    }
 }
 
 

@@ -22,9 +22,12 @@
 
 - (void)viewDidLoad
 {
+    [self setNotifyText:NO];
+    
     if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
         
         [self loadFranchises];
+        [self.teamsContextViewModel setLoadedOnce];
         
     } else if ( [self.franchises count] == 0 ) {
 
@@ -33,6 +36,10 @@
                                                   entityForName:@"Franchise" inManagedObjectContext:managedObjectContext];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDescription];
+        
+        NSSortDescriptor * sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"location" ascending:YES];
+        [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
         
         NSError *error = nil;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
@@ -43,8 +50,6 @@
         } else {
             [self loadFranchises];
         }
-        
-        [self.teamsContextViewModel setLoadedOnce];
     }
 
     [super viewDidLoad];
@@ -57,6 +62,15 @@
 }
 
 #pragma mark - loading controller
+
+- (void) setNotifyText: (BOOL) error {
+    
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else {
+        [self.notifyLabel setText:@""];
+    }
+}
 
 - (void)loadFranchises
 {
@@ -73,7 +87,13 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:franchisesEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.franchises = mappingResult.array;
+                                                  
+                                                  self.franchises = [mappingResult.array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                                      NSString *first = [(FranchiseModel*)a location];
+                                                      NSString *second = [(FranchiseModel*)b location];
+                                                      return [first compare:second];
+                                                  }];
+
                                                   [self.tableView reloadData];
                                                   [spinner stopAnimating];
                                               }
@@ -82,6 +102,7 @@
                                                       NSLog(@"Load franchises failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
+                                                  [self setNotifyText:YES];
                                               }];
 }
 

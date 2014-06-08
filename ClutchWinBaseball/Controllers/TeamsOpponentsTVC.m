@@ -29,34 +29,44 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setNotifyText{
+- (void) setNotifyText: (BOOL) service : (BOOL) error {
     
-    if([self.opponents count] == 0){
-        [self.notifyLabel setText:@"select a team first"];
+    if(error){
+        [self.notifyLabel setText:@"an error has occured"];
+    } else if (service) {
+        if([self.opponents count] == 0){
+            [self.notifyLabel setText:@"no results found"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
     } else {
-        [self.notifyLabel setText:@""];
+        if([self.opponents count] == 0){
+            [self.notifyLabel setText:@"select a team first"];
+        } else {
+            [self.notifyLabel setText:@""];
+        }
     }
 }
 
 - (void)refresh
 {
 
-    if ( [self needsToLoadData] && ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
+    if ( [self needsToLoadData] || ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
                                          isEqualToString:self.teamsContextViewModel.franchiseId]) {
         
         [self.teamsContextViewModel setLastOpponentFilterFranchiseId:self.teamsContextViewModel.franchiseId ];
         
         // Update the view.
         [self filterOpponentList];
+    } else {
+        [self setNotifyText:NO:NO];
     }
-    
-    [self setNotifyText];
 }
 
 - (BOOL) needsToLoadData {
     
     //check for empty and nil
-    if ([self.teamsContextViewModel.lastOpponentFilterFranchiseId length] == 0) {
+    if ([self.teamsContextViewModel.franchiseId length] == 0) {
         return NO;
     }
     return YES;
@@ -75,9 +85,11 @@
             [self.opponents addObject:franchise];
         }
     }
-
+    
     [self.tableView reloadData];
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    
+    [self setNotifyText:YES:NO];
 }
 
 #pragma mark - Table view data source
