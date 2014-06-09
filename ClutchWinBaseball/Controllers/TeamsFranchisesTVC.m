@@ -46,7 +46,7 @@
         
         if(!error){
             self.franchises = results;
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
         } else {
             [self loadFranchises];
         }
@@ -94,7 +94,7 @@
                                                       return [first compare:second];
                                                   }];
 
-                                                  [self.tableView reloadData];
+                                                  [self.collectionView reloadData];
                                                   [spinner stopAnimating];
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -106,37 +106,26 @@
                                               }];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UICollection view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.franchises.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    UILabel *displayText = (UILabel *)[cell viewWithTag:100];
     FranchiseModel *franchise = self.franchises[indexPath.row];
-    cell.textLabel.text = [franchise displayName];
+    displayText.text = [franchise displayName];
     
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FranchiseModel *franchise = self.franchises[indexPath.row];
     [self.teamsContextViewModel recordFranchiseId:franchise.retroId];

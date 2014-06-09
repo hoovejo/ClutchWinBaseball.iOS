@@ -86,50 +86,38 @@
         }
     }
     
-    [self.tableView reloadData];
-    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self.collectionView reloadData];
+    [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
     [self setNotifyText:YES:NO];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UICollection view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.opponents.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"Cell";
     
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    UILabel *displayText = (UILabel *)[cell viewWithTag:100];
     FranchiseModel *franchise = self.opponents[indexPath.row];
-    cell.textLabel.text = [franchise displayName];
+    displayText.text = [franchise displayName];
     
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FranchiseModel *franchise = self.opponents[indexPath.row];
     [self.teamsContextViewModel recordOpponentId:franchise.retroId];
     
     [self.delegate teamsOpponentSelected:self];
 }
-
 
 
 @end

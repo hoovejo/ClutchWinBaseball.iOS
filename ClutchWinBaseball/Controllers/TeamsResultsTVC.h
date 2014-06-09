@@ -16,7 +16,7 @@
 @end
 
 
-@interface TeamsResultsTVC : UITableViewController
+@interface TeamsResultsTVC : UICollectionViewController
 
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;

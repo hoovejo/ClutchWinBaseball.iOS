@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TeamsContextViewModel.h"
 
-@interface TeamsDrillDownTVC : UITableViewController
-
+@interface TeamsDrillDownTVC : UICollectionViewController
 
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;

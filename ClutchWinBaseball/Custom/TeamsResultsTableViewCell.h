@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeamsResultsTableViewCell : UITableViewCell
+@interface TeamsResultsTableViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *yearLabel;
 @property (nonatomic, weak) IBOutlet UILabel *gamesLabel;
@@ -18,5 +18,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *lossesLabel;
 @property (nonatomic, weak) IBOutlet UILabel *runsForLabel;
 @property (nonatomic, weak) IBOutlet UILabel *runsAgainstLabel;
+
 
 @end

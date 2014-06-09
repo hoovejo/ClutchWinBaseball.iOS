@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TeamsDrillDownTableViewCell : UITableViewCell
+@interface TeamsDrillDownTableViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *gameDateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *teamLabel;

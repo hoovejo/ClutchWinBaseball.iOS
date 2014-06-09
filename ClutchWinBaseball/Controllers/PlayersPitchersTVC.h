@@ -15,8 +15,7 @@
 - (void)playersPitcherSelected:(PlayersPitchersTVC *)controller;
 @end
 
-@interface PlayersPitchersTVC : UITableViewController
-
+@interface PlayersPitchersTVC : UICollectionViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 @property (weak, nonatomic) id <PlayersPitchersTVCDelegate> delegate;

@@ -67,7 +67,7 @@
                         [self.results addObject:result];
                     }
                 }
-                [self.tableView reloadData];
+                [self.collectionView reloadData];
             } else {
                 
                 if ([self serviceCallAllowed]) {
@@ -127,8 +127,8 @@
                                                   }];
                                                   
                                                   self.results = [sorted mutableCopy];
-                                                  [self.tableView reloadData];
-                                                  [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+                                                  [self.collectionView reloadData];
+                                                  [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.teamsContextViewModel recordLastDrillDownIds];
                                                   
                                                   [spinner stopAnimating];
@@ -180,23 +180,17 @@
     }
 }
 
-#pragma mark - Table view data source
+#pragma mark - UICollection view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.results.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *CellIdentifier = @"TeamsDrillDownTableViewCell";
-
-    TeamsDrillDownTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    TeamsDrillDownTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     TeamsDrillDownModel *result = self.results[indexPath.row];
     
@@ -210,14 +204,5 @@
     
     return cell;
 }
-
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
 
 @end

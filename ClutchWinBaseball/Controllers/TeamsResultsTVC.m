@@ -69,7 +69,7 @@
                         [self.results addObject:result];
                     }
                 }
-                [self.tableView reloadData];
+                [self.collectionView reloadData];
             } else {
                 
                 if ([self serviceCallAllowed]) {
@@ -128,8 +128,8 @@
                                                   }];
                                                   
                                                   self.results = [sorted mutableCopy];
-                                                  [self.tableView reloadData];
-                                                  [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+                                                  [self.collectionView reloadData];
+                                                  [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.teamsContextViewModel recordLastSearchIds];
                                                   
                                                   [spinner stopAnimating];
@@ -179,23 +179,17 @@
     }
 }
 
+#pragma mark - UICollection view data source
 
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.results.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
     static NSString *CellIdentifier = @"TeamsResultsTableViewCell";
     
-    TeamsResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    TeamsResultsTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     TeamsResultModel *result = self.results[indexPath.row];
     
@@ -207,27 +201,18 @@
     cell.lossesLabel.text = result.losses;
     cell.runsForLabel.text = result.runsFor;
     cell.runsAgainstLabel.text = result.runsAgainst;
-   
+    
     return cell;
 }
 
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.isLoading) {
         TeamsResultModel *result = self.results[indexPath.row];
         self.teamsContextViewModel.yearId = result.year;
-    
+        
         [self.delegate teamsResultSelected:self];
     }
 }
-
 
 @end

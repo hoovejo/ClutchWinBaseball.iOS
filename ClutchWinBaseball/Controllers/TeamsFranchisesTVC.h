@@ -15,12 +15,13 @@
 - (void)teamsFranchiseSelected:(TeamsFranchisesTVC *)controller;
 @end
 
-@interface TeamsFranchisesTVC : UITableViewController
+@interface TeamsFranchisesTVC : UICollectionViewController
 
 //one time load array, doesn't change per session
 @property (nonatomic, strong) NSArray *franchises;
 @property (weak, nonatomic) id <TeamsFranchisesTVCDelegate> delegate;
 @property (nonatomic, strong) TeamsContextViewModel *teamsContextViewModel;
+
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 
 @end

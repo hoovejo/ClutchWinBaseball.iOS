@@ -70,7 +70,7 @@
                         [self.results addObject:result];
                     }
                 }
-                [self.tableView reloadData];
+                [self.collectionView reloadData];
             } else {
                 
                 if ([self serviceCallAllowed]) {
@@ -136,8 +136,8 @@
         }];
         
         self.results = [sorted mutableCopy];
-        [self.tableView reloadData];
-        [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+        [self.collectionView reloadData];
+        [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
         [self.playersContextViewModel recordLastSearchIds:self.playersContextViewModel.batterId :self.playersContextViewModel.pitcherId ];
         
         [spinner stopAnimating];
@@ -189,22 +189,17 @@
 }
 
 
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+#pragma mark - UICollection view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.results.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
     static NSString *CellIdentifier = @"PlayersResultsTableViewCell";
     
-    PlayersResultsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PlayersResultsTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     PlayersResultModel *result = self.results[indexPath.row];
     
@@ -226,24 +221,16 @@
         double val = (float)hitValue / (float)[result.atBat intValue];
         cell.averageLabel.text = [NSString localizedStringWithFormat:@"%.3f", (val)];;
     }
-
+    
     return cell;
 }
 
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.isLoading) {
         PlayersResultModel *result = self.results[indexPath.row];
         self.playersContextViewModel.resultYearId = result.year;
-    
+        
         [self.delegate playersResultSelected:self];
     }
 }

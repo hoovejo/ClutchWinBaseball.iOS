@@ -157,7 +157,7 @@
                         [self.batters addObject:result];
                     }
                 }
-                [self.tableView reloadData];
+                [self.collectionView reloadData];
             } else {
                 
                 if ([self serviceCallAllowed]) {
@@ -216,8 +216,8 @@
                                                   }];
                                                   
                                                   self.batters = [sorted mutableCopy];
-                                                  [self.tableView reloadData];
-                                                  [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+                                                  [self.collectionView reloadData];
+                                                  [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastTeamId:self.playersContextViewModel.teamId ];
                                                   
                                                   [spinner stopAnimating];
@@ -263,16 +263,34 @@
 }
 
 
-#pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+#pragma mark - UICollection view data source
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.batters.count;
 }
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifier = @"Cell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    UILabel *displayText = (UILabel *)[cell viewWithTag:100];
+    BatterModel *batter = self.batters[indexPath.row];
+    displayText.text = [batter displayName];
+    
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (!self.isLoading) {
+        BatterModel *batter = self.batters[indexPath.row];
+        self.playersContextViewModel.batterId = batter.batterIdValue;
+        
+        [self.delegate playersBatterSelected:self];
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -285,22 +303,5 @@
     
     return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.isLoading) {
-        BatterModel *batter = self.batters[indexPath.row];
-        self.playersContextViewModel.batterId = batter.batterIdValue;
-    
-        [self.delegate playersBatterSelected:self];
-    }
-}
-
 
 @end

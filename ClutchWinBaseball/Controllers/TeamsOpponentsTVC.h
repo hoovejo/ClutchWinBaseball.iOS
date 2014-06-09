@@ -15,7 +15,7 @@
 - (void)teamsOpponentSelected:(TeamsOpponentsTVC *)controller;
 @end
 
-@interface TeamsOpponentsTVC : UITableViewController
+@interface TeamsOpponentsTVC : UICollectionViewController
 
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;

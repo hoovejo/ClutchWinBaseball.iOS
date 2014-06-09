@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlayersContextViewModel.h"
 
-@interface PlayersDrillDownTVC : UITableViewController
+@interface PlayersDrillDownTVC : UICollectionViewController
 
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;

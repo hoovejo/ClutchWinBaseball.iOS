@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PlayersResultsTableViewCell : UITableViewCell
+@interface PlayersResultsTableViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *yearLabel;
 @property (nonatomic, weak) IBOutlet UILabel *typeLabel;

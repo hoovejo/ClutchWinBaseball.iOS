@@ -51,7 +51,7 @@
     
     [self performSelector:@selector(loadContent) withObject:nil];
     
-    self.title = @"Teams vs Teams";
+    self.title = @"Team vs Team";
     
     // Keeps tab bar below navigation bar on iOS 7.0+
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {

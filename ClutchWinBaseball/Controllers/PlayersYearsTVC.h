@@ -15,11 +15,12 @@
 - (void)playersYearSelected:(PlayersYearsTVC *)controller;
 @end
 
-@interface PlayersYearsTVC : UITableViewController
+@interface PlayersYearsTVC : UICollectionViewController
 
 //one time load array, doesn't change per session
 @property (strong, nonatomic) NSArray *years;
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
+
 
 @property (weak, nonatomic) id <PlayersYearsTVCDelegate> delegate;
 @property (nonatomic, strong) PlayersContextViewModel *playersContextViewModel;

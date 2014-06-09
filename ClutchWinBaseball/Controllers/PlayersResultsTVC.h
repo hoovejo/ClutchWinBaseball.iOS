@@ -15,7 +15,7 @@
 - (void)playersResultSelected:(PlayersResultsTVC *)controller;
 @end
 
-@interface PlayersResultsTVC : UITableViewController
+@interface PlayersResultsTVC : UICollectionViewController
 
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;

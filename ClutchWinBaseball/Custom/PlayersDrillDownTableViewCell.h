@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PlayersDrillDownTableViewCell : UITableViewCell
+@interface PlayersDrillDownTableViewCell : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel *gameDateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *atBatLabel;
