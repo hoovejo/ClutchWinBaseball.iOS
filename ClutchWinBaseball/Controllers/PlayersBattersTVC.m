@@ -32,6 +32,10 @@
 
 - (void)playersYearSelected:(PlayersYearsTVC *)controller
 {
+    if([self.playersContextViewModel.yearId length] > 0){
+        [self.goToTeamsButton setEnabled:YES];
+    }
+    
     [self.goToSeasonsButton setTitle:[self getSeasonText] forState:UIControlStateNormal];
     [self refresh];
 }
@@ -68,7 +72,11 @@
 {
     [self.goToSeasonsButton setTitle:[self getSeasonText] forState:UIControlStateNormal];
     [self.goToTeamsButton setTitle:[self getTeamText] forState:UIControlStateNormal];
-    
+
+    if([self.playersContextViewModel.yearId length] > 0){
+        [self.goToTeamsButton setEnabled:YES];
+    }
+
     [self refresh];
     [super viewDidLoad];
 }

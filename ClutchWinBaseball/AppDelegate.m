@@ -8,12 +8,15 @@
 
 #import "AppDelegate.h"
 #import "ServiceEndpointHub.h"
-
+#import <BugSense-iOS/BugSenseController.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [BugSenseController sharedControllerWithBugSenseAPIKey:@"b0b09d39"];
+    
     // Override point for customization after application launch.
     [ServiceEndpointHub configureRestKit];
     

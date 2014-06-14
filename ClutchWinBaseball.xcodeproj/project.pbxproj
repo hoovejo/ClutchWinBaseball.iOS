@@ -25,6 +25,10 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
+		D36C64D1194D0FC800D26D8F /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64CF194D0FC800D26D8F /* BugSense-iOS.framework */; };
+		D36C64D2194D0FC800D26D8F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D36C64D0194D0FC800D26D8F /* LICENSE */; };
+		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
+		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
 		D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */; };
 		D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E881905476100F00AB3 /* PlayersHostViewController.m */; };
@@ -95,6 +99,12 @@
 		D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClutchWinBaseballTests.m; sourceTree = "<group>"; };
 		D31FCB8318FFEE59004DDBCF /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = ClutchWinBaseball/ViewPagerController.h; sourceTree = "<group>"; };
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
+		D36C64CF194D0FC800D26D8F /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
+		D36C64D0194D0FC800D26D8F /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D36C64D4194D108800D26D8F /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
+		D36C64D5194D108800D26D8F /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D36C64D8194D10D400D26D8F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D3A8FB69193EB28500CD69BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClutchWinModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B30E871905476100F00AB3 /* PlayersHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersHostViewController.h; sourceTree = "<group>"; };
@@ -164,8 +174,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
+				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
 				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
 				D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */,
+				D36C64D1194D0FC800D26D8F /* BugSense-iOS.framework in Frameworks */,
 				D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */,
 				D31FCB4918FFEDFB004DDBCF /* Foundation.framework in Frameworks */,
 				0770225408F54E4CB66D01CE /* libPods.a in Frameworks */,
@@ -199,6 +212,7 @@
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
+				D36C64CE194D0FC800D26D8F /* BugSense 3.6 */,
 				D31D636F19437615004C79A3 /* CustomSeque */,
 				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
@@ -222,6 +236,9 @@
 		D31FCB4718FFEDFB004DDBCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36C64D8194D10D400D26D8F /* libz.dylib */,
+				D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */,
+				D36C64D3194D108800D26D8F /* BugSense 3.6 */,
 				D3A8FB69193EB28500CD69BC /* CoreData.framework */,
 				D31FCB4818FFEDFB004DDBCF /* Foundation.framework */,
 				D31FCB4A18FFEDFB004DDBCF /* CoreGraphics.framework */,
@@ -291,6 +308,24 @@
 				D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */,
 			);
 			name = ICViewPager;
+			sourceTree = "<group>";
+		};
+		D36C64CE194D0FC800D26D8F /* BugSense 3.6 */ = {
+			isa = PBXGroup;
+			children = (
+				D36C64CF194D0FC800D26D8F /* BugSense-iOS.framework */,
+				D36C64D0194D0FC800D26D8F /* LICENSE */,
+			);
+			path = "BugSense 3.6";
+			sourceTree = "<group>";
+		};
+		D36C64D3194D108800D26D8F /* BugSense 3.6 */ = {
+			isa = PBXGroup;
+			children = (
+				D36C64D4194D108800D26D8F /* BugSense-iOS.framework */,
+				D36C64D5194D108800D26D8F /* LICENSE */,
+			);
+			path = "BugSense 3.6";
 			sourceTree = "<group>";
 		};
 		D3A8FB6B193EB3B700CD69BC /* Resources */ = {
@@ -476,6 +511,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36C64D2194D0FC800D26D8F /* LICENSE in Resources */,
 				D31FCB5F18FFEDFB004DDBCF /* Main_iPad.storyboard in Resources */,
 				D3B30EC519055EB900F00AB3 /* Configurations.plist in Resources */,
 				D31FCB6718FFEDFB004DDBCF /* Images.xcassets in Resources */,
@@ -702,6 +738,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
@@ -716,6 +757,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
