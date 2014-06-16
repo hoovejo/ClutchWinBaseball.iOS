@@ -51,6 +51,12 @@ static RKManagedObjectStore *staticManagedObjectStore;
     return staticManagedObjectStore;
 }
 
+static BOOL isNetWorkAvailable;
++ (BOOL)getIsNetworkAvailable
+{
+    return isNetWorkAvailable;
+}
+
 + (void)configureRestKit
 {
     // initialize AFNetworking HTTPClient
@@ -68,6 +74,22 @@ static RKManagedObjectStore *staticManagedObjectStore;
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     objectManager.managedObjectStore = managedObjectStore;
+    
+    [objectManager.HTTPClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        switch (status) {
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+                // -- Reachable -- //
+                isNetWorkAvailable = YES;
+                break;
+            case AFNetworkReachabilityStatusNotReachable:
+            default:
+                // -- Not reachable -- //
+                isNetWorkAvailable = NO;
+                break;
+        }
+    }];
     
     // add the routes
     [ServiceEndpointHub addRoutes:objectManager ];

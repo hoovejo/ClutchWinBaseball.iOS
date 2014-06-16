@@ -63,6 +63,17 @@
 
 #pragma mark - loading controller
 
+/*
+if (status == AFNetworkReachabilityStatusNotReachable) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                    message:@"You must be connected to the internet to use this app."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+*/
+
 - (void) setNotifyText: (BOOL) error {
     
     if(error){

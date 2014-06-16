@@ -18,5 +18,6 @@
 + (RKResponseDescriptor *) buildPlayersResults:(RKManagedObjectStore *)managedObjectStore;
 + (RKResponseDescriptor *) buildPlayersDrillDown:(RKManagedObjectStore *)managedObjectStore;
 + (void)configureRestKit;
++ (BOOL)getIsNetworkAvailable;
 
 @end
