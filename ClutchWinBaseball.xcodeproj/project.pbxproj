@@ -25,10 +25,9 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
-		D36959DC194FD63300AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D331F230194E7645002909F8 /* BugSense-iOS.framework */; };
+		D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */; };
 		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
 		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
-		D38939A9194F1561008B826F /* BugSense 3.6 in Resources */ = {isa = PBXBuildFile; fileRef = D38939A8194F1561008B826F /* BugSense 3.6 */; };
 		D38939AF194F1BD9008B826F /* Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = D38939AE194F1BD9008B826F /* Text.plist */; };
 		D38939B2194F1BF2008B826F /* CWBText.m in Sources */ = {isa = PBXBuildFile; fileRef = D38939B1194F1BF2008B826F /* CWBText.m */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
@@ -101,10 +100,9 @@
 		D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClutchWinBaseballTests.m; sourceTree = "<group>"; };
 		D31FCB8318FFEE59004DDBCF /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = ClutchWinBaseball/ViewPagerController.h; sourceTree = "<group>"; };
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
-		D331F230194E7645002909F8 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "BugSense-iOS.framework"; path = "BugSense 3.6/BugSense-iOS.framework"; sourceTree = "<group>"; };
+		D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D36C64D8194D10D400D26D8F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D38939A8194F1561008B826F /* BugSense 3.6 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "BugSense 3.6"; sourceTree = "<group>"; };
 		D38939AE194F1BD9008B826F /* Text.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Text.plist; sourceTree = "<group>"; };
 		D38939B0194F1BF2008B826F /* CWBText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBText.h; sourceTree = "<group>"; };
 		D38939B1194F1BF2008B826F /* CWBText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBText.m; sourceTree = "<group>"; };
@@ -247,7 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D36959DC194FD63300AA7C84 /* BugSense-iOS.framework in Frameworks */,
+				D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */,
 				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
 				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
 				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
@@ -285,7 +283,7 @@
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
-				D38939A8194F1561008B826F /* BugSense 3.6 */,
+				D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */,
 				D31D636F19437615004C79A3 /* CustomSeque */,
 				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
@@ -309,7 +307,6 @@
 		D31FCB4718FFEDFB004DDBCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D331F230194E7645002909F8 /* BugSense-iOS.framework */,
 				D3E03BBA194E74560051943F /* ClutchWinBaseball */,
 				D36C64D8194D10D400D26D8F /* libz.dylib */,
 				D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */,
@@ -699,7 +696,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D31FCB5F18FFEDFB004DDBCF /* Main_iPad.storyboard in Resources */,
-				D38939A9194F1561008B826F /* BugSense 3.6 in Resources */,
 				D3B30EC519055EB900F00AB3 /* Configurations.plist in Resources */,
 				D38939AF194F1BD9008B826F /* Text.plist in Resources */,
 				D31FCB6718FFEDFB004DDBCF /* Images.xcassets in Resources */,
@@ -954,8 +950,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joe Hoover (KETDL839KD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BugSense",
+					/Users/joehoover/Documents/projects/BugSense,
 					3.6,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
@@ -975,8 +972,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joe Hoover (KETDL839KD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BugSense",
+					/Users/joehoover/Documents/projects/BugSense,
 					3.6,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
