@@ -25,10 +25,10 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
+		D36959DB194FD3BE00AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D331F230194E7645002909F8 /* BugSense-iOS.framework */; };
 		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
 		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
 		D38939A9194F1561008B826F /* BugSense 3.6 in Resources */ = {isa = PBXBuildFile; fileRef = D38939A8194F1561008B826F /* BugSense 3.6 */; };
-		D38939AA194F1593008B826F /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D331F230194E7645002909F8 /* BugSense-iOS.framework */; };
 		D38939AF194F1BD9008B826F /* Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = D38939AE194F1BD9008B826F /* Text.plist */; };
 		D38939B2194F1BF2008B826F /* CWBText.m in Sources */ = {isa = PBXBuildFile; fileRef = D38939B1194F1BF2008B826F /* CWBText.m */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
@@ -247,7 +247,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D38939AA194F1593008B826F /* BugSense-iOS.framework in Frameworks */,
+				D36959DB194FD3BE00AA7C84 /* BugSense-iOS.framework in Frameworks */,
 				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
 				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
 				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
@@ -964,6 +964,12 @@
 					3.6,
 					"$(PROJECT_DIR)/BugSense",
 					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
@@ -983,6 +989,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joe Hoover (KETDL839KD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
 					"$(PROJECT_DIR)/BugSense",
 					3.6,
 					"$(PROJECT_DIR)/BugSense",
