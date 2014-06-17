@@ -26,6 +26,8 @@
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
 		D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */; };
+		D36959E3194FDAA200AA7C84 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959E2194FDAA200AA7C84 /* iAd.framework */; };
+		D36959E6194FDB5000AA7C84 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36959E5194FDB5000AA7C84 /* HomeViewController.m */; };
 		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
 		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
 		D38939AF194F1BD9008B826F /* Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = D38939AE194F1BD9008B826F /* Text.plist */; };
@@ -101,6 +103,9 @@
 		D31FCB8318FFEE59004DDBCF /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = ClutchWinBaseball/ViewPagerController.h; sourceTree = "<group>"; };
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
 		D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
+		D36959E2194FDAA200AA7C84 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		D36959E4194FDB5000AA7C84 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		D36959E5194FDB5000AA7C84 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D36C64D8194D10D400D26D8F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D38939AE194F1BD9008B826F /* Text.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Text.plist; sourceTree = "<group>"; };
@@ -245,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36959E3194FDAA200AA7C84 /* iAd.framework in Frameworks */,
 				D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */,
 				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
 				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
@@ -307,6 +313,7 @@
 		D31FCB4718FFEDFB004DDBCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36959E2194FDAA200AA7C84 /* iAd.framework */,
 				D3E03BBA194E74560051943F /* ClutchWinBaseball */,
 				D36C64D8194D10D400D26D8F /* libz.dylib */,
 				D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */,
@@ -337,6 +344,8 @@
 				D31FCB5818FFEDFB004DDBCF /* AppDelegate.m */,
 				D31FCB5A18FFEDFB004DDBCF /* Main_iPhone.storyboard */,
 				D31FCB5D18FFEDFB004DDBCF /* Main_iPad.storyboard */,
+				D36959E4194FDB5000AA7C84 /* HomeViewController.h */,
+				D36959E5194FDB5000AA7C84 /* HomeViewController.m */,
 				D31FCB6618FFEDFB004DDBCF /* Images.xcassets */,
 				D31FCB4F18FFEDFB004DDBCF /* Supporting Files */,
 			);
@@ -783,6 +792,7 @@
 				D3B30EF21905639000F00AB3 /* PlayersTeamsTVC.m in Sources */,
 				D3B30EDD1905611B00F00AB3 /* TeamsDrillDownModel.m in Sources */,
 				D3B30ED419055F5B00F00AB3 /* TeamsResultsTVC.m in Sources */,
+				D36959E6194FDB5000AA7C84 /* HomeViewController.m in Sources */,
 				D3B30EAF1905476100F00AB3 /* TeamsHostViewController.m in Sources */,
 				D3B30F041905648A00F00AB3 /* PlayersDrillDownTableViewCell.m in Sources */,
 				D3B30EE9190561FD00F00AB3 /* TeamsContextViewModel.m in Sources */,
