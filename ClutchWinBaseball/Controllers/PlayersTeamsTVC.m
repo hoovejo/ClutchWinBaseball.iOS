@@ -12,6 +12,7 @@
 #import "PlayersTeamsTVC.h"
 #import "TeamModel.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 
 @interface PlayersTeamsTVC ()
 
@@ -36,7 +37,7 @@
 #pragma mark - loading controller
 - (void) refresh {
   
-    [self setNotifyText:NO];
+    [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
         
@@ -74,23 +75,30 @@
                 if ([self serviceCallAllowed]) {
                     [self readyTheArray];
                     [self loadResults];
+                } else {
+                    //if svc call not allowed prereq's not met
+                    NSString *msg = [CWBText selectSeason];
+                    [self setNotifyText:msg];
                 }
             }
         }
     }
 }
 
-- (void) setNotifyText: (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else {
-        [self.notifyLabel setText:@""];
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadResults
 {
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     // http://clutchwin.com/api/v1/teams.json?
     // &access_token=abc&season=2013
     NSString *teamSearchEndpoint = [NSString stringWithFormat:@"%1$@&season=%2$@",
@@ -125,7 +133,8 @@
                                                       NSLog(@"Load teams failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES];
+                                                  NSString *msg = [CWBText errorMessage];
+                                                  [self setNotifyText:msg];
                                               }];
 }
 

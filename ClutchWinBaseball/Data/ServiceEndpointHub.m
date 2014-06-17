@@ -89,6 +89,17 @@ static BOOL isNetWorkAvailable;
                 isNetWorkAvailable = NO;
                 break;
         }
+        
+        
+         if (status == AFNetworkReachabilityStatusNotReachable) {
+             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
+                                                             message:@"You must be connected to the internet to use this app."
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+             [alert show];
+         }
+         
     }];
     
     // add the routes

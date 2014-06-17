@@ -13,6 +13,7 @@
 #import "TeamsDrillDownModel.h"
 #import "TeamsDrillDownTableViewCell.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 
 @interface TeamsDrillDownTVC ()
 
@@ -36,6 +37,8 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+
+    [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
         
@@ -73,35 +76,31 @@
                 if ([self serviceCallAllowed]) {
                     [self readyTheArray];
                     [self loadResults];
+                } else {
+                    //if svc call not allowed prereq's not met
+                    NSString *msg = [CWBText selectResult];
+                    [self setNotifyText:msg];
                 }
             }
         }
-        
-        [self setNotifyText:NO:NO];
     }
 }
 
-- (void) setNotifyText: (BOOL) service : (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else if (service) {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"no results found"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    } else {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"select a result first"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadResults
 {
+    
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     // http://clutchwin.com/api/v1/games/for_team.json?
     // &access_token=abc&franchise_abbr=TOR&opp_franchise_abbr=BAL&season=2013&fieldset=basic
     NSString *teamsDrillDownEndpoint = [NSString stringWithFormat:@"%1$@&franchise_abbr=%2$@&opp_franchise_abbr=%3$@&season=%4$@",
@@ -132,14 +131,18 @@
                                                   [self.teamsContextViewModel recordLastDrillDownIds];
                                                   
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:NO];
+                                                  if([self.results count] == 0){
+                                                      NSString *msg = [CWBText noResults];
+                                                      [self setNotifyText:msg];
+                                                  }
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load franchise details failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:YES];
+                                                  NSString *msg = [CWBText errorMessage];
+                                                  [self setNotifyText:msg];
                                               }];
 }
 

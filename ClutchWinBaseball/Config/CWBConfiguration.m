@@ -32,7 +32,6 @@
 
 @implementation CWBConfiguration
 
-#pragma mark -
 #pragma mark Shared Configuration
 + (CWBConfiguration *)sharedConfiguration {
     static CWBConfiguration *_sharedConfiguration = nil;
@@ -191,5 +190,6 @@
     
     return NO;
 }
+
 
 @end

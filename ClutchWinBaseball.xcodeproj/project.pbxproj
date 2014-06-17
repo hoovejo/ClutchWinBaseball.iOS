@@ -25,9 +25,12 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
-		D331F231194E7645002909F8 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D331F230194E7645002909F8 /* BugSense-iOS.framework */; };
 		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
 		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
+		D38939A9194F1561008B826F /* BugSense 3.6 in Resources */ = {isa = PBXBuildFile; fileRef = D38939A8194F1561008B826F /* BugSense 3.6 */; };
+		D38939AA194F1593008B826F /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D331F230194E7645002909F8 /* BugSense-iOS.framework */; };
+		D38939AF194F1BD9008B826F /* Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = D38939AE194F1BD9008B826F /* Text.plist */; };
+		D38939B2194F1BF2008B826F /* CWBText.m in Sources */ = {isa = PBXBuildFile; fileRef = D38939B1194F1BF2008B826F /* CWBText.m */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
 		D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */; };
 		D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E881905476100F00AB3 /* PlayersHostViewController.m */; };
@@ -101,6 +104,10 @@
 		D331F230194E7645002909F8 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "BugSense-iOS.framework"; path = "BugSense 3.6/BugSense-iOS.framework"; sourceTree = "<group>"; };
 		D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D36C64D8194D10D400D26D8F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D38939A8194F1561008B826F /* BugSense 3.6 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "BugSense 3.6"; sourceTree = "<group>"; };
+		D38939AE194F1BD9008B826F /* Text.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Text.plist; sourceTree = "<group>"; };
+		D38939B0194F1BF2008B826F /* CWBText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBText.h; sourceTree = "<group>"; };
+		D38939B1194F1BF2008B826F /* CWBText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBText.m; sourceTree = "<group>"; };
 		D3A8FB69193EB28500CD69BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClutchWinModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B30E871905476100F00AB3 /* PlayersHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersHostViewController.h; sourceTree = "<group>"; };
@@ -240,9 +247,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38939AA194F1593008B826F /* BugSense-iOS.framework in Frameworks */,
 				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
 				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
-				D331F231194E7645002909F8 /* BugSense-iOS.framework in Frameworks */,
 				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
 				D31FCB4B18FFEDFB004DDBCF /* CoreGraphics.framework in Frameworks */,
 				D31FCB4D18FFEDFB004DDBCF /* UIKit.framework in Frameworks */,
@@ -278,6 +285,7 @@
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
+				D38939A8194F1561008B826F /* BugSense 3.6 */,
 				D31D636F19437615004C79A3 /* CustomSeque */,
 				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
@@ -415,6 +423,9 @@
 				D3B30EC219055EB900F00AB3 /* Configurations.plist */,
 				D3B30EC319055EB900F00AB3 /* CWBConfiguration.h */,
 				D3B30EC419055EB900F00AB3 /* CWBConfiguration.m */,
+				D38939AE194F1BD9008B826F /* Text.plist */,
+				D38939B0194F1BF2008B826F /* CWBText.h */,
+				D38939B1194F1BF2008B826F /* CWBText.m */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -688,7 +699,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D31FCB5F18FFEDFB004DDBCF /* Main_iPad.storyboard in Resources */,
+				D38939A9194F1561008B826F /* BugSense 3.6 in Resources */,
 				D3B30EC519055EB900F00AB3 /* Configurations.plist in Resources */,
+				D38939AF194F1BD9008B826F /* Text.plist in Resources */,
 				D31FCB6718FFEDFB004DDBCF /* Images.xcassets in Resources */,
 				D31FCB5C18FFEDFB004DDBCF /* Main_iPhone.storyboard in Resources */,
 				D31FCB5318FFEDFB004DDBCF /* InfoPlist.strings in Resources */,
@@ -748,6 +761,7 @@
 				D3B30EC619055EB900F00AB3 /* CWBConfiguration.m in Sources */,
 				D3B30EFE190563F900F00AB3 /* PlayersDrillDownTVC.m in Sources */,
 				D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */,
+				D38939B2194F1BF2008B826F /* CWBText.m in Sources */,
 				D3B30F011905645D00F00AB3 /* PlayersContextViewModel.m in Sources */,
 				D3B30F101905659A00F00AB3 /* BatterModel.m in Sources */,
 				D3B30ED119055F5B00F00AB3 /* TeamsDrillDownTVC.m in Sources */,
@@ -948,6 +962,8 @@
 					3.6,
 					"$(PROJECT_DIR)/BugSense",
 					3.6,
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
@@ -967,6 +983,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Joe Hoover (KETDL839KD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/BugSense",
+					3.6,
 					"$(PROJECT_DIR)/BugSense",
 					3.6,
 					"$(PROJECT_DIR)/BugSense",

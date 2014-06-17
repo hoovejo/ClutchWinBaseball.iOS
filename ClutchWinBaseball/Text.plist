@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NetworkMessage</key>
+	<string>no network available</string>
+	<key>ErrorMessage</key>
+	<string>an error has occured</string>
+	<key>SelectSeason</key>
+	<string>select a season first</string>
+	<key>SelectPitcher</key>
+	<string>select a pitcher first</string>
+	<key>SelectBatter</key>
+	<string>select a batter first</string>
+	<key>SelectSeasonTeam</key>
+	<string>select a season then a team</string>
+	<key>SelectResult</key>
+	<string>select a result first</string>
+	<key>SelectOpponent</key>
+	<string>select an opponent first</string>
+	<key>NoResults</key>
+	<string>no results found</string>
+</dict>
+</plist>

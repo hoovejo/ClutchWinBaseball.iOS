@@ -12,6 +12,7 @@
 #import "TeamsFranchisesTVC.h"
 #import "FranchiseModel.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 #import "ServiceEndpointHub.h"
 
 @interface TeamsFranchisesTVC ()
@@ -22,7 +23,7 @@
 
 - (void)viewDidLoad
 {
-    [self setNotifyText:NO];
+    [self setNotifyText:@""];
     
     if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
         
@@ -63,28 +64,21 @@
 
 #pragma mark - loading controller
 
-/*
-if (status == AFNetworkReachabilityStatusNotReachable) {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-                                                    message:@"You must be connected to the internet to use this app."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
-*/
-
-- (void) setNotifyText: (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else {
-        [self.notifyLabel setText:@""];
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadFranchises
 {
+    
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     // http://clutchwin.com/api/v1/franchises.json?
     // &access_token=abc
     NSString *franchisesEndpoint = [CWBConfiguration franchiseUrl];
@@ -113,7 +107,8 @@ if (status == AFNetworkReachabilityStatusNotReachable) {
                                                       NSLog(@"Load franchises failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES];
+                                                  NSString *msg = [CWBText errorMessage];
+                                                  [self setNotifyText:msg];
                                               }];
 }
 

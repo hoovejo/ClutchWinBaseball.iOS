@@ -12,6 +12,7 @@
 #import "PlayersPitchersTVC.h"
 #import "PitcherModel.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 
 @interface PlayersPitchersTVC ()
 
@@ -36,6 +37,9 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+    
+    [self setNotifyText:@""];
+    
     if ([self needsToLoadData]) {
         
         self.isLoading = YES;
@@ -73,35 +77,30 @@
                 if ([self serviceCallAllowed]) {
                     [self readyTheArray];
                     [self loadResults];
+                } else {
+                    //if svc call not allowed prereq's not met
+                    NSString *msg = [CWBText selectBatter];
+                    [self setNotifyText:msg];
                 }
             }
         }
-        
-        [self setNotifyText:NO:NO];
     }
 }
 
-- (void) setNotifyText: (BOOL) service : (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else if (service) {
-        if([self.pitchers count] == 0){
-            [self.notifyLabel setText:@"no results found"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    } else {
-        if([self.pitchers count] == 0){
-            [self.notifyLabel setText:@"select a batter first"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadResults
 {
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     // http://clutchwin.com/api/v1/opponents/pitchers.json?
     // &access_token=abc&bat_id=aybae001&season=2013&fieldset=basic
     NSString *pitcherSearchEndpoint = [NSString stringWithFormat:@"%1$@&bat_id=%2$@&season=%3$@",
@@ -131,7 +130,12 @@
                                                   [self.playersContextViewModel recordLastBatterId:self.playersContextViewModel.batterId];
                                                   
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:NO];
+
+                                                  if([self.pitchers count] == 0){
+                                                      NSString *msg = [CWBText noResults];
+                                                      [self setNotifyText:msg];
+                                                  }
+                                                  
                                                   self.isLoading = NO;
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -139,7 +143,10 @@
                                                       NSLog(@"Load pitchers failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:YES];
+
+                                                  NSString *msg = [CWBText errorMessage];
+                                                  [self setNotifyText:msg];
+                                                  
                                                   self.isLoading = NO;
                                               }];
 }

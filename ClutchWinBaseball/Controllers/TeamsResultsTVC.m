@@ -12,6 +12,7 @@
 #import "TeamsResultModel.h"
 #import "TeamsResultsTableViewCell.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 #import "ServiceEndpointHub.h"
 
 @interface TeamsResultsTVC ()
@@ -38,6 +39,8 @@
 #pragma mark - loading controller
 - (void) refresh {
 
+    [self setNotifyText:@""];
+    
     if ([self needsToLoadData]) {
         
         self.isLoading = YES;
@@ -75,35 +78,30 @@
                 if ([self serviceCallAllowed]) {
                     [self readyTheArray];
                     [self loadResults];
+                } else {
+                    //if svc call not allowed prereq's not met
+                    NSString *msg = [CWBText selectOpponent];
+                    [self setNotifyText:msg];
                 }
             }
         }
-        
-        [self setNotifyText:NO:NO];
     }
 }
 
-- (void) setNotifyText: (BOOL) service : (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else if (service) {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"no results found"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    } else {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"select an opponent first"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadResults
 {
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     // http://clutchwin.com/api/v1/games/for_team/summary.json?
     // &access_token=abc&franchise_abbr=TOR&opp_franchise_abbr=BAL&group=season,team_abbr,opp_abbr&fieldset=basic
     NSString *teamsResultsEndpoint = [NSString stringWithFormat:@"%1$@&franchise_abbr=%2$@&opp_franchise_abbr=%3$@",
@@ -133,7 +131,12 @@
                                                   [self.teamsContextViewModel recordLastSearchIds];
                                                   
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:NO];
+                                                  
+                                                  if([self.results count] == 0){
+                                                      NSString *msg = [CWBText noResults];
+                                                      [self setNotifyText:msg];
+                                                  }
+                                                  
                                                   self.isLoading = NO;
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
@@ -141,7 +144,10 @@
                                                       NSLog(@"Load franchise results failed with exception': %@", error);
                                                   }
                                                   [spinner stopAnimating];
-                                                  [self setNotifyText:YES:YES];
+                                                  
+                                                  NSString *msg = [CWBText errorMessage];
+                                                  [self setNotifyText:msg];
+                                                  
                                                   self.isLoading = NO;
                                               }];
 }

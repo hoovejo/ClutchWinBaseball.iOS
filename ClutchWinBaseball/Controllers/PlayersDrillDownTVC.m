@@ -13,6 +13,7 @@
 #import "PlayersDrillDownModel.h"
 #import "PlayersDrillDownTableViewCell.h"
 #import "CWBConfiguration.h"
+#import "CWBText.h"
 
 @interface PlayersDrillDownTVC ()
 
@@ -38,6 +39,8 @@
 
 #pragma mark - loading controller
 - (void) refresh {
+
+    [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
         
@@ -75,35 +78,30 @@
                 if ([self serviceCallAllowed]) {
                     [self readyTheArray];
                     [self loadResults];
+                } else {
+                    //if svc call not allowed prereq's not met
+                    NSString *msg = [CWBText selectResult];
+                    [self setNotifyText:msg];
                 }
             }
         }
-        
-        [self setNotifyText:NO:NO];
     }
 }
 
-- (void) setNotifyText: (BOOL) service : (BOOL) error {
-
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else if (service) {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"no results found"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    } else {
-        if([self.results count] == 0){
-            [self.notifyLabel setText:@"select a result first"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)loadResults
 {
+    BOOL isNetworkAvailable = [ServiceEndpointHub getIsNetworkAvailable];
+    
+    if (!isNetworkAvailable) {
+        NSString *msg = [CWBText networkMessage];
+        [self setNotifyText:msg];
+        return;
+    }
+    
     RKManagedObjectStore *managedObjectStore = [ServiceEndpointHub getManagedObjectStore];
     RKResponseDescriptor *responseDescriptor = [ServiceEndpointHub buildPlayersDrillDown:managedObjectStore];
     
@@ -142,13 +140,20 @@
                                                              : self.playersContextViewModel.pitcherId
                                                              : self.playersContextViewModel.resultYearId];
         [spinner stopAnimating];
-        [self setNotifyText:YES:NO];
+
+        if([self.results count] == 0){
+            NSString *msg = [CWBText noResults];
+            [self setNotifyText:msg];
+        }
+        
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         if ([CWBConfiguration isLoggingEnabled]){
             NSLog(@"Load player details failed with exception': %@", error);
         }
         [spinner stopAnimating];
-        [self setNotifyText:YES:YES];
+
+        NSString *msg = [CWBText errorMessage];
+        [self setNotifyText:msg];
     }];
 
     NSOperationQueue *operationQueue = [NSOperationQueue new];

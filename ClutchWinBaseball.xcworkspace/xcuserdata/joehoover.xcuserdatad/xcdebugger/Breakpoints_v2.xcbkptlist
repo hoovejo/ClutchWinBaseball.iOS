@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ClutchWinBaseball/Data/ServiceEndpointHub.m"
-            timestampString = "424548376.803846"
+            timestampString = "424614625.133023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "+configureRestKit"
             landmarkType = "5">
          </BreakpointContent>
