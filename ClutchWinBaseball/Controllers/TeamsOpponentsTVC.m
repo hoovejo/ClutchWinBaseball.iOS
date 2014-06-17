@@ -8,6 +8,7 @@
 
 #import "TeamsOpponentsTVC.h"
 #import "FranchiseModel.h"
+#import "CWBText.h"
 
 @interface TeamsOpponentsTVC ()
 
@@ -29,29 +30,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) setNotifyText: (BOOL) service : (BOOL) error {
-    
-    if(error){
-        [self.notifyLabel setText:@"an error has occured"];
-    } else if (service) {
-        if([self.opponents count] == 0){
-            [self.notifyLabel setText:@"no results found"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    } else {
-        if([self.opponents count] == 0){
-            [self.notifyLabel setText:@"select a team first"];
-        } else {
-            [self.notifyLabel setText:@""];
-        }
-    }
+- (void) setNotifyText: (NSString *) msg {
+    [self.notifyLabel setText:msg];
 }
 
 - (void)refresh
 {
 
-    if ( [self needsToLoadData] || ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
+    if ( [self needsToLoadData] && ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
                                          isEqualToString:self.teamsContextViewModel.franchiseId]) {
         
         [self.teamsContextViewModel setLastOpponentFilterFranchiseId:self.teamsContextViewModel.franchiseId ];
@@ -59,7 +45,9 @@
         // Update the view.
         [self filterOpponentList];
     } else {
-        [self setNotifyText:NO:NO];
+        //prereq's not met
+        NSString *msg = [CWBText selectTeam];
+        [self setNotifyText:msg];
     }
 }
 
@@ -89,7 +77,10 @@
     [self.collectionView reloadData];
     [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     
-    [self setNotifyText:YES:NO];
+    if([self.opponents count] == 0){
+        NSString *msg = [CWBText noResults];
+        [self setNotifyText:msg];
+    }
 }
 
 #pragma mark - UICollection view data source

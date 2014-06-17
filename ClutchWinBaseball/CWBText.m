@@ -11,6 +11,7 @@
 #define ConfigurationErrorMessage @"ErrorMessage"
 #define ConfigurationNetworkMessage @"NetworkMessage"
 #define ConfigurationNoResults @"NoResults"
+#define ConfigurationSelectTeam @"SelectTeam"
 #define ConfigurationSelectOpponent @"SelectOpponent"
 #define ConfigurationSelectResult @"SelectResult"
 #define ConfigurationSelectSeason @"SelectSeason"
@@ -80,6 +81,16 @@
     
     if (sharedConfiguration.variables) {
         return [sharedConfiguration.variables objectForKey:ConfigurationNetworkMessage];
+    }
+    
+    return nil;
+}
+
++ (NSString *)selectTeam {
+    CWBText *sharedConfiguration = [CWBText sharedConfiguration];
+    
+    if (sharedConfiguration.variables) {
+        return [sharedConfiguration.variables objectForKey:ConfigurationSelectTeam];
     }
     
     return nil;

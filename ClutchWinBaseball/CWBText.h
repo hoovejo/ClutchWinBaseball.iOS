@@ -15,6 +15,7 @@
 
 + (NSString *)errorMessage;
 + (NSString *)networkMessage;
++ (NSString *)selectTeam;
 + (NSString *)noResults;
 + (NSString *)selectOpponent;
 + (NSString *)selectResult;
