@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="RtF-PZ-Fe8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="RtF-PZ-Fe8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--First View Controller - First-->
+        <!--Home View Controller - First-->
         <scene sceneID="lcJ-Pg-9Oc">
             <objects>
-                <viewController title="First" id="eCt-TA-nGT" customClass="FirstViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tzo-Mp-UcZ" sceneMemberID="firstResponder"/>
+                <viewController title="First" id="eCt-TA-nGT" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4cr-c5-V4y"/>
                         <viewControllerLayoutGuide type="bottom" id="BM0-Bv-JdL"/>
@@ -36,12 +37,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf1-hg-8hJ">
+                                <rect key="frame" x="0.0" y="790" width="960" height="66"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="SOc-8t-uBN"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tzo-Mp-UcZ" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-315" y="2825"/>
         </scene>

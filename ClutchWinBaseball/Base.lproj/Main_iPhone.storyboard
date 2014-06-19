@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -16,35 +16,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="ClutchWin baseball" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zhg-ve-WU7">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="ClutchWin baseball" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zhg-ve-WU7">
                                 <rect key="frame" x="20" y="36" width="280" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Discover how your favorite baseball teams or players perform against their rivals." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-fQ-Mkz">
-                                <rect key="frame" x="20" y="155" width="280" height="48"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover how your favorite baseball teams or players perform against their rivals." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-fQ-Mkz">
+                                <rect key="frame" x="20" y="125" width="280" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="gKl-Ly-tII"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5e-eC-3uO">
-                                <rect key="frame" x="20" y="126" width="99" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t5e-eC-3uO">
+                                <rect key="frame" x="20" y="96" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="99" id="oLS-My-U4w"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-cL-RtJ">
-                                <rect key="frame" x="0.0" y="75" width="320" height="50"/>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-cL-RtJ">
+                                <rect key="frame" x="0.0" y="426" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="YG2-V4-IX5"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="CZ4-MO-1fc" id="anW-4a-8zE"/>
                                 </connections>
                             </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t5e-eC-3uO" firstAttribute="leading" secondItem="XHM-fQ-Mkz" secondAttribute="leading" id="C5N-kl-bEe"/>
+                            <constraint firstAttribute="trailing" secondItem="Zhg-ve-WU7" secondAttribute="trailing" constant="20" symbolic="YES" id="DhP-5j-fSP"/>
+                            <constraint firstAttribute="bottom" secondItem="aIe-cL-RtJ" secondAttribute="bottom" constant="92" id="EeC-qI-Db1"/>
+                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" id="GmJ-rh-VaL"/>
+                            <constraint firstItem="t5e-eC-3uO" firstAttribute="top" secondItem="Zhg-ve-WU7" secondAttribute="bottom" constant="18" id="U1C-VX-cxj"/>
+                            <constraint firstItem="XHM-fQ-Mkz" firstAttribute="top" secondItem="t5e-eC-3uO" secondAttribute="bottom" constant="8" symbolic="YES" id="aNX-DX-Yp3"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="trailing" secondItem="XHM-fQ-Mkz" secondAttribute="trailing" id="iFw-iH-18z"/>
+                            <constraint firstItem="t5e-eC-3uO" firstAttribute="leading" secondItem="Zhg-ve-WU7" secondAttribute="leading" id="jpf-Lj-H7x"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="top" secondItem="s9W-kb-ARv" secondAttribute="bottom" constant="16" id="qXS-i3-Vpn"/>
+                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="centerX" secondItem="XHM-fQ-Mkz" secondAttribute="centerX" id="qgL-Bd-2Pv"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="uoq-o3-i4I"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="u1e-5L-l1D"/>
                 </viewController>
