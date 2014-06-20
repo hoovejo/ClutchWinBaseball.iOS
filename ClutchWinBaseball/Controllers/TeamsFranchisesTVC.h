@@ -24,4 +24,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 
+- (void)refresh;
+
 @end

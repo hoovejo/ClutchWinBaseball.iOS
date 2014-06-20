@@ -35,6 +35,10 @@
 - (void)viewDidLoad {
     
     if (self.teamsContextViewModel == nil) {
+        
+        self.teamsContextViewModel = [[TeamsContextViewModel alloc] init];
+        
+        /*
         NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
         NSError *error = nil;
         NSFetchRequest * request = [[NSFetchRequest alloc] init];
@@ -44,6 +48,7 @@
         if(error){
             self.teamsContextViewModel = [[TeamsContextViewModel alloc] init];
         }
+         */
     }
     
     self.dataSource = self;
@@ -86,6 +91,11 @@
 {
     if (self.teamsOpponentsTVC != nil) {
         //call for a manual eval and possible load
+        
+        if([self.teamsOpponentsTVC.franchises count] == 0){
+            [self.teamsOpponentsTVC setFranchises: self.teamsFranchisesTVC.franchises ];
+        }
+        
         [self.teamsOpponentsTVC refresh];
     }
     
@@ -168,7 +178,10 @@
                 self.teamsFranchisesTVC = [self.storyboard instantiateViewControllerWithIdentifier:@"teamsTVC"];
                 [self.teamsFranchisesTVC setDelegate:self];
                 [self.teamsFranchisesTVC setTeamsContextViewModel:self.teamsContextViewModel];
+            } else {
+                [self.teamsFranchisesTVC refresh];
             }
+            
             return self.teamsFranchisesTVC;
         }
         case 1: {

@@ -11,6 +11,7 @@
 
 @implementation PlayersContextViewModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic hasLoadedSeasonsOncePerSession;
 @dynamic yearId;
@@ -27,9 +28,11 @@
 @dynamic lastDrillDownBatterId;
 @dynamic lastDrillDownPitcherId;
 @dynamic lastDrillDownYearId;
+*/
 
 - (void) setLoadedOnce {
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -46,12 +49,15 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
+    self.hasLoadedSeasonsOncePerSession = YES;
 }
 
 - (void) recordLastYearId:(NSString *)newYearId {
     
     [self setLastYearId:newYearId];
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -68,12 +74,14 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastTeamId:(NSString *)newTeamId {
     
     [self setLastTeamId:newTeamId];
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -90,12 +98,14 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastBatterId:(NSString *)newBatterId {
     
     [self setLastBatterId:newBatterId];
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -112,6 +122,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastSearchIds:(NSString *)newBatterId : (NSString *)newPitcherId {
@@ -119,6 +130,7 @@
     [self setLastSearchBatterId:newBatterId];
     [self setLastSearchPitcherId:newPitcherId];
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -136,6 +148,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastDrillDownIds:(NSString *)newBatterId : (NSString *)newPitcherId : (NSString *)newYearId {
@@ -143,6 +156,7 @@
     [self setLastDrillDownPitcherId:newPitcherId];
     [self setLastDrillDownYearId:newYearId];
     
+    /*
     PlayersContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -161,6 +175,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 @end

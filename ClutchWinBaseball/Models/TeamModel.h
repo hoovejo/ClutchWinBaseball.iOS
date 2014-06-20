@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface TeamModel : NSManagedObject
+@interface TeamModel : NSObject
 
 @property (nonatomic, strong) NSString *teamIdValue;
 @property (nonatomic, strong) NSString *leagueId;

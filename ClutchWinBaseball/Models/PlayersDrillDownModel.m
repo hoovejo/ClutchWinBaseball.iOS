@@ -10,6 +10,7 @@
 
 @implementation PlayersDrillDownModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic gameDate;
 @dynamic atBat;
@@ -21,5 +22,6 @@
 @dynamic homeRun;
 @dynamic runBattedIn;
 @dynamic average;
+*/
 
 @end

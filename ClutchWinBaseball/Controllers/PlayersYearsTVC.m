@@ -24,6 +24,12 @@
 {
     [self setNotifyText:@""];
     
+    if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO || [self.years count] == 0 ) {
+        [self loadYears];
+        [self.playersContextViewModel setLoadedOnce];
+    }
+    
+    /*
     if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO){
         
         [self loadYears];
@@ -51,6 +57,7 @@
             [self loadYears];
         }
     }
+     */
     
     [super viewDidLoad];
 }

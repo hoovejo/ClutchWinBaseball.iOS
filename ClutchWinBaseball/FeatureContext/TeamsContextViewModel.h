@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface TeamsContextViewModel : NSManagedObject
+@interface TeamsContextViewModel : NSObject
 
 @property BOOL hasLoadedFranchisesOncePerSession;
 //retain current selections

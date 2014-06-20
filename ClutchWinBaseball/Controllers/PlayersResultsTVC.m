@@ -48,6 +48,19 @@
         [self readyTheArray];
         [self loadResults];
         
+    } else if (![self serviceCallAllowed]){
+        //if svc call not allowed prereq's not met
+        NSString *msg = [CWBText selectPitcher];
+        [self setNotifyText:msg];
+    }
+    
+    /*
+    if ([self needsToLoadData]) {
+        
+        self.isLoading = YES;
+        [self readyTheArray];
+        [self loadResults];
+        
     } else {
         // if PlayersResultsTVC is recreated load from core data
         if( [self.results count] == 0 ) {
@@ -87,6 +100,7 @@
             }
         }
     }
+     */
 }
 
 - (void) setNotifyText: (NSString *) msg {
@@ -103,8 +117,8 @@
         return;
     }
     
-    RKManagedObjectStore *managedObjectStore = [ServiceEndpointHub getManagedObjectStore];
-    RKResponseDescriptor *responseDescriptor = [ServiceEndpointHub buildPlayersResults:managedObjectStore];
+    //RKManagedObjectStore *managedObjectStore = [ServiceEndpointHub getManagedObjectStore];
+    RKResponseDescriptor *responseDescriptor = [ServiceEndpointHub buildPlayersResults];
     
     //@"/search/player_vs_player/aybae001/parkj001.json"
     NSString *playerResultsEndpoint = [NSString stringWithFormat:@"%1$@%2$@&bat_id=%3$@&pit_id=%4$@",
@@ -120,10 +134,13 @@
     [spinner startAnimating];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:playerResultsEndpoint]];
-    RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     
-    operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
-    operation.managedObjectCache = managedObjectStore.managedObjectCache;
+    //RKManagedObjectRequestOperation *operation = [[RKManagedObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
+    
+    //operation.managedObjectContext = managedObjectStore.mainQueueManagedObjectContext;
+    //operation.managedObjectCache = managedObjectStore.managedObjectCache;
+    
+    RKObjectRequestOperation *operation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[responseDescriptor]];
     
     [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         

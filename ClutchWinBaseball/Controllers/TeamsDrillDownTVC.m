@@ -41,6 +41,18 @@
     [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
+
+        [self readyTheArray];
+        [self loadResults];
+        
+    } else if (![self serviceCallAllowed]){
+        //if svc call not allowed prereq's not met
+        NSString *msg = [CWBText selectResult];
+        [self setNotifyText:msg];
+    }
+    
+    /*
+    if ([self needsToLoadData]) {
         
         [self readyTheArray];
         [self loadResults];
@@ -84,6 +96,7 @@
             }
         }
     }
+     */
 }
 
 - (void) setNotifyText: (NSString *) msg {

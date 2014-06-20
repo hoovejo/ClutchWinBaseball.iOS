@@ -36,6 +36,7 @@
 
 - (void)refresh
 {
+    [self setNotifyText:@""];
 
     if ( [self needsToLoadData] && ![self.teamsContextViewModel.lastOpponentFilterFranchiseId
                                          isEqualToString:self.teamsContextViewModel.franchiseId]) {

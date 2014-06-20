@@ -10,6 +10,7 @@
 
 @implementation PlayersResultModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic year;
 @dynamic games;
@@ -22,5 +23,6 @@
 @dynamic homeRun;
 @dynamic runBattedIn;
 @dynamic average;
+*/
 
 @end

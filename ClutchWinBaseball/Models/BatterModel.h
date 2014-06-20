@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface BatterModel : NSManagedObject
+@interface BatterModel : NSObject
 
 @property (nonatomic, strong) NSString *batterIdValue;
 @property (nonatomic, strong) NSString *firstName;

@@ -44,6 +44,18 @@
         [self readyTheArray];
         [self loadResults];
         
+    } else if (![self serviceCallAllowed]){
+        //if svc call not allowed prereq's not met
+        NSString *msg = [CWBText selectSeason];
+        [self setNotifyText:msg];
+    }
+    
+    /*
+    if ([self needsToLoadData]) {
+        
+        [self readyTheArray];
+        [self loadResults];
+        
     } else {
         // if PlayersTeamsTVC is recreated load from core data
         if( [self.teams count] == 0 ) {
@@ -83,6 +95,7 @@
             }
         }
     }
+     */
 }
 
 - (void) setNotifyText: (NSString *) msg {

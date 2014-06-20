@@ -47,6 +47,19 @@
         [self readyTheArray];
         [self loadResults];
         
+    } else if (![self serviceCallAllowed]){
+        //if svc call not allowed prereq's not met
+        NSString *msg = [CWBText selectOpponent];
+        [self setNotifyText:msg];
+    }
+    
+    /*
+    if ([self needsToLoadData]) {
+        
+        self.isLoading = YES;
+        [self readyTheArray];
+        [self loadResults];
+        
     } else {
         // if object is recreated load from core data
         if( [self.results count] == 0 ) {
@@ -86,6 +99,7 @@
             }
         }
     }
+    */
 }
 
 - (void) setNotifyText: (NSString *) msg {

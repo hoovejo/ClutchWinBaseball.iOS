@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface TeamsDrillDownModel : NSManagedObject
+@interface TeamsDrillDownModel : NSObject
 
 @property (nonatomic, strong) NSString *gameDate;
 @property (nonatomic, strong) NSString *team;

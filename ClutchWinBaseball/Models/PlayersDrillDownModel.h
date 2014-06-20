@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface PlayersDrillDownModel : NSManagedObject
+@interface PlayersDrillDownModel : NSObject
 
 @property (nonatomic, strong) NSString *gameDate;
 @property (nonatomic, strong) NSString *atBat;

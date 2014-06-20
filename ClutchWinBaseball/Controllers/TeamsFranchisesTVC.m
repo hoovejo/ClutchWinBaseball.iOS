@@ -21,10 +21,22 @@
 
 @implementation TeamsFranchisesTVC
 
-- (void)viewDidLoad
+- (void)refresh
 {
     [self setNotifyText:@""];
     
+    if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO || [self.franchises count] == 0 ) {
+        [self loadFranchises];
+        [self.teamsContextViewModel setLoadedOnce];
+    }
+}
+
+- (void)viewDidLoad
+{
+    
+    [self refresh];
+    
+    /*
     if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
         
         [self loadFranchises];
@@ -52,6 +64,7 @@
             [self loadFranchises];
         }
     }
+    */
 
     [super viewDidLoad];
 }

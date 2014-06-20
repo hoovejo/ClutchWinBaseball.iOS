@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface YearModel : NSManagedObject
+@interface YearModel : NSObject
 
 @property (nonatomic, strong) NSString *yearValue;
 

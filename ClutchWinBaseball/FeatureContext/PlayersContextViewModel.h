@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface PlayersContextViewModel : NSManagedObject
+@interface PlayersContextViewModel : NSObject
 
 @property BOOL hasLoadedSeasonsOncePerSession;
 

@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface FranchiseModel : NSManagedObject
+@interface FranchiseModel : NSObject
 
 @property (nonatomic, strong) NSString *retroId;
 @property (nonatomic, strong) NSString *leagueId;

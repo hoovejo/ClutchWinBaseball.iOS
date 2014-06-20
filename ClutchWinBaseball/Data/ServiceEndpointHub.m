@@ -36,6 +36,7 @@ static NSManagedObjectModel *staticManagedObjectModel;
 static NSManagedObjectContext *staticManagedObjectContext;
 static RKManagedObjectStore *staticManagedObjectStore;
 
+/*
 + (NSManagedObjectModel *)getManagedObjectModel
 {
     return staticManagedObjectModel;
@@ -50,6 +51,7 @@ static RKManagedObjectStore *staticManagedObjectStore;
 {
     return staticManagedObjectStore;
 }
+ */
 
 static BOOL isNetWorkAvailable;
 + (BOOL)getIsNetworkAvailable
@@ -70,10 +72,12 @@ static BOOL isNetWorkAvailable;
     // Enable Activity Indicator Spinner
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
+    /*
     // Initialize managed object store
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
     objectManager.managedObjectStore = managedObjectStore;
+    */
     
     [objectManager.HTTPClient setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
@@ -106,19 +110,22 @@ static BOOL isNetWorkAvailable;
     [ServiceEndpointHub addRoutes:objectManager ];
     
     // setup object mappings
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildFranchises:managedObjectStore ]];
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamsResults:managedObjectStore ]];
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamsDrillDown:managedObjectStore ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildFranchises ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamsResults ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamsDrillDown ]];
 
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildYears:managedObjectStore ]];
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamSearch:managedObjectStore ]];
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildBatterSearch:managedObjectStore ]];
-    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildPitcherSearch:managedObjectStore ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildYears ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildTeamSearch ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildBatterSearch ]];
+    [[RKObjectManager sharedManager] addResponseDescriptor:[self buildPitcherSearch ]];
     //[[RKObjectManager sharedManager] addResponseDescriptor:[self buildPlayersResults:managedObjectStore ]];
     //[[RKObjectManager sharedManager] addResponseDescriptor:[self buildPlayersDrillDown:managedObjectStore ]];
 
     //RKLogConfigureByName("RestKit/ObjectMapping", RKLogLevelTrace);
     
+    
+    //Core data stuff
+    /*
     [managedObjectStore createPersistentStoreCoordinator];
     
     NSString *storePath = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"ClutchWinModel.sqlite"];
@@ -144,10 +151,10 @@ static BOOL isNetWorkAvailable;
     staticManagedObjectModel = managedObjectModel;
     staticManagedObjectContext = managedObjectContext;
     staticManagedObjectStore = managedObjectStore;
-    
+     
     //setup the persistent ContextViewModels
     [ServiceEndpointHub setupContextModels ];
-
+     */
 }
 
 + (void) addRoutes:(RKObjectManager *) objectManager {
@@ -201,16 +208,17 @@ static BOOL isNetWorkAvailable;
 }
 
 #pragma mark - Response Descriptor builders
-+ (RKResponseDescriptor *) buildFranchises:(RKManagedObjectStore *)managedObjectStore {
-    
+//+ (RKResponseDescriptor *) buildFranchises:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildFranchises {
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Franchise" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Franchise" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[FranchiseModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"franchise_abbr": @"retroId",
                                                            @"league": @"leagueId",
                                                            @"division": @"divisionId",
                                                            @"location": @"location",
                                                            @"name": @"name"}];
-    resultMapping.identificationAttributes = @[ @"retroId" ];
+    //resultMapping.identificationAttributes = @[ @"retroId" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -222,10 +230,12 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildTeamsResults:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildTeamsResults:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildTeamsResults {
     
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"TeamsResult" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"TeamsResult" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[TeamsResultModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"season": @"year",
                                                         @"team_abbr": @"team",
                                                         @"opp_abbr": @"opponent",
@@ -234,7 +244,7 @@ static BOOL isNetWorkAvailable;
                                                         @"score": @"runsFor",
                                                         @"opp_score": @"runsAgainst"}];
     
-    resultMapping.identificationAttributes = @[ @"year" ];
+    //resultMapping.identificationAttributes = @[ @"year" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -246,9 +256,11 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildTeamsDrillDown:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildTeamsDrillDown:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildTeamsDrillDown {
     
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"TeamsDrillDown" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"TeamsDrillDown" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[TeamsDrillDownModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"game_date": @"gameDate",
                                                            @"team_abbr": @"team",
                                                            @"opp_abbr": @"opponent",
@@ -257,7 +269,7 @@ static BOOL isNetWorkAvailable;
                                                            @"score": @"runsFor",
                                                            @"opp_score": @"runsAgainst"}];
 
-    resultMapping.identificationAttributes = @[ @"gameDate" ];
+    //resultMapping.identificationAttributes = @[ @"gameDate" ];
 
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -269,13 +281,15 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildYears:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildYears:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildYears {
     
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Season" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Season" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[YearModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"season": @"yearValue"}];
 
-    resultMapping.identificationAttributes = @[ @"yearValue" ];
+    //resultMapping.identificationAttributes = @[ @"yearValue" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -287,16 +301,18 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildTeamSearch:(RKManagedObjectStore *)managedObjectStore {
-
+//+ (RKResponseDescriptor *) buildTeamSearch:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildTeamSearch {
+    
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Team" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Team" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[TeamModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"team_abbr": @"teamIdValue",
                                                         @"league": @"leagueId",
                                                         @"location": @"location",
                                                         @"name": @"name"}];
     
-    resultMapping.identificationAttributes = @[ @"teamIdValue" ];
+    //resultMapping.identificationAttributes = @[ @"teamIdValue" ];
 
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -308,15 +324,17 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildBatterSearch:(RKManagedObjectStore *)managedObjectStore {
-    
+//+ (RKResponseDescriptor *) buildBatterSearch:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildBatterSearch {
+  
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Batter" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Batter" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[BatterModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"player_retro_id": @"batterIdValue",
                                                         @"first_name": @"firstName",
                                                         @"last_name": @"lastName"}];
     
-    resultMapping.identificationAttributes = @[ @"batterIdValue" ];
+    //resultMapping.identificationAttributes = @[ @"batterIdValue" ];
 
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -328,15 +346,17 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildPitcherSearch:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildPitcherSearch:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildPitcherSearch {
     
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Pitcher" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"Pitcher" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[PitcherModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"first_name": @"firstName",
                                                         @"last_name": @"lastName",
                                                         @"player_id": @"retroId"}];
     
-    resultMapping.identificationAttributes = @[ @"retroId" ];
+    //resultMapping.identificationAttributes = @[ @"retroId" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -348,9 +368,12 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildPlayersResults:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildPlayersResults:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildPlayersResults {
+    
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"PlayersResult" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"PlayersResult" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[PlayersResultModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"season": @"year",
                                                         @"g": @"games",
                                                         @"ab": @"atBat",
@@ -362,7 +385,7 @@ static BOOL isNetWorkAvailable;
                                                         @"hr": @"homeRun",
                                                         @"rbi_ct": @"runBattedIn"}];
     
-    resultMapping.identificationAttributes = @[ @"year" ];
+    //resultMapping.identificationAttributes = @[ @"year" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -374,9 +397,12 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
-+ (RKResponseDescriptor *) buildPlayersDrillDown:(RKManagedObjectStore *)managedObjectStore {
+//+ (RKResponseDescriptor *) buildPlayersDrillDown:(RKManagedObjectStore *)managedObjectStore {
++ (RKResponseDescriptor *) buildPlayersDrillDown {
+    
     // setup object mappings
-    RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"PlayersDrillDown" inManagedObjectStore:managedObjectStore];
+    //RKEntityMapping *resultMapping = [RKEntityMapping mappingForEntityForName:@"PlayersDrillDown" inManagedObjectStore:managedObjectStore];
+    RKObjectMapping *resultMapping = [RKObjectMapping mappingForClass:[PlayersDrillDownModel class]];
     [resultMapping addAttributeMappingsFromDictionary:@{@"game_date": @"gameDate",
                                                         @"ab": @"atBat",
                                                         @"h": @"hit",
@@ -387,7 +413,7 @@ static BOOL isNetWorkAvailable;
                                                         @"hr": @"homeRun",
                                                         @"rbi_ct": @"runBattedIn"}];
     
-    resultMapping.identificationAttributes = @[ @"gameDate" ];
+    //resultMapping.identificationAttributes = @[ @"gameDate" ];
     
     // register mappings with the provider using a response descriptor
     RKResponseDescriptor *responseDescriptor =
@@ -399,6 +425,7 @@ static BOOL isNetWorkAvailable;
     return responseDescriptor;
 }
 
+/*
 + (void) setupContextModels {
 
     NSError *error = nil;
@@ -440,6 +467,6 @@ static BOOL isNetWorkAvailable;
         //Handle any error with the saving of the context
     }
 }
-
+*/
 
 @end

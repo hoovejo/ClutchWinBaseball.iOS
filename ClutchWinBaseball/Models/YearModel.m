@@ -10,7 +10,9 @@
 
 @implementation YearModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic yearValue;
+*/
 
 @end

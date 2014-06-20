@@ -10,10 +10,12 @@
 
 @implementation PitcherModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic retroId;
 @dynamic firstName;
 @dynamic lastName;
+*/
 
 - (NSString *)displayName {
     

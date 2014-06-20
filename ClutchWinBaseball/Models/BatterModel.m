@@ -10,10 +10,12 @@
 
 @implementation BatterModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic batterIdValue;
 @dynamic firstName;
 @dynamic lastName;
+*/
 
 - (NSString *)displayName {
     

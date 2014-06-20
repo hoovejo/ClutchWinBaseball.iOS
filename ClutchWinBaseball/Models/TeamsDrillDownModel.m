@@ -10,6 +10,7 @@
 
 @implementation TeamsDrillDownModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic gameDate;
 @dynamic team;
@@ -18,5 +19,6 @@
 @dynamic loss;
 @dynamic runsFor;
 @dynamic runsAgainst;
+*/
 
 @end

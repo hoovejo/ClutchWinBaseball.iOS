@@ -7,9 +7,9 @@
 //
 
 #import <RestKit/RestKit.h>
-#import <RestKit/CoreData.h>
+//#import <RestKit/CoreData.h>
 
-@interface TeamsResultModel : NSManagedObject
+@interface TeamsResultModel : NSObject
 
 @property (nonatomic, strong) NSString *year;
 @property (nonatomic, strong) NSString *games;

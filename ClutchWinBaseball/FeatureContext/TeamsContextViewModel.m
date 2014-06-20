@@ -11,6 +11,7 @@
 
 @implementation TeamsContextViewModel
 
+/*
 // We use @dynamic for the properties in Core Data
 @dynamic hasLoadedFranchisesOncePerSession;
 @dynamic franchiseId;
@@ -22,9 +23,13 @@
 @dynamic lastDrillDownFranchiseId;
 @dynamic lastDrillDownOpponentId;
 @dynamic lastDrillDownYearId;
+*/
 
 - (void) setLoadedOnce {
     
+    self.hasLoadedFranchisesOncePerSession = YES;
+    
+    /*
     TeamsContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -41,12 +46,14 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordFranchiseId:(NSString *)newFranchiseId {
     
     [self setFranchiseId:newFranchiseId];
     
+    /*
     TeamsContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -63,12 +70,14 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordOpponentId:(NSString *)newOpponentId {
     
     [self setOpponentId:newOpponentId];
     
+    /*
     TeamsContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -85,6 +94,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastSearchIds {
@@ -92,6 +102,7 @@
     [self setLastSearchFranchiseId:self.franchiseId];
     [self setLastSearchOpponentId:self.opponentId];
     
+    /*
     TeamsContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -109,6 +120,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 - (void) recordLastDrillDownIds {
@@ -116,6 +128,7 @@
     [self setLastDrillDownOpponentId:self.opponentId];
     [self setLastDrillDownYearId:self.yearId];
     
+    /*
     TeamsContextViewModel * contextViewModel = nil;
     NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
     NSError *error = nil;
@@ -134,6 +147,7 @@
     if (![managedObjectContext save:&error]) {
         //Handle any error with the saving of the context
     }
+     */
 }
 
 @end

@@ -34,6 +34,10 @@
 - (void)viewDidLoad {
 
     if (self.playersContextViewModel == nil) {
+        
+        self.playersContextViewModel = [[PlayersContextViewModel alloc] init];
+        
+        /*
         NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
         NSError *error = nil;
         NSFetchRequest * request = [[NSFetchRequest alloc] init];
@@ -43,6 +47,7 @@
         if(error){
             self.playersContextViewModel = [[PlayersContextViewModel alloc] init];
         }
+         */
     }
     
     self.dataSource = self;
