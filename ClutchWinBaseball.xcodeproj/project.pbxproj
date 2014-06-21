@@ -32,6 +32,8 @@
 		D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D8194D10D400D26D8F /* libz.dylib */; };
 		D38939AF194F1BD9008B826F /* Text.plist in Resources */ = {isa = PBXBuildFile; fileRef = D38939AE194F1BD9008B826F /* Text.plist */; };
 		D38939B2194F1BF2008B826F /* CWBText.m in Sources */ = {isa = PBXBuildFile; fileRef = D38939B1194F1BF2008B826F /* CWBText.m */; };
+		D38DC2871956335900268C20 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC2861956335900268C20 /* CreditsViewController.m */; };
+		D38DC28D195635EB00268C20 /* WebDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC28C195635EB00268C20 /* WebDisplayViewController.m */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
 		D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */; };
 		D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E881905476100F00AB3 /* PlayersHostViewController.m */; };
@@ -111,6 +113,10 @@
 		D38939AE194F1BD9008B826F /* Text.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Text.plist; sourceTree = "<group>"; };
 		D38939B0194F1BF2008B826F /* CWBText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWBText.h; sourceTree = "<group>"; };
 		D38939B1194F1BF2008B826F /* CWBText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWBText.m; sourceTree = "<group>"; };
+		D38DC2851956335900268C20 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CreditsViewController.h; path = Controllers/CreditsViewController.h; sourceTree = "<group>"; };
+		D38DC2861956335900268C20 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditsViewController.m; path = Controllers/CreditsViewController.m; sourceTree = "<group>"; };
+		D38DC28B195635EB00268C20 /* WebDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebDisplayViewController.h; path = Controllers/WebDisplayViewController.h; sourceTree = "<group>"; };
+		D38DC28C195635EB00268C20 /* WebDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebDisplayViewController.m; path = Controllers/WebDisplayViewController.m; sourceTree = "<group>"; };
 		D3A8FB69193EB28500CD69BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClutchWinModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B30E871905476100F00AB3 /* PlayersHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersHostViewController.h; sourceTree = "<group>"; };
@@ -459,6 +465,10 @@
 				D3B30EFA190563E200F00AB3 /* PlayersResultsTVC.m */,
 				D3B30EFC190563F900F00AB3 /* PlayersDrillDownTVC.h */,
 				D3B30EFD190563F900F00AB3 /* PlayersDrillDownTVC.m */,
+				D38DC2851956335900268C20 /* CreditsViewController.h */,
+				D38DC2861956335900268C20 /* CreditsViewController.m */,
+				D38DC28B195635EB00268C20 /* WebDisplayViewController.h */,
+				D38DC28C195635EB00268C20 /* WebDisplayViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -762,6 +772,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B30F07190564B100F00AB3 /* PlayersResultsTableViewCell.m in Sources */,
+				D38DC2871956335900268C20 /* CreditsViewController.m in Sources */,
 				D3B30F16190565DE00F00AB3 /* PlayersResultModel.m in Sources */,
 				D3B30EC619055EB900F00AB3 /* CWBConfiguration.m in Sources */,
 				D3B30EFE190563F900F00AB3 /* PlayersDrillDownTVC.m in Sources */,
@@ -790,6 +801,7 @@
 				D31FCB5518FFEDFB004DDBCF /* main.m in Sources */,
 				D3B30F19190565F400F00AB3 /* PlayersDrillDownModel.m in Sources */,
 				D3B30EF21905639000F00AB3 /* PlayersTeamsTVC.m in Sources */,
+				D38DC28D195635EB00268C20 /* WebDisplayViewController.m in Sources */,
 				D3B30EDD1905611B00F00AB3 /* TeamsDrillDownModel.m in Sources */,
 				D3B30ED419055F5B00F00AB3 /* TeamsResultsTVC.m in Sources */,
 				D36959E6194FDB5000AA7C84 /* HomeViewController.m in Sources */,
