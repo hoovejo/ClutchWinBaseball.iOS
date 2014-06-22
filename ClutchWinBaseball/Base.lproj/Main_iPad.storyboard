@@ -303,7 +303,7 @@
         <scene sceneID="TbK-Co-0cd">
             <objects>
                 <collectionViewController storyboardIdentifier="playersYearsTVC" autoresizesArchivedViewToFullSize="NO" id="hq2-BZ-0Ub" customClass="PlayersYearsTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="NbP-Kt-lv8">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="NbP-Kt-lv8">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -381,7 +381,7 @@
         <scene sceneID="6G8-P5-Bl2">
             <objects>
                 <collectionViewController storyboardIdentifier="playersTeamsTVC" autoresizesArchivedViewToFullSize="NO" id="MIB-pw-s4F" customClass="PlayersTeamsTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Nsw-Yg-04y">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Nsw-Yg-04y">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -459,7 +459,7 @@
         <scene sceneID="rh0-N1-j3B">
             <objects>
                 <collectionViewController storyboardIdentifier="playersBattersTVC" autoresizesArchivedViewToFullSize="NO" id="zUK-uq-GAH" customClass="PlayersBattersTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="7bV-oD-KVq">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="7bV-oD-KVq">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -549,7 +549,7 @@
         <scene sceneID="HW4-9q-u4g">
             <objects>
                 <collectionViewController storyboardIdentifier="playersPitchersTVC" autoresizesArchivedViewToFullSize="NO" id="p4B-eB-f1c" customClass="PlayersPitchersTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Tx4-eo-e8v">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Tx4-eo-e8v">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -615,7 +615,7 @@
         <scene sceneID="8gl-PO-EBM">
             <objects>
                 <collectionViewController storyboardIdentifier="playersResultsTVC" autoresizesArchivedViewToFullSize="NO" id="eY9-ha-kDR" customClass="PlayersResultsTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ub7-nf-4fq">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Ub7-nf-4fq">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -816,7 +816,7 @@
         <scene sceneID="wRx-Pp-tLy">
             <objects>
                 <collectionViewController storyboardIdentifier="playersDrillDownTVC" autoresizesArchivedViewToFullSize="NO" id="Tse-s8-h1z" customClass="PlayersDrillDownTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="baQ-xt-s9w">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="baQ-xt-s9w">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1044,7 +1044,7 @@
         <scene sceneID="QFV-da-9kP">
             <objects>
                 <collectionViewController storyboardIdentifier="teamsTVC" autoresizesArchivedViewToFullSize="NO" id="b5E-2q-Ka4" customClass="TeamsFranchisesTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="q3r-vh-Z2x">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="q3r-vh-Z2x">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1094,10 +1094,6 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="b5E-2q-Ka4" id="lRP-yz-4Hf"/>
-                            <outlet property="delegate" destination="b5E-2q-Ka4" id="Ifd-me-jB4"/>
-                        </connections>
                     </collectionView>
                     <connections>
                         <outlet property="notifyLabel" destination="RRe-jp-FXA" id="vai-Ax-ss1"/>
@@ -1111,7 +1107,7 @@
         <scene sceneID="kL1-nb-glM">
             <objects>
                 <collectionViewController storyboardIdentifier="opponentsTVC" autoresizesArchivedViewToFullSize="NO" id="41Y-BF-q9K" customClass="TeamsOpponentsTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="NRx-nP-meG">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="NRx-nP-meG">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1178,7 +1174,7 @@
         <scene sceneID="ojm-Fw-fds">
             <objects>
                 <collectionViewController storyboardIdentifier="teamsResultsTVC" autoresizesArchivedViewToFullSize="NO" id="4Vt-Xg-txb" customClass="TeamsResultsTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="QTw-4V-Rv4">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="QTw-4V-Rv4">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1340,7 +1336,7 @@
         <scene sceneID="IU7-em-iE5">
             <objects>
                 <collectionViewController storyboardIdentifier="teamsDrillDownTVC" autoresizesArchivedViewToFullSize="NO" id="8xJ-Au-kok" customClass="TeamsDrillDownTVC" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="gfo-Mw-doE">
+                    <collectionView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="gfo-Mw-doE">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1482,7 +1478,7 @@
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nY3-4c-m1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Zqa-ri-fGx">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" canCancelContentTouches="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Zqa-ri-fGx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
