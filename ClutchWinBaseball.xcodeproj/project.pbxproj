@@ -25,6 +25,7 @@
 		D31FCB7818FFEDFB004DDBCF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D31FCB7618FFEDFB004DDBCF /* InfoPlist.strings */; };
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
+		D35899811957A45E008ABE50 /* TeamsResusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35899801957A45E008ABE50 /* TeamsResusableView.m */; };
 		D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */; };
 		D36959E3194FDAA200AA7C84 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959E2194FDAA200AA7C84 /* iAd.framework */; };
 		D36959E6194FDB5000AA7C84 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36959E5194FDB5000AA7C84 /* HomeViewController.m */; };
@@ -34,6 +35,7 @@
 		D38939B2194F1BF2008B826F /* CWBText.m in Sources */ = {isa = PBXBuildFile; fileRef = D38939B1194F1BF2008B826F /* CWBText.m */; };
 		D38DC2871956335900268C20 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC2861956335900268C20 /* CreditsViewController.m */; };
 		D38DC28D195635EB00268C20 /* WebDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D38DC28C195635EB00268C20 /* WebDisplayViewController.m */; };
+		D38FA2D919578768006C1CB5 /* SeasonsReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D38FA2D819578768006C1CB5 /* SeasonsReusableView.m */; };
 		D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A8FB69193EB28500CD69BC /* CoreData.framework */; };
 		D3A8FB6E193EB40700CD69BC /* ClutchWinModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3A8FB6C193EB40700CD69BC /* ClutchWinModel.xcdatamodeld */; };
 		D3B30EA71905476100F00AB3 /* PlayersHostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B30E881905476100F00AB3 /* PlayersHostViewController.m */; };
@@ -104,6 +106,8 @@
 		D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClutchWinBaseballTests.m; sourceTree = "<group>"; };
 		D31FCB8318FFEE59004DDBCF /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewPagerController.h; path = ClutchWinBaseball/ViewPagerController.h; sourceTree = "<group>"; };
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
+		D358997F1957A45E008ABE50 /* TeamsResusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamsResusableView.h; path = Custom/TeamsResusableView.h; sourceTree = "<group>"; };
+		D35899801957A45E008ABE50 /* TeamsResusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamsResusableView.m; path = Custom/TeamsResusableView.m; sourceTree = "<group>"; };
 		D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		D36959E2194FDAA200AA7C84 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		D36959E4194FDB5000AA7C84 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 		D38DC2861956335900268C20 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CreditsViewController.m; path = Controllers/CreditsViewController.m; sourceTree = "<group>"; };
 		D38DC28B195635EB00268C20 /* WebDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebDisplayViewController.h; path = Controllers/WebDisplayViewController.h; sourceTree = "<group>"; };
 		D38DC28C195635EB00268C20 /* WebDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebDisplayViewController.m; path = Controllers/WebDisplayViewController.m; sourceTree = "<group>"; };
+		D38FA2D719578767006C1CB5 /* SeasonsReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeasonsReusableView.h; path = Custom/SeasonsReusableView.h; sourceTree = "<group>"; };
+		D38FA2D819578768006C1CB5 /* SeasonsReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeasonsReusableView.m; path = Custom/SeasonsReusableView.m; sourceTree = "<group>"; };
 		D3A8FB69193EB28500CD69BC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3A8FB6D193EB40700CD69BC /* ClutchWinModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ClutchWinModel.xcdatamodel; sourceTree = "<group>"; };
 		D3B30E871905476100F00AB3 /* PlayersHostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersHostViewController.h; sourceTree = "<group>"; };
@@ -493,6 +499,10 @@
 				D3B30F031905648A00F00AB3 /* PlayersDrillDownTableViewCell.m */,
 				D3B30F05190564B100F00AB3 /* PlayersResultsTableViewCell.h */,
 				D3B30F06190564B100F00AB3 /* PlayersResultsTableViewCell.m */,
+				D38FA2D719578767006C1CB5 /* SeasonsReusableView.h */,
+				D38FA2D819578768006C1CB5 /* SeasonsReusableView.m */,
+				D358997F1957A45E008ABE50 /* TeamsResusableView.h */,
+				D35899801957A45E008ABE50 /* TeamsResusableView.m */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -781,6 +791,7 @@
 				D3B30F011905645D00F00AB3 /* PlayersContextViewModel.m in Sources */,
 				D3B30F101905659A00F00AB3 /* BatterModel.m in Sources */,
 				D3B30ED119055F5B00F00AB3 /* TeamsDrillDownTVC.m in Sources */,
+				D38FA2D919578768006C1CB5 /* SeasonsReusableView.m in Sources */,
 				D31D6379194377DE004C79A3 /* CustomSegue.m in Sources */,
 				D31FCB5918FFEDFB004DDBCF /* AppDelegate.m in Sources */,
 				D3B30ED319055F5B00F00AB3 /* TeamsOpponentsTVC.m in Sources */,
@@ -799,6 +810,7 @@
 				D3B30EF8190563C400F00AB3 /* PlayersPitchersTVC.m in Sources */,
 				D3B30EEC1905626700F00AB3 /* TeamsDrillDownTableViewCell.m in Sources */,
 				D31FCB5518FFEDFB004DDBCF /* main.m in Sources */,
+				D35899811957A45E008ABE50 /* TeamsResusableView.m in Sources */,
 				D3B30F19190565F400F00AB3 /* PlayersDrillDownModel.m in Sources */,
 				D3B30EF21905639000F00AB3 /* PlayersTeamsTVC.m in Sources */,
 				D38DC28D195635EB00268C20 /* WebDisplayViewController.m in Sources */,

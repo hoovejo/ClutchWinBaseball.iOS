@@ -13,6 +13,7 @@
 #import "TeamModel.h"
 #import "CWBConfiguration.h"
 #import "CWBText.h"
+#import "TeamsResusableView.h"
 
 @interface PlayersTeamsTVC ()
 
@@ -180,6 +181,20 @@
 }
 
 #pragma mark - UICollection view data source
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        TeamsResusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        headerView.title.text = @"Teams";
+        
+        reusableview = headerView;
+    }
+    
+    return reusableview;
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.teams.count;
