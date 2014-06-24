@@ -27,7 +27,7 @@
                                 <rect key="frame" x="20" y="125" width="280" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="gKl-Ly-tII"/>
+                                    <constraint firstAttribute="height" constant="48" id="ppc-qM-NEw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -37,16 +37,16 @@
                                 <rect key="frame" x="20" y="96" width="99" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="99" id="oLS-My-U4w"/>
+                                    <constraint firstAttribute="width" constant="99" id="Qdz-Jl-WLS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="aIe-cL-RtJ">
-                                <rect key="frame" x="0.0" y="426" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="449" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="YG2-V4-IX5"/>
+                                    <constraint firstAttribute="height" constant="50" id="iH3-3X-pyn"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="CZ4-MO-1fc" id="anW-4a-8zE"/>
@@ -55,17 +55,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="t5e-eC-3uO" firstAttribute="leading" secondItem="XHM-fQ-Mkz" secondAttribute="leading" id="C5N-kl-bEe"/>
-                            <constraint firstAttribute="trailing" secondItem="Zhg-ve-WU7" secondAttribute="trailing" constant="20" symbolic="YES" id="DhP-5j-fSP"/>
-                            <constraint firstAttribute="bottom" secondItem="aIe-cL-RtJ" secondAttribute="bottom" constant="92" id="EeC-qI-Db1"/>
-                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" id="GmJ-rh-VaL"/>
-                            <constraint firstItem="t5e-eC-3uO" firstAttribute="top" secondItem="Zhg-ve-WU7" secondAttribute="bottom" constant="18" id="U1C-VX-cxj"/>
-                            <constraint firstItem="XHM-fQ-Mkz" firstAttribute="top" secondItem="t5e-eC-3uO" secondAttribute="bottom" constant="8" symbolic="YES" id="aNX-DX-Yp3"/>
-                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="trailing" secondItem="XHM-fQ-Mkz" secondAttribute="trailing" id="iFw-iH-18z"/>
-                            <constraint firstItem="t5e-eC-3uO" firstAttribute="leading" secondItem="Zhg-ve-WU7" secondAttribute="leading" id="jpf-Lj-H7x"/>
-                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="top" secondItem="s9W-kb-ARv" secondAttribute="bottom" constant="16" id="qXS-i3-Vpn"/>
-                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="centerX" secondItem="XHM-fQ-Mkz" secondAttribute="centerX" id="qgL-Bd-2Pv"/>
-                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="uoq-o3-i4I"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="leading" secondItem="t5e-eC-3uO" secondAttribute="leading" id="0Lj-Pl-aO3"/>
+                            <constraint firstAttribute="trailing" secondItem="Zhg-ve-WU7" secondAttribute="trailing" constant="20" symbolic="YES" id="D9A-NE-mFs"/>
+                            <constraint firstItem="XHM-fQ-Mkz" firstAttribute="leading" secondItem="t5e-eC-3uO" secondAttribute="leading" id="HCb-dP-3mW"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="Tzb-Y3-0Zv"/>
+                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="centerX" secondItem="XHM-fQ-Mkz" secondAttribute="centerX" id="Umb-ms-exV"/>
+                            <constraint firstItem="XHM-fQ-Mkz" firstAttribute="top" secondItem="t5e-eC-3uO" secondAttribute="bottom" constant="8" symbolic="YES" id="Y3e-b1-RVv"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="top" secondItem="s9W-kb-ARv" secondAttribute="bottom" constant="16" id="eaH-35-gBo"/>
+                            <constraint firstItem="aIe-cL-RtJ" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" id="hEV-E8-Eyf"/>
+                            <constraint firstItem="t5e-eC-3uO" firstAttribute="top" secondItem="Zhg-ve-WU7" secondAttribute="bottom" constant="18" id="lhh-gs-TU6"/>
+                            <constraint firstItem="XHM-fQ-Mkz" firstAttribute="trailing" secondItem="Zhg-ve-WU7" secondAttribute="trailing" id="ugH-d1-HV5"/>
+                            <constraint firstItem="dtj-EO-iXF" firstAttribute="top" secondItem="aIe-cL-RtJ" secondAttribute="bottom" constant="20" id="x1j-Gy-bzm"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="u1e-5L-l1D"/>
@@ -237,6 +237,7 @@
                     <tabBarItem key="tabBarItem" title="Credits" image="second" id="a4z-L3-KVH"/>
                     <navigationItem key="navigationItem" title="Credits" id="DqR-dF-NaT"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ZJ-xf-JT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
