@@ -17,6 +17,7 @@
 
 @interface TeamsDrillDownTVC ()
 
+@property BOOL isLoading;
 @property (nonatomic, strong) NSMutableArray *results;
 
 @end
@@ -127,7 +128,9 @@
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
-    
+
+    self.isLoading = YES;
+
     [[RKObjectManager sharedManager] getObjectsAtPath:teamsDrillDownEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -148,6 +151,8 @@
                                                       NSString *msg = [CWBText noResults];
                                                       [self setNotifyText:msg];
                                                   }
+                                                  
+                                                  self.isLoading = NO;
                                               }
                                               failure:^(RKObjectRequestOperation *operation, NSError *error) {
                                                   if ([CWBConfiguration isLoggingEnabled]){
@@ -156,11 +161,15 @@
                                                   [spinner stopAnimating];
                                                   NSString *msg = [CWBText errorMessage];
                                                   [self setNotifyText:msg];
+                                                  
+                                                  self.isLoading = NO;
                                               }];
 }
 
 #pragma mark - Helper methods
 - (BOOL) serviceCallAllowed {
+    
+    if(self.isLoading) { return NO; }
     
     //check for empty and nil
     if ([self.teamsContextViewModel.franchiseId length] == 0 || [self.teamsContextViewModel.opponentId length] == 0 || [self.teamsContextViewModel.yearId length] == 0) {

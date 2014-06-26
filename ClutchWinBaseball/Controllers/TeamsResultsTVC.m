@@ -43,7 +43,6 @@
     
     if ([self needsToLoadData]) {
         
-        self.isLoading = YES;
         [self readyTheArray];
         [self loadResults];
         
@@ -128,7 +127,9 @@
     spinner.hidesWhenStopped = YES;
     [self.view addSubview:spinner];
     [spinner startAnimating];
-    
+
+    self.isLoading = YES;
+
     [[RKObjectManager sharedManager] getObjectsAtPath:teamsResultsEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -168,6 +169,8 @@
 
 #pragma mark - Helper methods
 - (BOOL) serviceCallAllowed {
+    
+    if(self.isLoading) { return NO; }
     
     //check for empty and nil
     if ([self.teamsContextViewModel.franchiseId length] == 0 || [self.teamsContextViewModel.opponentId length] == 0) {

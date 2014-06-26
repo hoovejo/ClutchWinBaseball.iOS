@@ -43,8 +43,7 @@
     [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
-        
-        self.isLoading = YES;
+
         [self readyTheArray];
         [self loadResults];
         
@@ -175,12 +174,16 @@
         self.isLoading = NO;
     }];
     
+    self.isLoading = YES;
+
     NSOperationQueue *operationQueue = [NSOperationQueue new];
     [operationQueue addOperation:operation];
 }
 
 #pragma mark - Helper methods
 - (BOOL) serviceCallAllowed {
+    
+    if(self.isLoading) { return NO; }
     
     //check for empty and nil
     if ([self.playersContextViewModel.batterId length] == 0 || [self.playersContextViewModel.pitcherId length] == 0) {

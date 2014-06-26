@@ -41,8 +41,7 @@
     [self setNotifyText:@""];
     
     if ([self needsToLoadData]) {
-        
-        self.isLoading = YES;
+
         [self readyTheArray];
         [self loadResults];
         
@@ -128,6 +127,8 @@
     [self.view addSubview:spinner];
     [spinner startAnimating];
     
+    self.isLoading = YES;
+
     [[RKObjectManager sharedManager] getObjectsAtPath:pitcherSearchEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -167,6 +168,8 @@
 
 #pragma mark - Helper methods
 - (BOOL) serviceCallAllowed {
+    
+    if(self.isLoading) { return NO; }
     
     //check for empty and nil
     if ([self.playersContextViewModel.yearId length] == 0 || [self.playersContextViewModel.batterId length] == 0) {

@@ -17,6 +17,7 @@
 
 @interface PlayersDrillDownTVC ()
 
+@property BOOL isLoading;
 @property (nonatomic, strong) NSMutableArray *results;
 
 @end
@@ -162,6 +163,8 @@
             [self setNotifyText:msg];
         }
         
+        self.isLoading = NO;
+        
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         if ([CWBConfiguration isLoggingEnabled]){
             NSLog(@"Load player details failed with exception': %@", error);
@@ -170,7 +173,11 @@
 
         NSString *msg = [CWBText errorMessage];
         [self setNotifyText:msg];
+        
+        self.isLoading = NO;
     }];
+
+    self.isLoading = YES;
 
     NSOperationQueue *operationQueue = [NSOperationQueue new];
     [operationQueue addOperation:operation];
@@ -178,6 +185,8 @@
 
 #pragma mark - Helper methods
 - (BOOL) serviceCallAllowed {
+
+    if(self.isLoading) { return NO; }
     
     //check for empty and nil
     if ([self.playersContextViewModel.batterId length] == 0 || [self.playersContextViewModel.pitcherId length] == 0 || [self.playersContextViewModel.resultYearId length] == 0) {
