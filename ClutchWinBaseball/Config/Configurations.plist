@@ -11,7 +11,7 @@
 	<key>LoggingEnabled</key>
 	<false/>
 	<key>FranchiseSearch</key>
-	<string>/api/v1/games/for_team/summary.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic&amp;group=season,team_abbr,opp_abbr</string>
+	<string>/api/v1/games/for_team/summary.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic&amp;max_entries=200&amp;group=season,team_abbr,opp_abbr</string>
 	<key>OpponentsForBatter</key>
 	<string>/api/v1/opponents/pitchers.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic</string>
 	<key>Years</key>

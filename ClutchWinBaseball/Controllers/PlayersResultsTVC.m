@@ -239,10 +239,14 @@
     
     int hitValue = [result.hit intValue];
     if(hitValue <= 0){
-        cell.averageLabel.text = @"0.000";
+        cell.averageLabel.text = @".000";
     } else {
         double val = (float)hitValue / (float)[result.atBat intValue];
-        cell.averageLabel.text = [NSString localizedStringWithFormat:@"%.3f", (val)];;
+        
+        NSString *valAsString = [NSString localizedStringWithFormat:@"%.3f", (val)];
+        NSRange range = [valAsString rangeOfString:@"^0*" options:NSRegularExpressionSearch];
+        valAsString = [valAsString stringByReplacingCharactersInRange:range withString:@""];
+        cell.averageLabel.text = valAsString;
     }
     
     return cell;

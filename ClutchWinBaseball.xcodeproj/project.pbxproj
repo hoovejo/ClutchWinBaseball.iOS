@@ -993,6 +993,7 @@
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "09862C63-98FE-49C6-8791-204E4476B4A8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1015,6 +1016,7 @@
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "AE226168-3CE0-4736-BEA6-F032A17B28D9";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
