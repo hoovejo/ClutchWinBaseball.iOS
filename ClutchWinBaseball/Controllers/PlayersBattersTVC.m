@@ -98,13 +98,17 @@
     }
     
     if ([segue.identifier isEqualToString:@"GoToSeasons"]) {
-        PlayersYearsTVC *yearsController = (PlayersYearsTVC *)[segue destinationViewController];
+        
+        //PlayersYearsTVC *yearsController = (PlayersYearsTVC *)[segue destinationViewController];
+        PlayersYearsTVC *yearsController = (PlayersYearsTVC *)[[segue destinationViewController] visibleViewController];
+
         [yearsController setPlayersContextViewModel:self.playersContextViewModel];
         [yearsController setDelegate:self];
     }
     
     if ([segue.identifier isEqualToString:@"GoToTeams"]) {
-        PlayersTeamsTVC *teamsController = (PlayersTeamsTVC *)[segue destinationViewController];
+        //PlayersTeamsTVC *teamsController = (PlayersTeamsTVC *)[segue destinationViewController];
+        PlayersTeamsTVC *teamsController = (PlayersTeamsTVC *)[[segue destinationViewController] visibleViewController];
         [teamsController setPlayersContextViewModel:self.playersContextViewModel];
         [teamsController setDelegate:self];
     }

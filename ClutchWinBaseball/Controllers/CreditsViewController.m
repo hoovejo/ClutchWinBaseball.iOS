@@ -39,12 +39,12 @@
     }
     
     if ([segue.identifier isEqualToString:@"GoToRetrosheet"]) {
-        WebDisplayViewController *controller = (WebDisplayViewController *)[segue destinationViewController];
+        WebDisplayViewController *controller = (WebDisplayViewController *)[[segue destinationViewController] visibleViewController];
         [controller setUrlAsString:@"http://www.retrosheet.org/"];
     }
     
     if ([segue.identifier isEqualToString:@"GoToClutchWin"]) {
-        WebDisplayViewController *controller = (WebDisplayViewController *)[segue destinationViewController];
+        WebDisplayViewController *controller = (WebDisplayViewController *)[[segue destinationViewController] visibleViewController];
         [controller setUrlAsString:@"http://ClutchWin.com/"];
     }
 }

@@ -18,7 +18,7 @@
 @interface PlayersYearsTVC : UICollectionViewController
 
 //one time load array, doesn't change per session
-@property (strong, nonatomic) NSArray *years;
+//@property (strong, nonatomic) NSArray *years;
 @property (weak, nonatomic) IBOutlet UILabel *notifyLabel;
 
 

@@ -15,7 +15,7 @@
 	<key>SelectBatter</key>
 	<string>select a batter first</string>
 	<key>SelectSeasonTeam</key>
-	<string>select a season then a team</string>
+	<string>batter filters - select season then a team</string>
 	<key>SelectResult</key>
 	<string>select a result first</string>
 	<key>SelectOpponent</key>

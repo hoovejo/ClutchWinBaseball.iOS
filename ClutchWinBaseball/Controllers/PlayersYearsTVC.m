@@ -25,7 +25,7 @@
 {
     [self setNotifyText:@""];
     
-    if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO || [self.years count] == 0 ) {
+    if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO || [self.playersContextViewModel.years count] == 0 ) {
         [self loadYears];
         [self.playersContextViewModel setLoadedOnce];
     }
@@ -98,7 +98,7 @@
     [[RKObjectManager sharedManager] getObjectsAtPath:yearsEndpoint
                                            parameters:nil
                                               success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-                                                  self.years = mappingResult.array;
+                                                  self.playersContextViewModel.years = mappingResult.array;
                                                   [self.collectionView reloadData];
                                                   [spinner stopAnimating];
                                               }
@@ -129,7 +129,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.years.count;
+    return self.playersContextViewModel.years.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -138,7 +138,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UILabel *displayText = (UILabel *)[cell viewWithTag:100];
-    YearModel *year = self.years[indexPath.row];
+    YearModel *year = self.playersContextViewModel.years[indexPath.row];
     displayText.text = year.yearValue;
     
     return cell;
@@ -146,7 +146,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    YearModel *year = self.years[indexPath.row];
+    YearModel *year = self.playersContextViewModel.years[indexPath.row];
     self.playersContextViewModel.yearId = year.yearValue;
     
     [self.delegate playersYearSelected:self];

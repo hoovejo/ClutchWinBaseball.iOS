@@ -13,6 +13,10 @@
 
 @property BOOL hasLoadedSeasonsOncePerSession;
 
+//one time load array, doesn't change per session
+@property (strong, nonatomic) NSArray *years;
+@property (nonatomic, strong) NSMutableArray *teams;
+
 //retain current selections
 @property (nonatomic, strong) NSString *yearId;
 @property (nonatomic, strong) NSString *teamId;

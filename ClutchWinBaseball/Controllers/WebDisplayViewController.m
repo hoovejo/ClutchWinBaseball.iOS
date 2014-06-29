@@ -12,6 +12,7 @@
 @interface WebDisplayViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -36,6 +37,9 @@
     {
         NSURL *url = [NSURL URLWithString:urlString];
         NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+        
+        self.webView.delegate = self;
+        
         [self.webView loadRequest:urlRequest];
     }
     @catch (NSException *exception)
@@ -47,5 +51,25 @@
     }
     
 }
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake(160, 240);
+    self.spinner.hidesWhenStopped = YES;
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self.spinner stopAnimating];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [self.spinner stopAnimating];
+}
+
 
 @end

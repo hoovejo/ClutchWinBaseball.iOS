@@ -17,8 +17,6 @@
 
 @interface PlayersTeamsTVC ()
 
-@property (nonatomic, strong) NSMutableArray *teams;
-
 @end
 
 @implementation PlayersTeamsTVC
@@ -135,7 +133,7 @@
                                                       return [first compare:second];
                                                   }];
                                                   
-                                                  self.teams = [sorted mutableCopy];
+                                                  self.playersContextViewModel.teams = [sorted mutableCopy];
                                                   [self.collectionView reloadData];
                                                   [self.collectionView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
                                                   [self.playersContextViewModel recordLastYearId:self.playersContextViewModel.yearId];
@@ -165,6 +163,11 @@
 - (BOOL) needsToLoadData {
 
     if ([self serviceCallAllowed]) {
+        
+        if ( [self.playersContextViewModel.teams count] == 0 ){
+            return YES;
+        }
+        
         if (![self.playersContextViewModel.yearId isEqualToString:self.playersContextViewModel.lastYearId]) {
             return YES;
         }
@@ -173,10 +176,10 @@
 }
 
 - (void) readyTheArray {
-    if( [self.teams count] == 0 ){
-        self.teams = [[NSMutableArray alloc] init];
+    if( [self.playersContextViewModel.teams count] == 0 ){
+        self.playersContextViewModel.teams = [[NSMutableArray alloc] init];
     } else {
-        [self.teams removeAllObjects];
+        [self.playersContextViewModel.teams removeAllObjects];
     }
 }
 
@@ -197,7 +200,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.teams.count;
+    return self.playersContextViewModel.teams.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -206,7 +209,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     UILabel *displayText = (UILabel *)[cell viewWithTag:100];
-    TeamModel *team = self.teams[indexPath.row];
+    TeamModel *team = self.self.playersContextViewModel.teams[indexPath.row];
     displayText.text = [team displayName];
     
     return cell;
@@ -214,7 +217,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    TeamModel *team = self.teams[indexPath.row];
+    TeamModel *team = self.playersContextViewModel.teams[indexPath.row];
     self.playersContextViewModel.teamId = team.teamIdValue;
     
     [self.delegate playersTeamSelected:self];
