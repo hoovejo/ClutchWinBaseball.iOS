@@ -20,6 +20,26 @@
     // Override point for customization after application launch.
     [ServiceEndpointHub configureRestKit];
     
+    
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UITabBar *tabBar = tabBarController.tabBar;
+    UITabBarItem *tabBarItem1 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *tabBarItem2 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *tabBarItem3 = [tabBar.items objectAtIndex:2];
+    UITabBarItem *tabBarItem4 = [tabBar.items objectAtIndex:3];
+    
+    tabBarItem1.selectedImage = [[UIImage imageNamed:@"HomeSelected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem1.image = [[UIImage imageNamed:@"Home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    
+    tabBarItem2.selectedImage = [[UIImage imageNamed:@"TeamsSelected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem2.image = [[UIImage imageNamed:@"Teams"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    
+    tabBarItem3.selectedImage = [[UIImage imageNamed:@"PlayersSelected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem3.image = [[UIImage imageNamed:@"Players"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    
+    tabBarItem4.selectedImage = [[UIImage imageNamed:@"InfoSelected"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    tabBarItem4.image = [[UIImage imageNamed:@"Info"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+    
     return YES;
 }
 							
