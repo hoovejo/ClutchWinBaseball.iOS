@@ -48,53 +48,6 @@
         NSString *msg = [CWBText selectSeason];
         [self setNotifyText:msg];
     }
-    
-    /*
-    if ([self needsToLoadData]) {
-        
-        [self readyTheArray];
-        [self loadResults];
-        
-    } else {
-        // if PlayersTeamsTVC is recreated load from core data
-        if( [self.teams count] == 0 ) {
-
-            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-            NSEntityDescription *entityDescription = [NSEntityDescription
-                                                      entityForName:@"Team" inManagedObjectContext:managedObjectContext];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityDescription];
-            
-            NSSortDescriptor * sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"location" ascending:YES];
-            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-            
-            NSError *error = nil;
-            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-            
-            if(!error && [results count] != 0){
-                [self readyTheArray];
-                
-                for(TeamModel *result in results) {
-                    if( result.teamIdValue != nil){
-                        [self.teams addObject:result];
-                    }
-                }
-                [self.collectionView reloadData];
-            } else {
-                
-                if ([self serviceCallAllowed]) {
-                    [self readyTheArray];
-                    [self loadResults];
-                } else {
-                    //if svc call not allowed prereq's not met
-                    NSString *msg = [CWBText selectSeason];
-                    [self setNotifyText:msg];
-                }
-            }
-        }
-    }
-     */
 }
 
 - (void) setNotifyText: (NSString *) msg {

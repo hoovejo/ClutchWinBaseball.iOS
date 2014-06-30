@@ -44,6 +44,7 @@
     if ([self needsToLoadData]) {
 
         [self readyTheArray];
+        [self.collectionView reloadData];
         [self loadResults];
         
     } else if (![self serviceCallAllowed]){

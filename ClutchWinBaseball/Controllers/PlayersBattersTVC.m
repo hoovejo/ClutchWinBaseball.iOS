@@ -143,61 +143,14 @@
     if ([self needsToLoadData]) {
 
         [self readyTheArray];
+        [self.collectionView reloadData];
         [self loadResults];
         
     } else if (![self serviceCallAllowed]){
         //if svc call not allowed prereq's not met
         NSString *msg = [CWBText selectSeasonTeam];
         [self setNotifyText:msg];
-    }
-    
-    /*
-    if ([self needsToLoadData]) {
-        
-        self.isLoading = YES;
-        [self readyTheArray];
-        [self loadResults];
-        
-    } else {
-        // if PlayersBattersTVC is recreated load from core data
-        if( [self.batters count] == 0 ) {
-
-            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-            NSEntityDescription *entityDescription = [NSEntityDescription
-                                                      entityForName:@"Batter" inManagedObjectContext:managedObjectContext];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityDescription];
-            
-            NSSortDescriptor * sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-            
-            NSError *error = nil;
-            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-            
-            if(!error && [results count] != 0){
-                [self readyTheArray];
-                
-                for(BatterModel *result in results) {
-                    if( result.batterIdValue != nil){
-                        [self.batters addObject:result];
-                    }
-                }
-                [self.collectionView reloadData];
-            } else {
-                
-                if ([self serviceCallAllowed]) {
-                    [self readyTheArray];
-                    [self loadResults];
-                } else {
-                    //if svc call not allowed prereq's not met
-                    NSString *msg = [CWBText selectSeasonTeam];
-                    [self setNotifyText:msg];
-                }
-            }
-        }
-    }
-     */
+    }    
 }
 
 - (void) setNotifyText: (NSString *) msg {

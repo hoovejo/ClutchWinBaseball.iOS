@@ -32,40 +32,8 @@
 }
 
 - (void)viewDidLoad
-{
-    
+{    
     [self refresh];
-    
-    /*
-    if(self.teamsContextViewModel.hasLoadedFranchisesOncePerSession == NO){
-        
-        [self loadFranchises];
-        [self.teamsContextViewModel setLoadedOnce];
-        
-    } else if ( [self.franchises count] == 0 ) {
-
-        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-        NSEntityDescription *entityDescription = [NSEntityDescription
-                                                  entityForName:@"Franchise" inManagedObjectContext:managedObjectContext];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDescription];
-        
-        NSSortDescriptor * sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"location" ascending:YES];
-        [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-        
-        NSError *error = nil;
-        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-        
-        if(!error){
-            self.franchises = results;
-            [self.collectionView reloadData];
-        } else {
-            [self loadFranchises];
-        }
-    }
-    */
-
     [super viewDidLoad];
 }
 

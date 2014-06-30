@@ -30,36 +30,6 @@
         [self.playersContextViewModel setLoadedOnce];
     }
     
-    /*
-    if(self.playersContextViewModel.hasLoadedSeasonsOncePerSession == NO){
-        
-        [self loadYears];
-        [self.playersContextViewModel setLoadedOnce];
-        
-    } else if( [self.years count] == 0 ) {
-        // if PlayersYearsTVC is recreated load from core data
-        NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-        NSEntityDescription *entityDescription = [NSEntityDescription
-                                                  entityForName:@"Season" inManagedObjectContext:managedObjectContext];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDescription];
-        
-        NSSortDescriptor * sortDescriptor;
-        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"yearValue" ascending:NO];
-        [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-        
-        NSError *error = nil;
-        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-        
-        if(!error && [results count] != 0){
-            self.years = results;
-            [self.collectionView reloadData];
-        } else {
-            [self loadYears];
-        }
-    }
-     */
-    
     [super viewDidLoad];
 }
 
