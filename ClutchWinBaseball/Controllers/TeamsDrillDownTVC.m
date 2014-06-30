@@ -52,53 +52,6 @@
         NSString *msg = [CWBText selectResult];
         [self setNotifyText:msg];
     }
-    
-    /*
-    if ([self needsToLoadData]) {
-        
-        [self readyTheArray];
-        [self loadResults];
-        
-    } else {
-        // if TeamsDrillDownTVC is recreated load from core data
-        if( [self.results count] == 0 ) {
-            
-            NSManagedObjectContext *managedObjectContext = [ServiceEndpointHub getManagedObjectContext];
-            NSEntityDescription *entityDescription = [NSEntityDescription
-                                                      entityForName:@"TeamsDrillDown" inManagedObjectContext:managedObjectContext];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityDescription];
-            
-            NSSortDescriptor * sortDescriptor;
-            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"gameDate" ascending:NO];
-            [request setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
-            
-            NSError *error = nil;
-            NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-            
-            if(!error && [results count] != 0){
-                [self readyTheArray];
-                
-                for(TeamsDrillDownModel *result in results) {
-                    if( result.gameDate != nil){
-                        [self.results addObject:result];
-                    }
-                }
-                [self.collectionView reloadData];
-            } else {
-                
-                if ([self serviceCallAllowed]) {
-                    [self readyTheArray];
-                    [self loadResults];
-                } else {
-                    //if svc call not allowed prereq's not met
-                    NSString *msg = [CWBText selectResult];
-                    [self setNotifyText:msg];
-                }
-            }
-        }
-    }
-     */
 }
 
 - (void) setNotifyText: (NSString *) msg {
@@ -124,9 +77,14 @@
                                       self.teamsContextViewModel.opponentId,
                                       self.teamsContextViewModel.yearId];
     
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(160, 240);
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.view.center;
+    spinner.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
+    if ([spinner respondsToSelector:@selector(setColor:)]) {
+        [spinner setColor:[UIColor grayColor]];
+    }
     [self.view addSubview:spinner];
     [spinner startAnimating];
 

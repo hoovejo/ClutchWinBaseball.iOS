@@ -64,9 +64,14 @@
     // &access_token=abc
     NSString *franchisesEndpoint = [CWBConfiguration franchiseUrl];
     
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(160, 240);
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.view.center;
+    spinner.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    spinner.center = self.view.center;
     spinner.hidesWhenStopped = YES;
+    if ([spinner respondsToSelector:@selector(setColor:)]) {
+        [spinner setColor:[UIColor grayColor]];
+    }
     [self.view addSubview:spinner];
     [spinner startAnimating];
     

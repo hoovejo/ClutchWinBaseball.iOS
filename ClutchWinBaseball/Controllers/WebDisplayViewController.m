@@ -54,11 +54,16 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.center = CGPointMake(160, 240);
-    self.spinner.hidesWhenStopped = YES;
-    [self.view addSubview:self.spinner];
-    [self.spinner startAnimating];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = self.view.center;
+    spinner.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    spinner.center = self.view.center;
+    spinner.hidesWhenStopped = YES;
+    if ([spinner respondsToSelector:@selector(setColor:)]) {
+        [spinner setColor:[UIColor grayColor]];
+    }
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
