@@ -121,6 +121,8 @@
                                                   [self setNotifyText:msg];
                                                   
                                                   self.isLoading = NO;
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load pitchers failed with exception" ];
                                               }];
 }
 

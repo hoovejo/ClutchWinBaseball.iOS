@@ -84,6 +84,8 @@
                                                   [spinner stopAnimating];
                                                   NSString *msg = [CWBText errorMessage];
                                                   [self setNotifyText:msg];
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load years failed with exception" ];
                                               }];
 }
 

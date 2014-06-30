@@ -122,6 +122,8 @@
                                                   [self setNotifyText:msg];
                                                   
                                                   self.isLoading = NO;
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load franchise results failed with exception" ];
                                               }];
 }
 

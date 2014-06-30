@@ -221,6 +221,8 @@
                                                   [self setNotifyText:msg];
                                                   
                                                   self.isLoading = NO;
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load batters failed with exception" ];
                                               }];
 }
 

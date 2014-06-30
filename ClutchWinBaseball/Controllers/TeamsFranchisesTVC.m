@@ -95,6 +95,8 @@
                                                   [spinner stopAnimating];
                                                   NSString *msg = [CWBText errorMessage];
                                                   [self setNotifyText:msg];
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load franchises failed with exception" ];
                                               }];
 }
 

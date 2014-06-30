@@ -117,11 +117,14 @@
                                                   if ([CWBConfiguration isLoggingEnabled]){
                                                       NSLog(@"Load franchise details failed with exception': %@", error);
                                                   }
+                                                  
                                                   [spinner stopAnimating];
                                                   NSString *msg = [CWBText errorMessage];
                                                   [self setNotifyText:msg];
                                                   
                                                   self.isLoading = NO;
+                                                  
+                                                  [ServiceEndpointHub reportNetworkError:error:@"Load franchise details failed with exception" ];
                                               }];
 }
 

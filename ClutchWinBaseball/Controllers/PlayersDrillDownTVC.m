@@ -134,6 +134,8 @@
         [self setNotifyText:msg];
         
         self.isLoading = NO;
+        
+        [ServiceEndpointHub reportNetworkError:error:@"Load player drilldown failed with exception" ];
     }];
 
     self.isLoading = YES;

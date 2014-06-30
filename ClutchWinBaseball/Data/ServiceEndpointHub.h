@@ -24,5 +24,6 @@
 + (RKResponseDescriptor *) buildPlayersDrillDown;
 + (void)configureRestKit;
 + (BOOL)getIsNetworkAvailable;
++ (void)reportNetworkError:(NSError *)error : (NSString *)msg;
 
 @end

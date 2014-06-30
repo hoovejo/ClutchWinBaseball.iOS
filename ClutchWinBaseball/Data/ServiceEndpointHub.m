@@ -25,6 +25,7 @@
 #import "PitcherModel.h"
 #import "PlayersResultModel.h"
 #import "PlayersDrillDownModel.h"
+#import <BugSense-iOS/BugSenseController.h>
 
 @interface ServiceEndpointHub ()
 
@@ -57,6 +58,22 @@ static BOOL isNetWorkAvailable;
 + (BOOL)getIsNetworkAvailable
 {
     return isNetWorkAvailable;
+}
+
++ (void)reportNetworkError:(NSError *)error : (NSString *)msg
+{
+    if (error != nil)
+    {
+        @try {
+
+            [NSException raise:NSGenericException format:@"%@", [error description]];
+            
+        } @catch (NSException *exc) {
+            NSDictionary *data = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"msg-value", msg, nil]
+                                                             forKeys:[NSArray arrayWithObjects:@",msg-key", @"key", nil]];
+            BUGSENSE_LOG(exc, data);
+        }
+    }
 }
 
 + (void)configureRestKit
