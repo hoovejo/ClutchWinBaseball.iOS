@@ -10,6 +10,8 @@
 
 @interface HomeViewController ()
 
+@property BOOL bannerLoaded;
+
 @end
 
 @implementation HomeViewController
@@ -19,6 +21,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.bannerLoaded = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -31,14 +34,21 @@
 
 -(void)bannerViewDidLoadAd:(ADBannerView *)banner{
 
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1];
-    [UIView commitAnimations];
+    if (!self.bannerLoaded) {
+        _iAd.hidden = NO;
+        self.bannerLoaded = YES;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1];
+        [UIView commitAnimations];
+    }
 }
 
 -(void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error{
-    
- 
+    if (self.bannerLoaded) {
+        _iAd.hidden = YES;
+        self.bannerLoaded = NO;
+    }
 }
 
 @end

@@ -11,4 +11,6 @@
 
 @interface HomeViewController : UIViewController <ADBannerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet ADBannerView *iAd;
+
 @end
