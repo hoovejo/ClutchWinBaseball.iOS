@@ -24,9 +24,46 @@
 @implementation PlayersPitchersTVC
 
 - (void)viewDidLoad
-{
+{    
+    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+    [doubleTapGesture setNumberOfTapsRequired:2];
+    [doubleTapGesture setNumberOfTouchesRequired:1];
+    
+    [self.view addGestureRecognizer:doubleTapGesture];
+    
+    UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
+    [singleTapGesture setNumberOfTapsRequired:1];
+    [singleTapGesture setNumberOfTouchesRequired:1];
+    [singleTapGesture requireGestureRecognizerToFail:doubleTapGesture];
+    
+    [self.view addGestureRecognizer:singleTapGesture];
+    
     [self refresh];
     [super viewDidLoad];
+}
+
+- (void) processDoubleTap: (UITapGestureRecognizer *)recognizer
+{
+    if (!self.isLoading) {
+        CGPoint p = [recognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        PitcherModel *pitcher = self.pitchers[indexPath.row];
+        self.playersContextViewModel.pitcherId = pitcher.retroId;
+        
+        [self.delegate playersPitcherSelected:self];
+    }
+}
+
+- (void) processSingleTap: (UITapGestureRecognizer *)recognizer
+{
+    if (!self.isLoading) {
+        CGPoint p = [recognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        PitcherModel *pitcher = self.pitchers[indexPath.row];
+        self.playersContextViewModel.pitcherId = pitcher.retroId;
+        
+        [self.delegate playersPitcherSelected:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -174,6 +211,7 @@
     return cell;
 }
 
+/*
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.isLoading) {
@@ -183,5 +221,6 @@
         [self.delegate playersPitcherSelected:self];
     }
 }
+ */
 
 @end

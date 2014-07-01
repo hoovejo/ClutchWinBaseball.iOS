@@ -19,9 +19,44 @@
 @implementation TeamsOpponentsTVC
 
 - (void)viewDidLoad
-{
+{    
+    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+    [doubleTapGesture setNumberOfTapsRequired:2];
+    [doubleTapGesture setNumberOfTouchesRequired:1];
+    
+    [self.view addGestureRecognizer:doubleTapGesture];
+    
+    UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
+    [singleTapGesture setNumberOfTapsRequired:1];
+    [singleTapGesture setNumberOfTouchesRequired:1];
+    [singleTapGesture requireGestureRecognizerToFail:doubleTapGesture];
+    
+    [self.view addGestureRecognizer:singleTapGesture];
+    
     [self refresh];
     [super viewDidLoad];
+}
+
+- (void) processDoubleTap: (UITapGestureRecognizer *)recognizer
+{
+    CGPoint p = [recognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    
+    FranchiseModel *franchise = self.opponents[indexPath.row];
+    [self.teamsContextViewModel recordOpponentId:franchise.retroId];
+    
+    [self.delegate teamsOpponentSelected:self];
+}
+
+- (void) processSingleTap: (UITapGestureRecognizer *)recognizer
+{
+    CGPoint p = [recognizer locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    
+    FranchiseModel *franchise = self.opponents[indexPath.row];
+    [self.teamsContextViewModel recordOpponentId:franchise.retroId];
+    
+    [self.delegate teamsOpponentSelected:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,6 +138,7 @@
     return cell;
 }
 
+/*
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FranchiseModel *franchise = self.opponents[indexPath.row];
@@ -110,6 +146,6 @@
     
     [self.delegate teamsOpponentSelected:self];
 }
-
+*/
 
 @end

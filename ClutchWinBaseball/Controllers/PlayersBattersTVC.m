@@ -76,9 +76,46 @@
     if([self.playersContextViewModel.yearId length] > 0){
         [self.goToTeamsButton setEnabled:YES];
     }
+    
+    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+    [doubleTapGesture setNumberOfTapsRequired:2];
+    [doubleTapGesture setNumberOfTouchesRequired:1];
+    
+    [self.view addGestureRecognizer:doubleTapGesture];
+    
+    UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
+    [singleTapGesture setNumberOfTapsRequired:1];
+    [singleTapGesture setNumberOfTouchesRequired:1];
+    [singleTapGesture requireGestureRecognizerToFail:doubleTapGesture];
+    
+    [self.view addGestureRecognizer:singleTapGesture];
 
     [self refresh];
     [super viewDidLoad];
+}
+
+- (void) processDoubleTap: (UITapGestureRecognizer *)recognizer
+{
+    if (!self.isLoading) {
+        CGPoint p = [recognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        BatterModel *batter = self.batters[indexPath.row];
+        self.playersContextViewModel.batterId = batter.batterIdValue;
+        
+        [self.delegate playersBatterSelected:self];
+    }
+}
+
+- (void) processSingleTap: (UITapGestureRecognizer *)recognizer
+{
+    if (!self.isLoading) {
+        CGPoint p = [recognizer locationInView:self.collectionView];
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        BatterModel *batter = self.batters[indexPath.row];
+        self.playersContextViewModel.batterId = batter.batterIdValue;
+        
+        [self.delegate playersBatterSelected:self];
+    }
 }
 
 - (IBAction)goToSeasons:(id)sender {
@@ -275,6 +312,7 @@
     return cell;
 }
 
+/*
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!self.isLoading) {
@@ -284,18 +322,6 @@
         [self.delegate playersBatterSelected:self];
     }
 }
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    BatterModel *batter = self.batters[indexPath.row];
-    cell.textLabel.text = [batter displayName];
-    
-    return cell;
-}
+*/
 
 @end
