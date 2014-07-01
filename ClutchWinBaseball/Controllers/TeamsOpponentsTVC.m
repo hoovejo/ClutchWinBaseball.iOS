@@ -20,18 +20,20 @@
 
 - (void)viewDidLoad
 {    
-    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
-    [doubleTapGesture setNumberOfTapsRequired:2];
-    [doubleTapGesture setNumberOfTouchesRequired:1];
-    
-    [self.view addGestureRecognizer:doubleTapGesture];
-    
-    UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
-    [singleTapGesture setNumberOfTapsRequired:1];
-    [singleTapGesture setNumberOfTouchesRequired:1];
-    [singleTapGesture requireGestureRecognizerToFail:doubleTapGesture];
-    
-    [self.view addGestureRecognizer:singleTapGesture];
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+        [doubleTapGesture setNumberOfTapsRequired:2];
+        [doubleTapGesture setNumberOfTouchesRequired:1];
+        
+        [self.view addGestureRecognizer:doubleTapGesture];
+        
+        UITapGestureRecognizer *singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
+        [singleTapGesture setNumberOfTapsRequired:1];
+        [singleTapGesture setNumberOfTouchesRequired:1];
+        [singleTapGesture requireGestureRecognizerToFail:doubleTapGesture];
+        
+        [self.view addGestureRecognizer:singleTapGesture];
+    }
     
     [self refresh];
     [super viewDidLoad];
@@ -138,14 +140,14 @@
     return cell;
 }
 
-/*
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FranchiseModel *franchise = self.opponents[indexPath.row];
-    [self.teamsContextViewModel recordOpponentId:franchise.retroId];
+    if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        FranchiseModel *franchise = self.opponents[indexPath.row];
+        [self.teamsContextViewModel recordOpponentId:franchise.retroId];
     
-    [self.delegate teamsOpponentSelected:self];
+        [self.delegate teamsOpponentSelected:self];
+    }
 }
-*/
 
 @end
