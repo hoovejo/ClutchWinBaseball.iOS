@@ -7,7 +7,8 @@
 //
 
 #import "WebDisplayViewController.h"
-#import <BugSense-iOS/BugSenseController.h>
+#import "Crittercism.h"
+//#import <BugSense-iOS/BugSenseController.h>
 
 @interface WebDisplayViewController ()
 
@@ -44,9 +45,10 @@
     }
     @catch (NSException *exception)
     {
-        NSDictionary *data = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"value", self.urlAsString, nil ]
-                                                         forKeys:[NSArray arrayWithObjects:@"key", @"URLKey", nil ]];
-        BUGSENSE_LOG(exception, data);
+        //NSDictionary *data = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"value", self.urlAsString, nil ]
+        //                                                 forKeys:[NSArray arrayWithObjects:@"key", @"URLKey", nil ]];
+        //BUGSENSE_LOG(exception, data);
+        [Crittercism logHandledException:exception];
         return;
     }
     

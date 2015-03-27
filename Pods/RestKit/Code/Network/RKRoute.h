@@ -82,6 +82,7 @@
  The name is used to identify named and relationship routes and is always `nil` for object routes.
  */
 @property (nonatomic, strong, readonly) NSString *name;
+
 /**
  The object class of the receiver.
 

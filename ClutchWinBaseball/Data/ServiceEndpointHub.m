@@ -25,7 +25,7 @@
 #import "PitcherModel.h"
 #import "PlayersResultModel.h"
 #import "PlayersDrillDownModel.h"
-#import <BugSense-iOS/BugSenseController.h>
+#import "Crittercism.h"
 
 @interface ServiceEndpointHub ()
 
@@ -69,9 +69,10 @@ static BOOL isNetWorkAvailable;
             [NSException raise:NSGenericException format:@"%@", [error description]];
             
         } @catch (NSException *exc) {
-            NSDictionary *data = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"msg-value", msg, nil]
-                                                             forKeys:[NSArray arrayWithObjects:@",msg-key", @"key", nil]];
-            BUGSENSE_LOG(exc, data);
+            //NSDictionary *data = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"msg-value", msg, nil]
+            //                                                 forKeys:[NSArray arrayWithObjects:@",msg-key", @"key", nil]];
+            //BUGSENSE_LOG(exc, data);
+            [Crittercism logHandledException:exc];
         }
     }
 }

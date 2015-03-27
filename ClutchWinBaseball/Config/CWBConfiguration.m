@@ -8,6 +8,7 @@
 
 #import "CWBConfiguration.h"
 
+#define ConfigurationAnalyticsTokenValue @"AnalyticsTokenValue"
 #define ConfigurationBaseUrlString @"BaseUrlString"
 #define ConfigurationJsonSuffix @"JsonSuffix"
 #define ConfigurationFranchises @"Franchise"
@@ -71,6 +72,16 @@
 }
 
 #pragma mark -
++ (NSString *)analyticsTokenValue {
+    CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
+    
+    if (sharedConfiguration.variables) {
+        return [sharedConfiguration.variables objectForKey:ConfigurationAnalyticsTokenValue];
+    }
+    
+    return nil;
+}
+
 + (NSString *)baseUrlString {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
     

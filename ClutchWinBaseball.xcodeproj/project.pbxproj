@@ -26,7 +26,6 @@
 		D31FCB7A18FFEDFB004DDBCF /* ClutchWinBaseballTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB7918FFEDFB004DDBCF /* ClutchWinBaseballTests.m */; };
 		D31FCB8518FFEE64004DDBCF /* ViewPagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */; };
 		D35899811957A45E008ABE50 /* TeamsResusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35899801957A45E008ABE50 /* TeamsResusableView.m */; };
-		D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */; };
 		D36959E3194FDAA200AA7C84 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36959E2194FDAA200AA7C84 /* iAd.framework */; };
 		D36959E6194FDB5000AA7C84 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36959E5194FDB5000AA7C84 /* HomeViewController.m */; };
 		D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C64D6194D10C000D26D8F /* SystemConfiguration.framework */; };
@@ -82,6 +81,8 @@
 
 /* Begin PBXFileReference section */
 		439A34C1289340EBBBCC1C80 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		57F982361AB7FC1216719C98 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C89601DA4114076CE7270C2B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D31D637419437707004C79A3 /* CustomUnwindSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUnwindSegue.h; sourceTree = "<group>"; };
 		D31D637519437707004C79A3 /* CustomUnwindSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUnwindSegue.m; sourceTree = "<group>"; };
 		D31D6377194377DE004C79A3 /* CustomSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSegue.h; sourceTree = "<group>"; };
@@ -108,7 +109,6 @@
 		D31FCB8418FFEE64004DDBCF /* ViewPagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewPagerController.m; path = ClutchWinBaseball/ViewPagerController.m; sourceTree = "<group>"; };
 		D358997F1957A45E008ABE50 /* TeamsResusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TeamsResusableView.h; path = Custom/TeamsResusableView.h; sourceTree = "<group>"; };
 		D35899801957A45E008ABE50 /* TeamsResusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TeamsResusableView.m; path = Custom/TeamsResusableView.m; sourceTree = "<group>"; };
-		D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "BugSense-iOS.framework"; sourceTree = "<group>"; };
 		D36959E2194FDAA200AA7C84 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		D36959E4194FDB5000AA7C84 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		D36959E5194FDB5000AA7C84 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
@@ -254,7 +254,6 @@
 		D3E03C07194E74560051943F /* TeamsHostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamsHostViewController.m; sourceTree = "<group>"; };
 		D3E03C08194E74560051943F /* ViewPagerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewPagerController.h; sourceTree = "<group>"; };
 		D3E03C09194E74560051943F /* ViewPagerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewPagerController.m; sourceTree = "<group>"; };
-		F75E4192985C4B589FF325DF /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,7 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D36959E3194FDAA200AA7C84 /* iAd.framework in Frameworks */,
-				D36959E1194FD99300AA7C84 /* BugSense-iOS.framework in Frameworks */,
 				D36C64D9194D10D400D26D8F /* libz.dylib in Frameworks */,
 				D36C64D7194D10C000D26D8F /* SystemConfiguration.framework in Frameworks */,
 				D3A8FB6A193EB28500CD69BC /* CoreData.framework in Frameworks */,
@@ -301,7 +299,6 @@
 		D31FCB3C18FFEDFB004DDBCF = {
 			isa = PBXGroup;
 			children = (
-				D36959DF194FD97500AA7C84 /* BugSense-iOS.framework */,
 				D31D636F19437615004C79A3 /* CustomSeque */,
 				D3A8FB6B193EB3B700CD69BC /* Resources */,
 				D31FCB8C19014E10004DDBCF /* ICViewPager */,
@@ -309,7 +306,7 @@
 				D31FCB7318FFEDFB004DDBCF /* ClutchWinBaseballTests */,
 				D31FCB4718FFEDFB004DDBCF /* Frameworks */,
 				D31FCB4618FFEDFB004DDBCF /* Products */,
-				F75E4192985C4B589FF325DF /* Pods.xcconfig */,
+				FB9B7BDA730183BB5B8B81ED /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -643,6 +640,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		FB9B7BDA730183BB5B8B81ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C89601DA4114076CE7270C2B /* Pods.debug.xcconfig */,
+				57F982361AB7FC1216719C98 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -756,7 +762,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4C657AE03A2E4900B80E2320 /* Check Pods Manifest.lock */ = {
@@ -977,7 +983,7 @@
 		};
 		D31FCB7E18FFEDFB004DDBCF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F75E4192985C4B589FF325DF /* Pods.xcconfig */;
+			baseConfigurationReference = C89601DA4114076CE7270C2B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -991,7 +997,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "09862C63-98FE-49C6-8791-204E4476B4A8";
 				WRAPPER_EXTENSION = app;
@@ -1000,7 +1006,7 @@
 		};
 		D31FCB7F18FFEDFB004DDBCF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F75E4192985C4B589FF325DF /* Pods.xcconfig */;
+			baseConfigurationReference = 57F982361AB7FC1216719C98 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1014,7 +1020,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ClutchWinBaseball/ClutchWinBaseball-Prefix.pch";
 				INFOPLIST_FILE = "ClutchWinBaseball/ClutchWinBaseball-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "AE226168-3CE0-4736-BEA6-F032A17B28D9";
 				WRAPPER_EXTENSION = app;

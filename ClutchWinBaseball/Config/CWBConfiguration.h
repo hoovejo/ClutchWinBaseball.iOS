@@ -14,6 +14,7 @@
 + (NSString *)configuration;
 
 #pragma mark -
++ (NSString *)analyticsTokenValue;
 + (NSString *)baseUrlString;
 + (NSString *)jsonSuffix;
 + (NSString *)franchiseUrl;

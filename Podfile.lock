@@ -1,30 +1,41 @@
 PODS:
   - AFNetworking (1.3.4)
-  - RestKit (0.20.3):
-    - RestKit/Core
-  - RestKit/Core (0.20.3):
+  - CrittercismSDK (5.1.3)
+  - ISO8601DateFormatterValueTransformer (0.5.0):
+    - RKValueTransformers (~> 1.0.0)
+  - RestKit (0.22.0):
+    - RestKit/Core (= 0.22.0)
+  - RestKit/Core (0.22.0):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.20.3)
-  - RestKit/Network (0.20.3):
+  - RestKit/CoreData (0.22.0)
+  - RestKit/Network (0.22.0):
     - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.20.3)
-  - RestKit/Support (0.20.3):
-    - TransitionKit (= 1.1.1)
+  - RestKit/ObjectMapping (0.22.0):
+    - ISO8601DateFormatterValueTransformer (~> 0.5.0)
+    - RestKit/Support
+    - RKValueTransformers (~> 1.0.1)
+  - RestKit/Support (0.22.0):
+    - TransitionKit (= 2.0.0)
+  - RKValueTransformers (1.0.1)
   - SOCKit (1.1)
-  - TransitionKit (1.1.1)
+  - TransitionKit (2.0.0)
 
 DEPENDENCIES:
-  - RestKit (~> 0.20.0)
+  - CrittercismSDK
+  - RestKit (~> 0.22.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: e403d4333a4e1956cb3fe42364c3c879f820c9a0
-  RestKit: 1f181c180105a92f11ec4f6cd7de37625e516d83
-  SOCKit: 8871d058926a6c6cc144f0c5eee82c5d0ec274a3
-  TransitionKit: d0e3344aac92991395d4c2e72d9c5a8ceeb12910
+  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
+  CrittercismSDK: 0b1a479b3cd419f437411a08b5c8b8e09106a8cf
+  ISO8601DateFormatterValueTransformer: a7e1ecf4380d0b561306ced1a3f01bd5f65d2213
+  RestKit: 6b82f862848cbe026ddc297985aa9a766b7e1a38
+  RKValueTransformers: 994503e34bffdbe0159ff6b497290dd1f8d5657f
+  SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
+  TransitionKit: 7877021649a734f3239ed176b7967de29321dcf3
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.36.1

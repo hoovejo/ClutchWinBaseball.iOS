@@ -8,14 +8,14 @@
 
 #import "AppDelegate.h"
 #import "ServiceEndpointHub.h"
-#import <BugSense-iOS/BugSenseController.h>
+#import "Crittercism.h"
+#import "CWBConfiguration.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    [BugSenseController sharedControllerWithBugSenseAPIKey:@"b0b09d39"];
+    [Crittercism enableWithAppID: [CWBConfiguration analyticsTokenValue]];
     
     // Override point for customization after application launch.
     [ServiceEndpointHub configureRestKit];
