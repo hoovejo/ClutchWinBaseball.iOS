@@ -3,28 +3,30 @@
 <plist version="1.0">
 <dict>
 	<key>PlayerPlayerSearch</key>
-	<string>/api/v1/events/summary.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;group=season</string>
+	<string>/api/v1/events/summary.json?&amp;group=season</string>
 	<key>Franchise</key>
-	<string>/api/v1/franchises.json?&amp;access_token=bf053819f9940c156ea467505bccc413</string>
+	<string>/api/v1/franchises.json?</string>
 	<key>BaseUrlString</key>
 	<string>http://clutchwin.com</string>
 	<key>LoggingEnabled</key>
 	<false/>
 	<key>FranchiseSearch</key>
-	<string>/api/v1/games/for_team/summary.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic&amp;max_entries=200&amp;group=season,team_abbr,opp_abbr</string>
+	<string>/api/v1/games/for_team/summary.json?&amp;fieldset=basic&amp;max_entries=200&amp;group=season,team_abbr,opp_abbr</string>
 	<key>OpponentsForBatter</key>
-	<string>/api/v1/opponents/pitchers.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic</string>
+	<string>/api/v1/opponents/pitchers.json?&amp;fieldset=basic</string>
 	<key>Years</key>
-	<string>/api/v1/seasons.json?&amp;access_token=bf053819f9940c156ea467505bccc413</string>
+	<string>/api/v1/seasons.json?</string>
 	<key>Teams</key>
-	<string>/api/v1/teams.json?&amp;access_token=bf053819f9940c156ea467505bccc413</string>
+	<string>/api/v1/teams.json?</string>
 	<key>PlayerPlayerYearSearch</key>
-	<string>/api/v1/events/summary.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;group=game_date</string>
+	<string>/api/v1/events/summary.json?&amp;group=game_date</string>
 	<key>RosterSearch</key>
-	<string>/api/v1/players.json?&amp;access_token=bf053819f9940c156ea467505bccc413</string>
+	<string>/api/v1/players.json?</string>
 	<key>AnalyticsTokenValue</key>
-	<string>550f0420e0697fa449637a5c</string>
+	<string>&lt;place holder&gt;</string>
+	<key>ApiAccessToken</key>
+	<string>&lt;place holder&gt;</string>
 	<key>FranchiseYearSearch</key>
-	<string>/api/v1/games/for_team.json?&amp;access_token=bf053819f9940c156ea467505bccc413&amp;fieldset=basic</string>
+	<string>/api/v1/games/for_team.json?&amp;fieldset=basic</string>
 </dict>
 </plist>

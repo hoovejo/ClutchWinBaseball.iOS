@@ -10,6 +10,7 @@
 
 #define ConfigurationAnalyticsTokenValue @"AnalyticsTokenValue"
 #define ConfigurationBaseUrlString @"BaseUrlString"
+#define ConfigurationApiAccessToken @"ApiAccessToken"
 #define ConfigurationJsonSuffix @"JsonSuffix"
 #define ConfigurationFranchises @"Franchise"
 #define ConfigurationTeamResults @"FranchiseSearch"
@@ -92,6 +93,16 @@
     return nil;
 }
 
++ (NSString *)apiAccessToken {
+    CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
+    
+    if (sharedConfiguration.variables) {
+        return [sharedConfiguration.variables objectForKey:ConfigurationApiAccessToken];
+    }
+    
+    return nil;
+}
+
 + (NSString *)jsonSuffix {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
     
@@ -106,7 +117,8 @@
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
     
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationFranchises];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationFranchises];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -114,9 +126,10 @@
 
 + (NSString *)franchiseSearchUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationTeamResults];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationTeamResults];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -124,9 +137,10 @@
 
 + (NSString *)franchiseSearchByYearUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationTeamDrillDown];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationTeamDrillDown];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -134,9 +148,10 @@
 
 + (NSString *)yearUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationYears];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationYears];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -144,9 +159,10 @@
 
 + (NSString *)teamSearchUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationTeamSearch];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationTeamSearch];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -154,9 +170,10 @@
 
 + (NSString *)batterSearchUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationBatterSearch];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationBatterSearch];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -164,9 +181,10 @@
 
 + (NSString *)pitcherSearchUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationPitcherSearch];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationPitcherSearch];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -174,9 +192,10 @@
 
 + (NSString *)playerResultsUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationPlayerResults];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationPlayerResults];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
@@ -184,9 +203,10 @@
 
 + (NSString *)playerDrillDownUrl {
     CWBConfiguration *sharedConfiguration = [CWBConfiguration sharedConfiguration];
-    
+
     if (sharedConfiguration.variables) {
-        return [sharedConfiguration.variables objectForKey:ConfigurationPlayerDrillDown];
+        NSString *endpoint = [sharedConfiguration.variables objectForKey:ConfigurationPlayerDrillDown];
+        return [NSString stringWithFormat:@"%1$@&access_token=%2$@", endpoint, [CWBConfiguration apiAccessToken]];
     }
     
     return nil;
